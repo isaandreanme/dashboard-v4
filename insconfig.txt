@@ -1,0 +1,18 @@
+cp .env.example .env
+composer update
+php artisan key:generate
+npm install
+npm run build
+php artisan migrate
+php artisan migrate:fresh --seed
+php artisan optimize:clear
+php artisan shield:install
+php artisan serve
+php artisan storage:link
+
+
+PERINTAH UNTUK php artisan storage:link DI CPANEL
+ln -s /home/username/public_html/web.com/storage/app/public /home/username/public_html/web.com/public/storage
+
+
+ln -s /home/u1489422/public_html/dev.nahelindopratama.com/storage/app/public /home/u1489422/public_html/dev.nahelindopratama.com/public/storage
