@@ -30,7 +30,7 @@ class PendaftaranSeeder extends Seeder
         shuffle($this->femaleNames);
 
         // Create 100 sample records, ensure we have at least 100 unique names
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             // Select a province with id between 31 and 35
             $province = Province::whereBetween('id', [31, 35])->inRandomOrder()->first();
 
@@ -63,7 +63,7 @@ class PendaftaranSeeder extends Seeder
                 'regency_id' => $regency->id,   // Matching regency
                 'district_id' => $district->id, // Matching district
                 'village_id' => $village->id,   // Matching village
-                // 'tanggal_pra_medical' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_pra_medical' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
                 'pra_medical' => $faker->randomElement(['FIT', 'UNFIT']),
                 'data_lengkap' => $faker->boolean,
                 'created_at' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),

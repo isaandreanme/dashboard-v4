@@ -55,29 +55,49 @@ class ProsesCpmiSeeder extends Seeder
             // Pilih ID status secara acak dari data statuses
             $status = $statuses->random();
 
+            // Tentukan nilai untuk tanggal berdasarkan status
+            $tanggalValues = ($status->id === 3) ? [
+                'tanggal_pra_bpjs' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_ujk' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tglsiapkerja' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tgl_bp2mi' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_medical_full' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_ec' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_visa' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_bpjs_purna' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_teto' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_pap' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_penerbangan' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_in_toyo' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'tanggal_in_agency' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+            ] : [
+                'tanggal_pra_bpjs' => null,
+                'tanggal_ujk' => null,
+                'tglsiapkerja' => null,
+                'tgl_bp2mi' => null,
+                'tanggal_medical_full' => null,
+                'tanggal_ec' => null,
+                'tanggal_visa' => null,
+                'tanggal_bpjs_purna' => null,
+                'tanggal_teto' => null,
+                'tanggal_pap' => null,
+                'tanggal_penerbangan' => null,
+                'tanggal_in_toyo' => null,
+                'tanggal_in_agency' => null,
+            ];
+
             ProsesCpmi::create([
                 'pendaftaran_id' => $pendaftaran->id, // Menggunakan ID dari tabel Pendaftaran
                 'tujuan_id' => $tujuan->id, // Menambahkan ID dari tabel Tujuans
                 'status_id' => $status->id, // Menambahkan ID dari tabel Statuses
-                // 'tanggal_pra_bpjs' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tanggal_ujk' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tglsiapkerja' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
                 'email_siapkerja' => $faker->unique()->safeEmail, // Menggunakan email dari Faker
                 'password_siapkerja' => Hash::make('password123'), // Menggunakan hash untuk password
-                // 'tgl_bp2mi'=> Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
                 'no_id_pmi' => Str::random(10), // Random string untuk nomor PMI
                 'file_pp' => 'datapmi/file_pp/file.pdf', // Path file dummy, sesuaikan jika perlu
-                // 'tanggal_medical_full' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tanggal_ec' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tanggal_visa' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tanggal_bpjs_purna' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tanggal_teto' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tanggal_pap' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tanggal_penerbangan' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tanggal_in_toyo' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
-                // 'tanggal_in_agency' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
                 'created_at' => $pendaftaran->created_at, // Menggunakan waktu 'created_at' dari Pendaftaran
                 'updated_at' => now(),
+                // Mengisi tanggal sesuai dengan kondisi
+                ...$tanggalValues,
             ]);
         }
     }
