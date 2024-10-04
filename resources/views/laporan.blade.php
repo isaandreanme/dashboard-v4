@@ -82,7 +82,6 @@
                 @foreach($statuses as $status)
                 <th>{{ $status->nama }}</th>
                 @endforeach
-                <th>Total Status</th> <!-- Kolom Total untuk status -->
             </tr>
         </thead>
         <tbody>
@@ -98,7 +97,6 @@
                 $totalStatus += $dataStatus[$status->nama] ?? 0;
                 @endphp
                 @endforeach
-                <td><strong>{{ $totalStatus }}</strong></td> <!-- Total status untuk setiap kantor -->
             </tr>
             @endforeach
             <tr>
@@ -106,7 +104,6 @@
                 @foreach($statuses as $status)
                 <td><strong>{{ $totalPerStatus[$status->id] ?? 0 }}</strong></td>
                 @endforeach
-                <td><strong>{{ $grandTotal }}</strong></td> <!-- Grand total status -->
             </tr>
         </tbody>
     </table>

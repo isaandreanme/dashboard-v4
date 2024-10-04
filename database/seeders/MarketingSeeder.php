@@ -94,7 +94,7 @@ class MarketingSeeder extends Seeder
                 'code_my' => $faker->randomNumber(5, true),
                 'nomor_hp' => $faker->phoneNumber,
                 'get_job' => $faker->boolean,
-                'tgl_job' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                // 'tgl_job' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
                 'national' => $faker->country,
                 'kelamin' => $faker->randomElement(['MALE', 'FEMALE']),
                 'lulusan' => $faker->randomElement(['Elementary School', 'Junior High School', 'Senior Highschool', 'University']),

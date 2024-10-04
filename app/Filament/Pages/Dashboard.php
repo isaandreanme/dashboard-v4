@@ -11,6 +11,8 @@ use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 use Illuminate\Contracts\View\View;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Actions\Action;
+use Filament\Support\Enums\Alignment;
+
 
 class Dashboard extends \Filament\Pages\Dashboard
 {
@@ -37,14 +39,16 @@ class Dashboard extends \Filament\Pages\Dashboard
                 ->label('Unduh Laporan')
                 ->icon('heroicon-o-printer')
                 ->modalHeading('Pilih Periode Laporan')
+                ->modalDescription('Silahkan Pilih Rentang Waktu yang Anda Inginkan')
+                ->modalSubmitActionLabel('Unduh Laporan')
+                ->modalIcon('heroicon-o-printer')
+
                 ->modalWidth('md')
                 ->form([
                     DatePicker::make('startDate')
-                        ->label('Tanggal Mulai')
-                        ->required(),
+                        ->label('Tanggal Mulai'),
                     DatePicker::make('endDate')
-                        ->label('Tanggal Akhir')
-                        ->required(),
+                        ->label('Tanggal Akhir'),
                 ])
                 ->action(function (array $data) {
                     // Redirect ke halaman unduh PDF dengan tanggal dari form modal
@@ -55,6 +59,11 @@ class Dashboard extends \Filament\Pages\Dashboard
                     ]);
                 })
                 ->color('success')
+                ->modalAlignment(Alignment::Center),
+                // ->slideOver(),
+
+                // Notification::make()
+                // ->title('Unduh Laporan')
         ];
     }
     public function filtersForm(Form $form): Form
