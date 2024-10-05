@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TujuanSeeder::class);
         //--------------------------------
 
-        $this->call(PendaftaranSeeder::class);
-        $this->call(ProsesCpmiSeeder::class);
-        $this->call(MarketingSeeder::class);
+        // $this->call(PendaftaranSeeder::class);
+        // $this->call(ProsesCpmiSeeder::class);
+        // $this->call(MarketingSeeder::class);
 
 
 
