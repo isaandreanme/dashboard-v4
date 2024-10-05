@@ -10,7 +10,7 @@ return [
 
         'login' => [
             'before' => 'atau',
-            'label' => 'masuk ke akun yang sudah ada',
+            'label' => 'Masuk Ke Akun Yang Sudah Ada',
         ],
 
     ],
