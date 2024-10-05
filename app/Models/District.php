@@ -56,4 +56,8 @@ class District extends Model
     {
         return $this->hasMany(Village::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -82,6 +82,9 @@ class ProsesCpmi extends Model implements Auditable
     public function village()
     {
         return $this->belongsTo(Village::class, 'village_id');
+    }public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function formatAuditFieldsForPresentation($field, Audit $record)
@@ -134,8 +137,4 @@ class ProsesCpmi extends Model implements Auditable
         return new HtmlString($formattedResult);
     }
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 }

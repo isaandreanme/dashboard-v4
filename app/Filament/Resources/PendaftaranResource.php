@@ -19,6 +19,7 @@ use App\Filament\Resources\PendaftaranResource\RelationManagers\ProsesCpmiRelati
 use App\Models\District;
 use App\Models\Province;
 use App\Models\Regency;
+use App\Models\User;
 use App\Models\Village;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DatePicker;
@@ -64,6 +65,16 @@ class PendaftaranResource extends Resource
     {
         return $form
             ->schema([
+                Section::make('AKUN CPMI')
+                    ->description('Pilih Akun CPMI jika Sudah Registrasi Di Portal')->schema([
+                        Select::make('user_id')
+                            ->relationship('User', 'name')
+                            ->placeholder('Pilih Akun CPMI')
+                            ->label('Akun CPMI')
+                            ->getOptionLabelFromRecordUsing(fn(User $record) => "{$record->name} ({$record->email})")
+                            ->searchable()
+                            ->optionsLimit(3),
+                    ]),
                 Fieldset::make('')
                     ->schema([
                         TextInput::make('nama')
@@ -332,7 +343,12 @@ class PendaftaranResource extends Resource
                     ->sortable(),
                 TextColumn::make('nama')->label('NAMA')
                     ->searchable()
-                    ->description(fn(Pendaftaran $record): string => $record->nomor_ktp),
+                    ->description(
+                        fn(Pendaftaran $record): string =>
+                        $record->nomor_ktp
+                            ? "{$record->nomor_ktp} - " . ($record->user ? $record->user->email : 'Akun Tidak Terhubung')
+                            : 'No KTP available'
+                    ),
                 // TextColumn::make('tgl_lahir')->label('TGL LAHIR'),
                 TextColumn::make('tgl_lahir')
                     ->label('USIA')

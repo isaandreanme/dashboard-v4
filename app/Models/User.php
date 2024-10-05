@@ -14,8 +14,8 @@ use Filament\Panel; // Pastikan untuk mengimpor Panel
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class User extends Authenticatable implements
-    HasAvatar,
-    MustVerifyEmail
+    HasAvatar
+    // MustVerifyEmail
     // FilamentUser
 {
     use HasFactory, Notifiable, HasRoles;
@@ -51,5 +51,23 @@ class User extends Authenticatable implements
     {
         // Tambahkan logika yang sesuai untuk menentukan akses
         return str_ends_with($this->email, '@example.com') && $this->hasVerifiedEmail();
+    }
+
+    // Relasi dengan Pendaftaran
+    public function pendaftarans()
+    {
+        return $this->hasMany(Pendaftaran::class);
+    }
+
+    // Relasi dengan Proses CPMI
+    public function proses_cpmis()
+    {
+        return $this->hasMany(ProsesCpmi::class);
+    }
+
+    // Relasi dengan Marketings
+    public function marketings()
+    {
+        return $this->hasMany(Marketing::class);
     }
 }

@@ -668,10 +668,19 @@ class MarketingResource extends Resource
                     ->copyable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500),
-                TextColumn::make('Pendaftaran.nama')->label('CPMI')->weight('bold')->searchable()
+                TextColumn::make('pendaftaran.nama') // Pastikan relasi ke Pendaftaran ada
+                    ->label('CPMI')
+                    ->weight('bold')
+                    ->searchable()
                     ->copyable()
                     ->copyMessage('Salin Berhasil')
-                    ->copyMessageDuration(1500),
+                    ->copyMessageDuration(1500)
+                    ->description(
+                        fn(Marketing $record): string =>
+                        $record->pendaftaran->nomor_ktp
+                            ? "{$record->pendaftaran->nomor_ktp} - " . ($record->user ? $record->user->email : 'Akun Tidak Terhubung')
+                            : 'No KTP available'
+                    ),
                 TextColumn::make('Pendaftaran.nomor_ktp')->label('E-KTP')->color('primary')
                     ->copyable()
                     ->searchable()

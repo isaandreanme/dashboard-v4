@@ -81,4 +81,8 @@ class Marketing extends ApprovableModel
             ->color("success")
             ->hidden(fn(ApprovableModel $record) => $record->shouldBeHidden());
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

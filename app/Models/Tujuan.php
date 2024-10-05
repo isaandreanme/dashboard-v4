@@ -23,4 +23,8 @@ class Tujuan extends Model
     {
         return $this->hasMany(Marketing::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

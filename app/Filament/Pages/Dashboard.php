@@ -20,8 +20,9 @@ class Dashboard extends \Filament\Pages\Dashboard
 
     protected function getShieldRedirectPath(): string
     {
-        return '/unauthorized'; // Redirect jika user tidak memiliki akses
+        return '/admin/proses'; // Redirect jika user tidak memiliki akses
     }
+
     protected static ?string $title = 'RINGKASAN';
     protected static ?string $navigationIcon = 'heroicon-o-presentation-chart-line';
 
@@ -60,10 +61,10 @@ class Dashboard extends \Filament\Pages\Dashboard
                 })
                 ->color('success')
                 ->modalAlignment(Alignment::Center),
-                // ->slideOver(),
+            // ->slideOver(),
 
-                // Notification::make()
-                // ->title('Unduh Laporan')
+            // Notification::make()
+            // ->title('Unduh Laporan')
         ];
     }
     public function filtersForm(Form $form): Form
