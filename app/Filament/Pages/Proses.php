@@ -24,7 +24,7 @@ class Proses extends Page implements HasInfolists
     protected static ?string $navigationLabel = 'DETAILS';
     protected static ?string $title = 'DETAILS';
     protected ?string $heading = 'DETAILS';
-    protected ?string $subheading = 'View Details';
+    protected ?string $subheading = 'View Details Akun CPMI';
 
     protected static ?int $navigationSort = 20;
 
