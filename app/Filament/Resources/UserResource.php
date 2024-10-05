@@ -18,6 +18,7 @@ use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
+use Filament\Tables\Columns\ToggleColumn;
 use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 
 class UserResource extends Resource
@@ -106,11 +107,11 @@ class UserResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label(trans('filament-users::user.resource.email')),
-                // IconColumn::make('email_verified_at')
-                //     ->boolean()
-                //     ->sortable()
-                //     ->searchable()
-                //     ->label(trans('filament-users::user.resource.email_verified_at')),
+                IconColumn::make('email_verified_at')
+                    ->boolean()
+                    ->sortable()
+                    ->searchable()
+                    ->label(trans('filament-users::user.resource.email_verified_at')),
                 TextColumn::make('created_at')
                     ->label(trans('filament-users::user.resource.created_at'))
                     ->dateTime('M j, Y')
@@ -119,6 +120,7 @@ class UserResource extends Resource
                     ->label(trans('filament-users::user.resource.updated_at'))
                     ->dateTime('M j, Y')
                     ->sortable(),
+                ToggleColumn::make('is_admin'),
                 TextColumn::make('roles.name')
 
             ])

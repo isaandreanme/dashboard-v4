@@ -36,6 +36,7 @@ use Swis\Filament\Backgrounds\ImageProviders\MyImages;
 use Awcodes\LightSwitch\LightSwitchPlugin;
 use Awcodes\LightSwitch\Enums\Alignment;
 use EightyNine\Approvals\ApprovalPlugin;
+use Filament\Pages\Auth\EditProfile;
 use Hasnayeen\Themes\Http\Middleware\SetTheme;
 use Hasnayeen\Themes\ThemesPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
@@ -47,6 +48,10 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->profile(EditProfile::class)
+            ->registration()
+            ->passwordReset()
+            ->emailVerification()
             ->sidebarCollapsibleOnDesktop()
             ->sidebarFullyCollapsibleOnDesktop()
             ->collapsibleNavigationGroups(true)
@@ -99,7 +104,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                ApprovalPlugin::make(),
+                // ApprovalPlugin::make(),
                 ThemesPlugin::make()
                     ->canViewThemesPage(fn() => auth()->user()?->hasRole('super_admin') ?? false),
                 //-----------------------------------User Bukan Error------------
@@ -137,11 +142,11 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-o-arrow-path-rounded-square')
                     ->collapsible(false),
                 NavigationGroup::make()
-                    ->icon('heroicon-s-squares-plus')
+                    // ->icon('heroicon-s-squares-plus')
                     ->label('Modul')
                     ->collapsible(true),
                 NavigationGroup::make()
-                    ->icon('heroicon-o-cog-6-tooth')
+                    // ->icon('heroicon-o-cog-6-tooth')
                     ->label('Settings')
                     ->collapsible(true),
                 // NavigationGroup::make()
