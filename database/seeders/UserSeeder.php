@@ -39,8 +39,6 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'created_at' => now(),
                 'email_verified_at' => now(),
-                'is_admin' => 1,
-
             ],
         ]);
     }

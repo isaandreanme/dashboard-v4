@@ -134,34 +134,37 @@ class Maids extends Page implements HasTable
     }
 
     protected function sendRequestInterviewNotification(Marketing $record, $agencyId)
-    {
-        // Ambil nama editor
-        $editor = Auth::user();
-        $editorName = $editor ? $editor->name : 'Unknown';
-        $recipients = User::all();
+{
+    // Ambil nama editor
+    $editor = Auth::user();
+    $editorName = $editor ? $editor->name : 'Unknown';
 
-        // Akses nama dari relasi pendaftaran
-        $pendaftaranNama = $record->pendaftaran->nama ?? 'Tidak diketahui';  // Handle jika 'pendaftaran' null
+    // Akses nama dari relasi pendaftaran
+    $pendaftaranNama = $record->pendaftaran->nama ?? 'Tidak diketahui';  // Handle jika 'pendaftaran' null
 
-        // Ambil informasi agency berdasarkan ID
-        $agency = Agency::find($agencyId);
-        $agencyName = $agency ? $agency->nama : 'Tidak diketahui'; // Jika agency tidak ditemukan, fallback ke 'Tidak diketahui'
+    // Ambil informasi agency berdasarkan ID
+    $agency = Agency::find($agencyId);
+    $agencyName = $agency ? $agency->nama : 'Tidak diketahui'; // Jika agency tidak ditemukan, fallback ke 'Tidak diketahui'
 
-        // Tombol "View" untuk melihat detail permintaan
-        $viewButton = NotificationAction::make('Lihat')
-            ->url(MarketingResource::getUrl('view', ['record' => $record]));
+    // Tombol "View" untuk melihat detail permintaan
+    $viewButton = NotificationAction::make('Lihat')
+        ->url(MarketingResource::getUrl('view', ['record' => $record]));
 
-        // Buat notifikasi
-        $notification = Notification::make()
-            ->title('REQUEST INTERVIEW')
-            ->body("Request interview untuk <strong>{$pendaftaranNama}</strong> untuk <strong>{$agencyName}</strong> telah diajukan oleh <strong>{$editorName}</strong>.") // Tampilkan nama agency
-            ->actions([$viewButton])
-            ->persistent()
-            ->success();
+    // Buat notifikasi
+    $notification = Notification::make()
+        ->title('REQUEST INTERVIEW')
+        ->body("Request interview untuk <strong>{$pendaftaranNama}</strong> untuk <strong>{$agencyName}</strong> telah diajukan oleh <strong>{$editorName}</strong>.") // Tampilkan nama agency
+        ->actions([$viewButton])
+        ->persistent()
+        ->success();
 
-        // Kirim notifikasi ke semua penerima
-        foreach ($recipients as $recipient) {
-            $notification->sendToDatabase($recipient);
-        }
+    // Kirim notifikasi ke semua admin dan juga ke editor
+    $recipients = User::where('is_admin', true)->orWhere('id', $editor->id)->get();
+
+    // Kirim notifikasi ke semua penerima
+    foreach ($recipients as $recipient) {
+        $notification->sendToDatabase($recipient);
     }
+}
+
 }

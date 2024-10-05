@@ -51,7 +51,7 @@ class EditMarketing extends EditRecord
         $editorName = $editor ? $editor->name : 'Unknown';
 
         // Ambil semua penerima notifikasi
-        $recipients = User::all();
+        $recipients = User::where('is_admin', true)->get();
 
         // Buat notifikasi dengan tombol "View"
         $notification = Notification::make()
