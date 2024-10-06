@@ -28,7 +28,7 @@ use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Enums\ActionsPosition;
 
-class Maids extends Page implements HasTable
+class Workers extends Page implements HasTable
 {
     use InteractsWithTable;
     use HasPageShield;
@@ -38,12 +38,12 @@ class Maids extends Page implements HasTable
         return '/unauthorized'; // Redirect jika user tidak memiliki akses
     }
 
-    protected static ?string $navigationLabel = 'MAIDS';
-    protected static ?string $title = 'MAIDS';
-    protected ?string $heading = 'MAIDS';
-    protected ?string $subheading = 'Maid Listing';
+    protected static ?string $navigationLabel = 'WORKERS';
+    protected static ?string $title = 'Workers';
+    protected ?string $heading = 'Workers';
+    protected ?string $subheading = 'Workers Listing';
     protected static ?string $navigationIcon = 'heroicon-o-bars-3-bottom-left';
-    protected static string $view = 'filament.pages.maids';
+    protected static string $view = 'filament.pages.workers';
 
     public function table(Table $table): Table
     {

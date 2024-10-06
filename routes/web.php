@@ -8,7 +8,7 @@ use App\Http\Controllers\SingaporeController;
 use App\Http\Controllers\TaiwanController;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use App\Filament\Pages\Maids;
+use App\Filament\Pages\Workers;
 
 
 

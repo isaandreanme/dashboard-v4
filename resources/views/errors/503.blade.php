@@ -65,7 +65,7 @@
         <!-- Buttons container with responsive flex layout -->
         <div class="btn-container">
             <a href="{{ url('/') }}" class="btn-custom hover:shadow-lg transition">Back to Home</a>
-            <a href="{{ url('/admin/maids') }}" class="btn-custom hover:shadow-lg transition">Back to Agency</a>
+            <a href="{{ url('/admin/workers') }}" class="btn-custom hover:shadow-lg transition">Back to Agency</a>
             <!-- Tombol Logout -->
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
