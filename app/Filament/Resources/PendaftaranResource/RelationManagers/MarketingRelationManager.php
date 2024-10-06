@@ -57,18 +57,10 @@ class MarketingRelationManager extends RelationManager
                                     Select::make('agency_id')
                                     ->relationship('Agency', 'nama')
                                     ->required()
-                                    ->label('AGENCY MARKETING')
+                                    ->label('STATUS MARKETING')
                                     ->options(Agency::whereIn('id', [1, 2])->pluck('nama', 'id')) // Hanya menampilkan agency_id 1 dan 2
                                     ->placeholder('Pilih Agency'),                                
                             ])->columns(2),
-
-                        // Section::make('VERIVIKASI DOKUMEN')
-                        //     ->description('Silahkan Centang Jika Data Sudah Lengkap')
-                        //     ->icon('heroicon-o-check-circle')
-                        //     ->schema([
-                        //         Toggle::make('pendaftaran.data_lengkap')
-                        //             ->inline(true),
-                        //     ]),
                     ])
 
             ]);
