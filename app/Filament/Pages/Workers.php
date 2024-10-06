@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Auth;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use EightyNine\Approvals\Models\ApprovableModel;
 use EightyNine\Approvals\Tables\Columns\ApprovalStatusColumn;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TimePicker;
 use Filament\Tables\Columns\Layout\Panel;
 use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
@@ -55,29 +57,30 @@ class Workers extends Page implements HasTable
                         ->label('PICTURE')
                         ->circular()
                         ->size(200),
-                    Stack::make([
-                        TextColumn::make('pendaftaran.nama')
-                            ->label('CPMI')
-                            ->weight('bold')
-                            ->searchable()
-                            ->description(
-                                fn(Marketing $record): string =>
-                                $record->pendaftaran
-                                    ? ($record->pendaftaran->age
-                                        ? "{$record->pendaftaran->age} - Years Old"
-                                        : 'Age not available')
-                                    : 'Pendaftaran tidak ditemukan'
-                            ),
-                        TextColumn::make('Agency.nama')
-                            ->label('MARKET')
-                            ->badge()
-                            ->color(fn(string $state): string => match ($state) {
-                                '- OPEN ON MARKET' => 'success',
-                                default => 'gray',
-                            })
-                            ->formatStateUsing(fn(string $state): string => $state === '- OPEN ON MARKET' ? 'OPEN MARKET' : $state)
-                    ])->space(1),
+
                     Panel::make([
+                        Stack::make([
+                            TextColumn::make('pendaftaran.nama')
+                                ->label('CPMI')
+                                ->weight('bold')
+                                ->searchable()
+                                ->description(
+                                    fn(Marketing $record): string =>
+                                    $record->pendaftaran
+                                        ? ($record->pendaftaran->age
+                                            ? "{$record->pendaftaran->age} - Years Old"
+                                            : 'Age not available')
+                                        : 'Pendaftaran tidak ditemukan'
+                                ),
+                            TextColumn::make('Agency.nama')
+                                ->label('MARKET')
+                                ->badge()
+                                ->color(fn(string $state): string => match ($state) {
+                                    '- OPEN ON MARKET' => 'success',
+                                    default => 'gray',
+                                })
+                                ->formatStateUsing(fn(string $state): string => $state === '- OPEN ON MARKET' ? 'OPEN MARKET' : $state)
+                        ])->space(1),
                         Stack::make([
                             TextColumn::make('lulusan')
                                 ->prefix('EDUCATION : ')
@@ -93,7 +96,6 @@ class Workers extends Page implements HasTable
                                 ->prefix('EXPERIENCE : ')
                                 ->label('EXPERIENCE')
                                 ->searchable(),
-                            // ApprovalStatusColumn::make("approvalStatus.status")->toggleable(isToggledHiddenByDefault: true),
                         ])->space(1),
                     ])->collapsed(false),
                 ])->from('md'),
@@ -148,10 +150,24 @@ class Workers extends Page implements HasTable
                             ->options(Agency::whereNotIn('id', [1, 2])->pluck('nama', 'id'))  // Mengecualikan agency_id 1 dan 2
                             ->required()
                             ->searchable(),
+                        DatePicker::make('JadwalInterview')
+                            ->label('Please Select An Interview Schedule')
+                            ->native(false),
+                        TimePicker::make('appointment_at')
+                            ->datalist([
+                                '09:00',
+                                '09:30',
+                                '10:00',
+                                '10:30',
+                                '11:00',
+                                '11:30',
+                                '12:00',
+                            ])
+                            ->label('Time In WIB Jakarta Timezone'),
                     ])
                     ->action(function (Marketing $record, array $data) {
                         $agencyId = $data['agency_id'];
-                        $this->sendRequestInterviewNotification($record, $agencyId);
+                        $this->sendRequestInterviewNotification($record, $agencyId, $data);
                     }),
             ], position: ActionsPosition::AfterCells)
             ->filters([
@@ -165,7 +181,7 @@ class Workers extends Page implements HasTable
             );
     }
 
-    protected function sendRequestInterviewNotification(Marketing $record, $agencyId)
+    protected function sendRequestInterviewNotification(Marketing $record, $agencyId, array $data)
     {
         // Ambil nama editor
         $editor = Auth::user();
@@ -178,6 +194,10 @@ class Workers extends Page implements HasTable
         $agency = Agency::find($agencyId);
         $agencyName = $agency ? $agency->nama : 'Tidak diketahui'; // Jika agency tidak ditemukan, fallback ke 'Tidak diketahui'
 
+        // Ambil jadwal interview dan appointment_at dari data
+        $jadwalInterview = $data['JadwalInterview'] ?? 'Tidak ditentukan';
+        $appointmentAt = $data['appointment_at'] ?? 'Tidak ditentukan';
+
         // Tombol "View" untuk melihat detail permintaan
         $viewButton = NotificationAction::make('Lihat')
             ->url(MarketingResource::getUrl('view', ['record' => $record]));
@@ -185,7 +205,11 @@ class Workers extends Page implements HasTable
         // Buat notifikasi
         $notification = Notification::make()
             ->title('REQUEST INTERVIEW')
-            ->body("Request interview untuk <strong>{$pendaftaranNama}</strong> untuk <strong>{$agencyName}</strong> telah diajukan oleh <strong>{$editorName}</strong>.") // Tampilkan nama agency
+            ->body("
+                Request interview untuk <strong>{$pendaftaranNama}</strong> untuk <strong>{$agencyName}</strong> telah diajukan oleh <strong>{$editorName}</strong>.<br>
+                Jadwal Interview : <strong>{$jadwalInterview}</strong><br>
+                Waktu : <strong>{$appointmentAt}</strong> WIB
+            ") // Tampilkan nama agency, jadwal, dan appointment_at
             ->actions([$viewButton])
             ->persistent()
             ->success();
