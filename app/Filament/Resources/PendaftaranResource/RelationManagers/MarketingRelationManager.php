@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\PendaftaranResource\RelationManagers;
 
+use App\Models\Agency;
 use App\Models\Marketing;
 use App\Models\User;
 use Filament\Actions\Action;
@@ -53,14 +54,12 @@ class MarketingRelationManager extends RelationManager
                                     ->preload()
                                     ->optionsLimit(6)
                                     ->placeholder('Pilih Marketing'),
-                                Select::make('agency_id',)
+                                    Select::make('agency_id')
                                     ->relationship('Agency', 'nama')
                                     ->required()
                                     ->label('AGENCY MARKETING')
-                                    ->searchable()
-                                    ->preload()
-                                    ->optionsLimit(2)
-                                    ->placeholder('Pilih Agency'),
+                                    ->options(Agency::whereIn('id', [1, 2])->pluck('nama', 'id')) // Hanya menampilkan agency_id 1 dan 2
+                                    ->placeholder('Pilih Agency'),                                
                             ])->columns(2),
 
                         // Section::make('VERIVIKASI DOKUMEN')

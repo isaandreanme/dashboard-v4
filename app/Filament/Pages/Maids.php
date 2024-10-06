@@ -23,8 +23,10 @@ use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use EightyNine\Approvals\Models\ApprovableModel;
 use EightyNine\Approvals\Tables\Columns\ApprovalStatusColumn;
 use Filament\Forms\Components\Select;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\Layout\Panel;
+use Filament\Tables\Columns\Layout\Split;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Enums\ActionsPosition;
 
 class Maids extends Page implements HasTable
 {
@@ -48,24 +50,56 @@ class Maids extends Page implements HasTable
         return $table
             ->query(Marketing::where('agency_id', 2))
             ->columns([
-                TextColumn::make('Agency.nama')->label('MARKET')
-                    ->badge()
-                    ->color(fn(string $state): string => match ($state) {
-                        '- OPEN ON MARKET' => 'success',
-                        default => 'gray',
-                    }),
-                ImageColumn::make('foto')->label('PICTURE')->circular(),
-                // TextColumn::make('code_hk')->label('CODE HK'),
-                TextColumn::make('pendaftaran.nama')->label('NAME'),
-                TextColumn::make('lulusan')->label('EDUCATION')
-                    ->formatStateUsing(fn(string $state): string => strtoupper($state)),
-                TextColumn::make('agama')->label('RELIGION'),
-                TextColumn::make('status_nikah')->label('STATUS'),
-                TextColumn::make('pendaftaran.age')->label('AGE')->suffix(' YO'),
-                TextColumn::make('Pendaftaran.Pengalaman.nama')->label('EXPERIENCE')
-                    ->searchable(),
-                // ApprovalStatusColumn::make("approvalStatus.status")->toggleable(isToggledHiddenByDefault: true),
-
+                Split::make([
+                    ImageColumn::make('foto')
+                        ->label('PICTURE')
+                        ->circular()
+                        ->size(200),
+                    Stack::make([
+                        TextColumn::make('pendaftaran.nama')
+                            ->label('CPMI')
+                            ->weight('bold')
+                            ->searchable()
+                            ->description(
+                                fn(Marketing $record): string =>
+                                $record->pendaftaran
+                                    ? ($record->pendaftaran->age
+                                        ? "{$record->pendaftaran->age} - Years Old"
+                                        : 'Age not available')
+                                    : 'Pendaftaran tidak ditemukan'
+                            ),
+                        TextColumn::make('Agency.nama')
+                            ->label('MARKET')
+                            ->badge()
+                            ->color(fn(string $state): string => match ($state) {
+                                '- OPEN ON MARKET' => 'success',
+                                default => 'gray',
+                            })
+                            ->formatStateUsing(fn(string $state): string => $state === '- OPEN ON MARKET' ? 'OPEN MARKET' : $state)
+                    ])->space(1),
+                    Panel::make([
+                        Stack::make([
+                            TextColumn::make('lulusan')
+                                ->prefix('EDUCATION : ')
+                                ->label('EDUCATION')
+                                ->formatStateUsing(fn(string $state): string => strtoupper($state)),
+                            TextColumn::make('agama')
+                                ->prefix('RELIGION : ')
+                                ->label('RELIGION'),
+                            TextColumn::make('status_nikah')
+                                ->prefix('STATUS : ')
+                                ->label('STATUS'),
+                            TextColumn::make('Pendaftaran.Pengalaman.nama')
+                                ->prefix('EXPERIENCE : ')
+                                ->label('EXPERIENCE')
+                                ->searchable(),
+                            // ApprovalStatusColumn::make("approvalStatus.status")->toggleable(isToggledHiddenByDefault: true),
+                        ])->space(1),
+                    ])->collapsed(false),
+                ])->from('md'),
+            ])->contentGrid([
+                'md' => 2,
+                'xl' => 2,
             ])
             ->defaultSort('updated_at', 'desc')
             ->actions([
@@ -100,28 +134,26 @@ class Maids extends Page implements HasTable
                         ->url(fn(Marketing $record) => route('malaysia.pdf.download', ['id' => $record->id]))
                         ->openUrlInNewTab()
                         ->color('success'),
-                ]),
-                TableAction::make('requestInterview')  // Gunakan TableAction di sini
-                ->label('Request Interview')
-                ->color('danger')
-                ->icon('heroicon-o-bell')
-                ->form([
-                    // Tambahkan field select untuk memilih Agency
-                    Select::make('agency_id')
-                        ->label('Please Chose Your Agency Name')
-                        ->options(Agency::all()->pluck('nama', 'id')) // Mengambil daftar agency dari model Agency
-                        ->required()
-                        ->searchable(), // Memungkinkan pengguna mencari agency dalam select box
-                ])
-                ->action(function (Marketing $record, array $data) {
-                    // Mengambil agency_id dari form input
-                    $agencyId = $data['agency_id'];
-
-                    // Lakukan logika yang diperlukan, misalnya mengirim notifikasi atau menyimpan data
-                    $this->sendRequestInterviewNotification($record, $agencyId);
-                }),
-
-            ])
+                ])->label('Biodata Downloads')
+                    ->icon('heroicon-m-ellipsis-vertical')
+                    ->color('primary')
+                    ->button(),
+                TableAction::make('requestInterview')
+                    ->label('Request Interview')
+                    ->color('danger')
+                    ->icon('heroicon-o-bell')
+                    ->form([
+                        Select::make('agency_id')
+                            ->label('Please Chose Your Agency Name')
+                            ->options(Agency::whereNotIn('id', [1, 2])->pluck('nama', 'id'))  // Mengecualikan agency_id 1 dan 2
+                            ->required()
+                            ->searchable(),
+                    ])
+                    ->action(function (Marketing $record, array $data) {
+                        $agencyId = $data['agency_id'];
+                        $this->sendRequestInterviewNotification($record, $agencyId);
+                    }),
+            ], position: ActionsPosition::AfterCells)
             ->filters([
                 SelectFilter::make('Tujuan')
                     ->relationship('Tujuan', 'nama')
@@ -134,37 +166,36 @@ class Maids extends Page implements HasTable
     }
 
     protected function sendRequestInterviewNotification(Marketing $record, $agencyId)
-{
-    // Ambil nama editor
-    $editor = Auth::user();
-    $editorName = $editor ? $editor->name : 'Unknown';
+    {
+        // Ambil nama editor
+        $editor = Auth::user();
+        $editorName = $editor ? $editor->name : 'Unknown';
 
-    // Akses nama dari relasi pendaftaran
-    $pendaftaranNama = $record->pendaftaran->nama ?? 'Tidak diketahui';  // Handle jika 'pendaftaran' null
+        // Akses nama dari relasi pendaftaran
+        $pendaftaranNama = $record->pendaftaran->nama ?? 'Tidak diketahui';  // Handle jika 'pendaftaran' null
 
-    // Ambil informasi agency berdasarkan ID
-    $agency = Agency::find($agencyId);
-    $agencyName = $agency ? $agency->nama : 'Tidak diketahui'; // Jika agency tidak ditemukan, fallback ke 'Tidak diketahui'
+        // Ambil informasi agency berdasarkan ID
+        $agency = Agency::find($agencyId);
+        $agencyName = $agency ? $agency->nama : 'Tidak diketahui'; // Jika agency tidak ditemukan, fallback ke 'Tidak diketahui'
 
-    // Tombol "View" untuk melihat detail permintaan
-    $viewButton = NotificationAction::make('Lihat')
-        ->url(MarketingResource::getUrl('view', ['record' => $record]));
+        // Tombol "View" untuk melihat detail permintaan
+        $viewButton = NotificationAction::make('Lihat')
+            ->url(MarketingResource::getUrl('view', ['record' => $record]));
 
-    // Buat notifikasi
-    $notification = Notification::make()
-        ->title('REQUEST INTERVIEW')
-        ->body("Request interview untuk <strong>{$pendaftaranNama}</strong> untuk <strong>{$agencyName}</strong> telah diajukan oleh <strong>{$editorName}</strong>.") // Tampilkan nama agency
-        ->actions([$viewButton])
-        ->persistent()
-        ->success();
+        // Buat notifikasi
+        $notification = Notification::make()
+            ->title('REQUEST INTERVIEW')
+            ->body("Request interview untuk <strong>{$pendaftaranNama}</strong> untuk <strong>{$agencyName}</strong> telah diajukan oleh <strong>{$editorName}</strong>.") // Tampilkan nama agency
+            ->actions([$viewButton])
+            ->persistent()
+            ->success();
 
-    // Kirim notifikasi ke semua admin dan juga ke editor
-    $recipients = User::where('is_admin', true)->orWhere('id', $editor->id)->get();
+        // Kirim notifikasi ke semua admin dan juga ke editor
+        $recipients = User::where('is_admin', true)->orWhere('id', $editor->id)->get();
 
-    // Kirim notifikasi ke semua penerima
-    foreach ($recipients as $recipient) {
-        $notification->sendToDatabase($recipient);
+        // Kirim notifikasi ke semua penerima
+        foreach ($recipients as $recipient) {
+            $notification->sendToDatabase($recipient);
+        }
     }
-}
-
 }
