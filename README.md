@@ -12,41 +12,9 @@
 
 <summary> 
 <p align="center">
-    <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/1.png" />
+    <img src="#" />
     <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/2.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/3.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/4.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/5.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/6.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/7.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/8.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/9.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/10.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/12.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/13.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/14.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/15.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/16.png" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/17.jpg" />
-    <br>
-        <img src="https://github.com/isaandreanme/dashboard-app/blob/main/Screenshots/18.jpg" />
-    <br>
-      
+   
 </p>
 </summary>
 
