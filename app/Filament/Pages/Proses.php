@@ -12,7 +12,9 @@ use App\Models\Marketing; // Import model Marketing
 use App\Models\ProsesCpmi;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
+use Filament\Infolists\Components\Fieldset;
 use Filament\Infolists\Components\Grid;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\Section;
 use IbrahimBougaoua\FilaProgress\Infolists\Components\ProgressBarEntry;
 
@@ -62,7 +64,7 @@ class Proses extends Page implements HasInfolists
                 ])
                     ->schema([
                         Section::make('Akun Portal')
-                            ->description('The items you have selected for purchase')
+                            ->description('Akun CPMI Yang Terhubung Dengan Data Pendaftaran')
                             ->icon('heroicon-o-lock-closed')
                             ->schema([
                                 TextEntry::make('name')
@@ -71,7 +73,7 @@ class Proses extends Page implements HasInfolists
                                     ->label('Email'),
                             ])->columns(2),
                         Section::make('Pendaftaran')
-                            ->description('The items you have selected for purchase')
+                            ->description('Data Pendaftaran')
                             ->icon('heroicon-o-clipboard-document-check')
                             ->schema([
                                 TextEntry::make('nama')
@@ -83,92 +85,58 @@ class Proses extends Page implements HasInfolists
                                     ->default($pendaftaran->nomor_ktp ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
                             ])->columns(2),
                         Section::make('Proses Status')
-                            ->description('The items you have selected for purchase')
+                            ->description('Jika Data Tidak Ada CPMI Belum Melaksanakan Proses')
                             ->icon('heroicon-o-arrow-path-rounded-square')
                             ->schema([
-                                // ProgressBarEntry::make('PROGRESS')
-                                //     ->label('PROGRESS')
-                                //     ->getStateUsing(function ($record) {
-                                //         // Cek apakah status_id adalah 3
-                                //         if ($record->status_id == 3) {
-                                //             // Jika status_id adalah 3, langsung kembalikan progres 100%
-                                //             return [
-                                //                 'total' => 100,
-                                //                 'progress' => 100,
-                                //             ];
-                                //         }
+                                Fieldset::make('')
+                                    ->schema([
+                                        TextEntry::make('status_id')
+                                            ->label('Status')
+                                            ->default($prosesCpmi->status->nama ?? 'Tidak ada status'),
+                                    ]),
+                                Fieldset::make('')
+                                    ->schema([
+                                        TextEntry::make('tanggal_pra_medical')
+                                            ->label('Pra Medical')
+                                            ->default($pendaftaran->tanggal_pra_medical ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
+                                        TextEntry::make('tanggal_pra_bpjs')
+                                            ->label('Pra BPJS')
+                                            ->default($prosesCpmi->tanggal_pra_bpjs ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tanggal_ujk')
+                                            ->label('UJK')
+                                            ->default($prosesCpmi->tanggal_ujk ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tglsiapkerja')
+                                            ->label('Siap Kerja')
+                                            ->default($prosesCpmi->tglsiapkerja ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tgl_bp2mi')
+                                            ->label('ID BP2MI')
+                                            ->default($prosesCpmi->tgl_bp2mi ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tanggal_medical_full')
+                                            ->label('Medical Full')
+                                            ->default($prosesCpmi->tanggal_medical_full ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tanggal_ec')
+                                            ->label('EC (Kontrak)')
+                                            ->default($prosesCpmi->tanggal_ec ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tanggal_visa')
+                                            ->label('Visa')
+                                            ->default($prosesCpmi->tanggal_visa ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tanggal_bpjs_purna')
+                                            ->label('BPJS Purna')
+                                            ->default($prosesCpmi->tanggal_bpjs_purna ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tanggal_teto')
+                                            ->label('TETO')
+                                            ->default($prosesCpmi->tanggal_teto ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tanggal_pap')
+                                            ->label('PAP')
+                                            ->default($prosesCpmi->tanggal_pap ?? 'Tidak ada data'), // Menampilkan nama status
+                                        TextEntry::make('tanggal_penerbangan')
+                                            ->label('Jadwal Penerbangan')
+                                            ->default($prosesCpmi->tanggal_penerbangan ?? 'Tidak ada data'), // Menampilkan nama status
+                                    ]),
 
-                                //         // Cek apakah status_id adalah 1 atau 2
-                                //         if (!in_array($record->status_id, [1, 2])) {
-                                //             // Jika status_id bukan 1 atau 2, progres tidak dihitung (return null atau 0 progres)
-                                //             return [
-                                //                 'total' => 0,
-                                //                 'progress' => 0,
-                                //             ];
-                                //         }
-
-                                //         // Daftar field tanggal yang ingin diperiksa (semua berupa tanggal)
-                                //         $fields = [
-                                //             'tanggal_pra_bpjs',
-                                //             'tanggal_ujk',
-                                //             'tglsiapkerja',
-                                //             'tgl_bp2mi',
-                                //             'tanggal_medical_full',
-                                //             'tanggal_ec',
-                                //             'tanggal_visa',
-                                //             'tanggal_bpjs_purna',
-                                //             'tanggal_pap',
-                                //             'tanggal_penerbangan',
-                                //         ];
-
-                                //         // Mengakses tanggal_pra_medical dan data_lengkap dari relasi pendaftaran
-                                //         if ($record->pendaftaran) {
-                                //             $fields[] = 'pendaftaran.tanggal_pra_medical';  // Field untuk tanggal_pra_medical
-                                //             $fields[] = 'pendaftaran.data_lengkap';          // Field boolean untuk data_lengkap
-                                //         }
-
-                                //         // Menghitung total field
-                                //         $total = count($fields);
-
-                                //         // Menghitung field yang terisi (tidak null atau boolean true untuk data_lengkap)
-                                //         $filled = collect($fields)
-                                //             ->reduce(function ($count, $field) use ($record) {
-                                //                 // Memeriksa field dari relasi (misalnya pendaftaran.tanggal_pra_medical)
-                                //                 if (str_contains($field, '.')) {
-                                //                     [$relation, $fieldName] = explode('.', $field);
-                                //                     $value = $record->$relation->$fieldName;
-                                //                     // Jika field adalah 'data_lengkap', harus bernilai true
-                                //                     if ($fieldName === 'data_lengkap') {
-                                //                         return $count + ($value === true ? 1 : 0);
-                                //                     }
-                                //                     // Field tanggal harus tidak null (misalnya tanggal_pra_medical)
-                                //                     return $count + (!is_null($value) ? 1 : 0);
-                                //                 }
-                                //                 // Memeriksa field biasa (tanggal di record) yang tidak boleh null
-                                //                 return $count + (!is_null($record->$field) ? 1 : 0);
-                                //             }, 0);
-
-                                //         // Menghitung persentase progress
-                                //         $progress = ($filled / $total) * 100;
-
-                                //         // Debugging log untuk membantu memeriksa field yang terisi
-                                //         logger('Total fields: ' . $total);
-                                //         logger('Filled fields: ' . $filled);
-                                //         logger('Progress: ' . $progress);
-
-                                //         // Mengembalikan total dan progress dalam bentuk persentase
-                                //         return [
-                                //             'total' => 100,  // Persentase total
-                                //             'progress' => $progress,  // Persentase progress
-                                //         ];
-                                //     }),
-
-                                TextEntry::make('status_id')
-                                    ->label('Status')
-                                    ->default($prosesCpmi->status->nama ?? 'Tidak ada status'), // Menampilkan nama status
-                            ])->columns(2),
+                            ])->columns(2)->collapsible('true'),
                         Section::make('Marketing')
-                            ->description('The items you have selected for purchase')
+                            ->description('Status Market Job')
                             ->icon('heroicon-o-check-circle')
                             ->schema([
                                 TextEntry::make('agency_id')
@@ -178,8 +146,29 @@ class Proses extends Page implements HasInfolists
                                 TextEntry::make('sales_id')
                                     ->label('Sales Marketing')
                                     ->default($marketing->sales->nama ?? 'Tidak ada sales'), // Menampilkan nama Sales
-                            ])->columns(2)
-                    ])
+                            ])->columns(2),
+                    ]),
+                Section::make('DOKUMEN PENDAFTARAN CPMI')
+                    ->description('Data Yang Di Berikan Kepada Pendaftaran')
+                    ->icon('heroicon-o-document-text')
+                    ->schema([
+                        TextEntry::make('file_ktp')->label('Upload KTP')
+                        ->default($pendaftaran->file_ktp ?? 'Tidak ada data'),
+                        TextEntry::make('file_ktp_wali')->label('Upload KTP Wali')
+                        ->default($pendaftaran->file_ktp_wali ?? 'Tidak ada data'),                            
+                        TextEntry::make('file_kk')->label('Upload KK')
+                        ->default($pendaftaran->tanggalfile_kk_pra_medical ?? 'Tidak ada data'),                            
+                        TextEntry::make('file_akta_lahir')->label('Upload Akta Lahir')
+                        ->default($pendaftaran->file_akta_lahir ?? 'Tidak ada data'),                          
+                        TextEntry::make('file_surat_nikah')->label('Upload Surat Nikah')
+                        ->default($pendaftaran->file_surat_nikah ?? 'Tidak ada data'),                         
+                        TextEntry::make('file_surat_ijin')->label('Upload Surat Ijin')
+                        ->default($pendaftaran->file_surat_ijin ?? 'Tidak ada data'),                           
+                        TextEntry::make('file_ijazah')->label('Upload Ijazah')
+                        ->default($pendaftaran->file_ijazah ?? 'Tidak ada data'),                          
+                        TextEntry::make('file_tambahan')->label('Upload File Tambahan')
+                        ->default($pendaftaran->file_tambahan ?? 'Tidak ada data'),
+                    ])->columns(4)->collapsed(),
             ]);
     }
     protected function getHeaderActions(): array
