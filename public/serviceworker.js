@@ -2,19 +2,18 @@ var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
     '/offline',
     '/css/app.css',
-    '/js/app.js',
-"
+    '/js/app.js'
 ];
 
 // Cache on install
 self.addEventListener("install", event => {
-    this.skipWaiting();
+    self.skipWaiting();
     event.waitUntil(
         caches.open(staticCacheName)
             .then(cache => {
                 return cache.addAll(filesToCache);
             })
-    )
+    );
 });
 
 // Clear cache on activate
@@ -39,7 +38,7 @@ self.addEventListener("fetch", event => {
                 return response || fetch(event.request);
             })
             .catch(() => {
-                return caches.match('offline');
+                return caches.match('/offline');
             })
-    )
+    );
 });

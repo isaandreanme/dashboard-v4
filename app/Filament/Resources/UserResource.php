@@ -91,7 +91,7 @@ class UserResource extends Resource
 
     public static function table(Table $table): Table
     {
-        if (class_exists(STS\FilamentImpersonate\Tables\Actions\Impersonate::class) && config('filament-users.impersonate')) {
+        if (class_exists(Impersonate::class) && config('filament-users.impersonate')) {
             $table->actions([Impersonate::make('impersonate')]);
         }
         $table
