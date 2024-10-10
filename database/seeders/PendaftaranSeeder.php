@@ -30,7 +30,7 @@ class PendaftaranSeeder extends Seeder
         shuffle($this->femaleNames);
 
         // Create 100 sample records, ensure we have at least 100 unique names
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < 60; $i++) {
             // Select a province with id between 31 and 35
             $province = Province::whereBetween('id', [31, 35])->inRandomOrder()->first();
 

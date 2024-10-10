@@ -46,14 +46,14 @@ class LaporanController extends Controller
                 $count = ProsesCpmi::when($start, function ($query) use ($start) {
                     return $query->whereDate('created_at', '>=', $start);
                 })
-                ->when($end, function ($query) use ($end) {
-                    return $query->whereDate('created_at', '<=', $end);
-                })
-                ->where('status_id', $status->id)
-                ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                    $query->where('kantor_id', $kantor->id);
-                })
-                ->count();
+                    ->when($end, function ($query) use ($end) {
+                        return $query->whereDate('created_at', '<=', $end);
+                    })
+                    ->where('status_id', $status->id)
+                    ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                        $query->where('kantor_id', $kantor->id);
+                    })
+                    ->count();
 
                 // Simpan jumlah data per kantor dan status
                 $jumlahData[$kantor->nama][$status->nama] = $count;
@@ -67,74 +67,74 @@ class LaporanController extends Controller
                     return $query->whereDate('tanggal_pra_medical', '>=', $start);
                 });
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereHas('pendaftaran', function ($query) use ($end) {
-                    return $query->whereDate('tanggal_pra_medical', '<=', $end);
-                });
-            })
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->whereNotNull('tanggal_pra_medical') // Pastikan tanggal_pra_medical tidak null
-                      ->where('kantor_id', $kantor->id); // Filter berdasarkan kantor
-            })
-            ->whereIn('status_id', [1, 2]) // Hanya jika status_id 1 atau 2
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereHas('pendaftaran', function ($query) use ($end) {
+                        return $query->whereDate('tanggal_pra_medical', '<=', $end);
+                    });
+                })
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->whereNotNull('tanggal_pra_medical') // Pastikan tanggal_pra_medical tidak null
+                        ->where('kantor_id', $kantor->id); // Filter berdasarkan kantor
+                })
+                ->whereIn('status_id', [1, 2]) // Hanya jika status_id 1 atau 2
+                ->count();
 
             // Hitung Siap Kerja dari model ProsesCpmi (status_id ada di ProsesCpmi)
             $countSiapKerja = ProsesCpmi::when($start, function ($query) use ($start) {
                 return $query->whereDate('tglsiapkerja', '>=', $start);
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereDate('tglsiapkerja', '<=', $end);
-            })
-            ->whereNotNull('tglsiapkerja')
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->where('kantor_id', $kantor->id);
-            })
-            ->whereIn('status_id', [1, 2]) // Hanya jika status_id 1 atau 2
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereDate('tglsiapkerja', '<=', $end);
+                })
+                ->whereNotNull('tglsiapkerja')
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->where('kantor_id', $kantor->id);
+                })
+                ->whereIn('status_id', [1, 2]) // Hanya jika status_id 1 atau 2
+                ->count();
 
             // Hitung ID BP2MI dari model ProsesCpmi (status_id ada di ProsesCpmi)
             $countBp2mi = ProsesCpmi::when($start, function ($query) use ($start) {
                 return $query->whereDate('tgl_bp2mi', '>=', $start);
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereDate('tgl_bp2mi', '<=', $end);
-            })
-            ->whereNotNull('tgl_bp2mi')
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->where('kantor_id', $kantor->id);
-            })
-            ->whereIn('status_id', [1, 2]) // Hanya jika status_id 1 atau 2
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereDate('tgl_bp2mi', '<=', $end);
+                })
+                ->whereNotNull('tgl_bp2mi')
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->where('kantor_id', $kantor->id);
+                })
+                ->whereIn('status_id', [1, 2]) // Hanya jika status_id 1 atau 2
+                ->count();
 
             // Hitung Dapat Job dari model Marketing (status_id ada di ProsesCpmi)
             $countDapatJob = Marketing::when($start, function ($query) use ($start) {
                 return $query->whereDate('tgl_job', '>=', $start);
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereDate('tgl_job', '<=', $end);
-            })
-            ->whereNotNull('tgl_job')
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->where('kantor_id', $kantor->id);
-            })
-            ->whereHas('prosesCpmi', function ($query) {
-                $query->whereIn('status_id', [1, 2]); // Ambil status_id dari relasi ProsesCpmi
-            })
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereDate('tgl_job', '<=', $end);
+                })
+                ->whereNotNull('tgl_job')
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->where('kantor_id', $kantor->id);
+                })
+                ->whereHas('prosesCpmi', function ($query) {
+                    $query->whereIn('status_id', [1, 2]); // Ambil status_id dari relasi ProsesCpmi
+                })
+                ->count();
 
             // Hitung Penerbangan dari model ProsesCpmi (tetap sama, tidak dipengaruhi status_id)
             $countPenerbangan = ProsesCpmi::when($start, function ($query) use ($start) {
                 return $query->whereDate('tanggal_penerbangan', '>=', $start);
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereDate('tanggal_penerbangan', '<=', $end);
-            })
-            ->whereNotNull('tanggal_penerbangan')
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->where('kantor_id', $kantor->id);
-            })
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereDate('tanggal_penerbangan', '<=', $end);
+                })
+                ->whereNotNull('tanggal_penerbangan')
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->where('kantor_id', $kantor->id);
+                })
+                ->count();
 
             // Simpan hasil ke dalam array
             $jumlahPraMedical[$kantor->nama] = $countPraMedical;
@@ -150,17 +150,17 @@ class LaporanController extends Controller
 
         // Kirim data ke view laporan.blade.php
         return view('laporan', compact(
-            'jumlahData', 
-            'statuses', 
-            'totalPerStatus', 
-            'grandTotal', 
-            'jumlahPraMedical', 
-            'jumlahSiapKerja', 
-            'jumlahBp2mi', 
-            'jumlahDapatJob', 
-            'jumlahPenerbangan', 
-            'kantors', 
-            'start', 
+            'jumlahData',
+            'statuses',
+            'totalPerStatus',
+            'grandTotal',
+            'jumlahPraMedical',
+            'jumlahSiapKerja',
+            'jumlahBp2mi',
+            'jumlahDapatJob',
+            'jumlahPenerbangan',
+            'kantors',
+            'start',
             'end'
         ));
     }
@@ -194,14 +194,14 @@ class LaporanController extends Controller
                 $count = ProsesCpmi::when($start, function ($query) use ($start) {
                     return $query->whereDate('created_at', '>=', $start);
                 })
-                ->when($end, function ($query) use ($end) {
-                    return $query->whereDate('created_at', '<=', $end);
-                })
-                ->where('status_id', $status->id)
-                ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                    $query->where('kantor_id', $kantor->id);
-                })
-                ->count();
+                    ->when($end, function ($query) use ($end) {
+                        return $query->whereDate('created_at', '<=', $end);
+                    })
+                    ->where('status_id', $status->id)
+                    ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                        $query->where('kantor_id', $kantor->id);
+                    })
+                    ->count();
 
                 $jumlahData[$kantor->nama][$status->nama] = $count;
                 $totalPerKantor += $count;
@@ -213,70 +213,70 @@ class LaporanController extends Controller
                     return $query->whereDate('tanggal_pra_medical', '>=', $start);
                 });
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereHas('pendaftaran', function ($query) use ($end) {
-                    return $query->whereDate('tanggal_pra_medical', '<=', $end);
-                });
-            })
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->whereNotNull('tanggal_pra_medical')
-                      ->where('kantor_id', $kantor->id);
-            })
-            ->whereIn('status_id', [1, 2])
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereHas('pendaftaran', function ($query) use ($end) {
+                        return $query->whereDate('tanggal_pra_medical', '<=', $end);
+                    });
+                })
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->whereNotNull('tanggal_pra_medical')
+                        ->where('kantor_id', $kantor->id);
+                })
+                ->whereIn('status_id', [1, 2])
+                ->count();
 
             $countSiapKerja = ProsesCpmi::when($start, function ($query) use ($start) {
                 return $query->whereDate('tglsiapkerja', '>=', $start);
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereDate('tglsiapkerja', '<=', $end);
-            })
-            ->whereNotNull('tglsiapkerja')
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->where('kantor_id', $kantor->id);
-            })
-            ->whereIn('status_id', [1, 2])
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereDate('tglsiapkerja', '<=', $end);
+                })
+                ->whereNotNull('tglsiapkerja')
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->where('kantor_id', $kantor->id);
+                })
+                ->whereIn('status_id', [1, 2])
+                ->count();
 
             $countBp2mi = ProsesCpmi::when($start, function ($query) use ($start) {
                 return $query->whereDate('tgl_bp2mi', '>=', $start);
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereDate('tgl_bp2mi', '<=', $end);
-            })
-            ->whereNotNull('tgl_bp2mi')
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->where('kantor_id', $kantor->id);
-            })
-            ->whereIn('status_id', [1, 2])
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereDate('tgl_bp2mi', '<=', $end);
+                })
+                ->whereNotNull('tgl_bp2mi')
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->where('kantor_id', $kantor->id);
+                })
+                ->whereIn('status_id', [1, 2])
+                ->count();
 
             $countDapatJob = Marketing::when($start, function ($query) use ($start) {
                 return $query->whereDate('tgl_job', '>=', $start);
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereDate('tgl_job', '<=', $end);
-            })
-            ->whereNotNull('tgl_job')
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->where('kantor_id', $kantor->id);
-            })
-            ->whereHas('prosesCpmi', function ($query) {
-                $query->whereIn('status_id', [1, 2]);
-            })
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereDate('tgl_job', '<=', $end);
+                })
+                ->whereNotNull('tgl_job')
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->where('kantor_id', $kantor->id);
+                })
+                ->whereHas('prosesCpmi', function ($query) {
+                    $query->whereIn('status_id', [1, 2]);
+                })
+                ->count();
 
             $countPenerbangan = ProsesCpmi::when($start, function ($query) use ($start) {
                 return $query->whereDate('tanggal_penerbangan', '>=', $start);
             })
-            ->when($end, function ($query) use ($end) {
-                return $query->whereDate('tanggal_penerbangan', '<=', $end);
-            })
-            ->whereNotNull('tanggal_penerbangan')
-            ->whereHas('pendaftaran', function ($query) use ($kantor) {
-                $query->where('kantor_id', $kantor->id);
-            })
-            ->count();
+                ->when($end, function ($query) use ($end) {
+                    return $query->whereDate('tanggal_penerbangan', '<=', $end);
+                })
+                ->whereNotNull('tanggal_penerbangan')
+                ->whereHas('pendaftaran', function ($query) use ($kantor) {
+                    $query->where('kantor_id', $kantor->id);
+                })
+                ->count();
 
             $jumlahPraMedical[$kantor->nama] = $countPraMedical;
             $jumlahSiapKerja[$kantor->nama] = $countSiapKerja;
@@ -289,20 +289,27 @@ class LaporanController extends Controller
         }
 
         $pdf = FacadePdf::loadView('laporan', compact(
-            'jumlahData', 
-            'statuses', 
-            'totalPerStatus', 
-            'grandTotal', 
-            'jumlahPraMedical', 
-            'jumlahSiapKerja', 
-            'jumlahBp2mi', 
-            'jumlahDapatJob', 
-            'jumlahPenerbangan', 
-            'kantors', 
-            'start', 
+            'jumlahData',
+            'statuses',
+            'totalPerStatus',
+            'grandTotal',
+            'jumlahPraMedical',
+            'jumlahSiapKerja',
+            'jumlahBp2mi',
+            'jumlahDapatJob',
+            'jumlahPenerbangan',
+            'kantors',
+            'start',
             'end'
         ));
 
-        return $pdf->download('laporan.pdf');
+        // Get current date and time
+        $timestamp = date('Ymd_His'); // Format: YYYYMMDD_HHMMSS
+
+        // Generate filename with timestamp
+        $fileName = 'laporan_' . $timestamp . '.pdf';
+
+        // Return the PDF as a downloadable file with the new filename
+        return $pdf->download($fileName);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Settings',
+    'title' => 'Pengaturan Aplikasi',
     'group' => 'Settings',
     'back' => 'Back',
     'settings' => [

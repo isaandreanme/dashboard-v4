@@ -27,8 +27,8 @@ class Pulse extends Page
     }
 
     protected static ?string $navigationGroup = 'Settings';
-    protected static ?string $navigationLabel = 'Aplikasi';
-    protected static ?string $title = 'Aplikasi';
+    protected static ?string $navigationLabel = 'Status Aplikasi';
+    protected static ?string $title = 'Status Aplikasi';
     protected ?string $heading = 'Aplikasi Monitor';
     protected static ?string $navigationIcon = 'heroicon-o-bars-3-bottom-left';
     protected static string $view = 'filament.pages.pulse';
