@@ -33,13 +33,13 @@ class ListPendaftarans extends ListRecords
     public function getTabs(): array
     {
         return [
-            'ALL' => Tab::make('DOCUMENT')
+            'ALL' => Tab::make('')
                 ->icon('heroicon-m-clipboard-document-list')
                 ->badge(Pendaftaran::query()->count()),
             'LENGKAP' => Tab::make('LENGKAP')
                 ->badge(Pendaftaran::query()->where('data_lengkap', '1')->count())
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('data_lengkap', '1')),
-            'TIDAK' => Tab::make('TIDAK')
+            'TIDAK' => Tab::make('BELUM LENGKAP')
                 ->badge(Pendaftaran::query()->where('data_lengkap', '0')->count())
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('data_lengkap', '0')),
         ];

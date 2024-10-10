@@ -303,11 +303,13 @@ class LaporanController extends Controller
             'end'
         ));
 
+        $appName = env('COMPANY_NAME', 'DefaultApp');
+
         // Get current date and time
         $timestamp = date('Ymd_His'); // Format: YYYYMMDD_HHMMSS
 
-        // Generate filename with timestamp
-        $fileName = 'laporan_' . $timestamp . '.pdf';
+        // Generate filename with app name and timestamp
+        $fileName = $appName . '_laporan_' . $timestamp . '.pdf';
 
         // Return the PDF as a downloadable file with the new filename
         return $pdf->download($fileName);
