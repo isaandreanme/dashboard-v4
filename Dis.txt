@@ -1,4 +1,6 @@
-Nusa Profesional Dasbor adalah aplikasi berbasis web yang dirancang untuk mengelola dan memantau proses penempatan Pekerja Migran Indonesia. Aplikasi ini dikembangkan khusus untuk perusahaan penempatan, dengan fokus pada efisiensi. Aplikasi yang aman, cepat, dan dapat diakses dari berbagai perangkat, seperti Komputer, Android, dan Apple.
+Nusa Profesional Dasbor adalah aplikasi berbasis web yang dirancang untuk mengelola
+dan memantau proses penempatan Pekerja Migran Indonesia. Aplikasi ini dikembangkan khusus untuk perusahaan penempatan, 
+dengan fokus pada efisiensi. Aplikasi yang aman, cepat, dan dapat diakses dari berbagai perangkat, seperti Komputer, Android, dan Apple.
 Fitur Nusa Profesional Dasbor
 Pendaftaran dan Login Terintegrasi.
 Mendukung pendaftaran dan login dengan berbagai peran: pegawai, agensi, dan pengguna.
@@ -21,4 +23,5 @@ Pengaturan Aplikasi.
 Pengaturan yang sederhana dan mudah untuk menyesuaikan preferensi pengguna.
 Biodata Otomatis Berdasarkan Negara.
 Mengisi biodata otomatis sesuai syarat negara tujuan dan dapat diakses kapan saja.
-Dengan fitur lengkap dan teknologi terkini, Nusa Profesional Dasbor adalah solusi bagi perusahaan penempatan Pekerja Migran Indonesia, memastikan proses lebih mudah dan cepat
+Dengan fitur lengkap dan teknologi terkini, Nusa Profesional Dasbor adalah solusi bagi perusahaan 
+penempatan Pekerja Migran Indonesia, memastikan proses lebih mudah dan cepat
