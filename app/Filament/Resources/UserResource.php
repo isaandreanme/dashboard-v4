@@ -121,6 +121,7 @@ class UserResource extends Resource
                     ->dateTime('M j, Y')
                     ->sortable(),
                 ToggleColumn::make('is_admin'),
+                ToggleColumn::make('is_agency'),
                 TextColumn::make('roles.name')
 
             ])

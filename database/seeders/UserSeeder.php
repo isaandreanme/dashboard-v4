@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'email_verified_at' => now(),
                 'is_admin' => 1,
+                'is_agency' => 0,
+
 
             ],
             [
@@ -31,6 +33,8 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'email_verified_at' => now(),
                 'is_admin' => 1,
+                'is_agency' => 0,
+
 
             ],
             [
@@ -40,6 +44,8 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'email_verified_at' => now(),
                 'is_admin' => 0,
+                'is_agency' => 1,
+
 
             ],
         ]);
