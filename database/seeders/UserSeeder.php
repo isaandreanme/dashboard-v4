@@ -48,6 +48,17 @@ class UserSeeder extends Seeder
 
 
             ],
+            [
+                'name' => 'CPMI',
+                'email' => 'cpmi@gmail.com',
+                'password' => Hash::make('password'),
+                'created_at' => now(),
+                'email_verified_at' => now(),
+                'is_admin' => 0,
+                'is_agency' => 0,
+
+
+            ],
         ]);
     }
 }

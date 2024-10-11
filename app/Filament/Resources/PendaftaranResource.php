@@ -68,10 +68,10 @@ class PendaftaranResource extends Resource
                 Section::make('AKUN CPMI')
                     ->description('Pilih Akun CPMI jika Sudah Registrasi Di Portal')->schema([
                         Select::make('user_id')
-                            ->relationship('User', 'name')
+                            ->relationship('User', 'name', fn($query) => $query->where('is_admin', false)->where('is_agency', false))
+                            ->getOptionLabelFromRecordUsing(fn(User $record) => "{$record->name} ({$record->email})")
                             ->placeholder('Pilih Akun CPMI')
                             ->label('Akun CPMI')
-                            ->getOptionLabelFromRecordUsing(fn(User $record) => "{$record->name} ({$record->email})")
                             ->searchable()
                             ->optionsLimit(3),
                     ]),
