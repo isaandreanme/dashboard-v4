@@ -77,13 +77,13 @@ class MarketingSeeder extends Seeder
             $salesPerson = $sales->random();
 
             // Tentukan agency_id berdasarkan status_id
-            $agency = null;
             if (in_array($prosesCpmi->status_id, [1, 2, 4, 5, 6])) {
-                // Jika status_id adalah 1, 2, 4, 5, atau 6, pilih agency_id 1 atau 2
-                $agency = $agencies->whereIn('id', [1, 2])->random();
+                // Jika status_id adalah 1, 2, 4, 5, atau 6, pilih agency_id 1 atau 2 secara acak
+                $agencyId = $faker->randomElement([1, 2]);
             } elseif ($prosesCpmi->status_id === 3) {
                 // Jika status_id adalah 3, pilih agency_id selain 1 dan 2
-                $agency = $agencies->whereNotIn('id', [1, 2])->random();
+                $availableAgencies = $agencies->whereNotIn('id', [1, 2]);
+                $agencyId = $availableAgencies->random()->id;
             }
 
             // Tentukan nilai get_job berdasarkan status_id
@@ -94,7 +94,7 @@ class MarketingSeeder extends Seeder
                 'pendaftaran_id' => $pendaftaran->id,
                 'proses_cpmi_id' => $prosesCpmi->id,
                 'sales_id' => $salesPerson->id,
-                'agency_id' => $agency->id,
+                'agency_id' => $agencyId,
 
                 // Menyimpan path gambar yang disalin ke direktori 'storage/public/biodata/foto'
                 'foto' => $pathTujuan,

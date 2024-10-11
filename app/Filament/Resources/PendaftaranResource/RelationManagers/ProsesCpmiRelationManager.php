@@ -181,7 +181,7 @@ class ProsesCpmiRelationManager extends RelationManager
                     ->description(
                         fn(ProsesCpmi $record): string =>
                         $record->pendaftaran->nomor_ktp
-                            ? "{$record->pendaftaran->nomor_ktp} - " . ($record->user ? $record->user->email : 'Akun Tidak Terhubung')
+                            ? "{$record->pendaftaran->nomor_ktp} - " . ($record->pendaftaran->user ? $record->pendaftaran->user->email : 'Akun Tidak Terhubung')
                             : 'No KTP available'
                     ),
                 TextColumn::make('Pendaftaran.nomor_ktp')->label('E-KTP')->color('primary')

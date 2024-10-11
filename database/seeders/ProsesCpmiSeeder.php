@@ -49,6 +49,7 @@ class ProsesCpmiSeeder extends Seeder
 
         // Menentukan distribusi status yang spesifik
         $statusDistribution = array_merge(
+            array_fill(0, 30, 1), // 30 entri dengan ID 1
             array_fill(0, 14, 4), // 14 entri dengan ID 4
             array_fill(0, 20, 5), // 20 entri dengan ID 5
             array_fill(0, 7, 6)   // 7 entri dengan ID 6
@@ -59,7 +60,7 @@ class ProsesCpmiSeeder extends Seeder
 
         // Tambahkan sisa status secara acak untuk ID 1, 2, dan 3
         for ($i = 0; $i < $remainingCount; $i++) {
-            $statusDistribution[] = $statuses->whereIn('id', [1, 2, 3])->random()->id;
+            $statusDistribution[] = $statuses->whereIn('id', [2, 3])->random()->id;
         }
 
         // Acak urutan status untuk distribusi yang merata
