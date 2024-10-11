@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -60,5 +61,7 @@ class UserSeeder extends Seeder
 
             ],
         ]);
+        User::factory()->count(499)->create(); // Men-generate 50 user secara otomatis
+
     }
 }

@@ -75,7 +75,19 @@ class MarketingSeeder extends Seeder
         foreach ($pendaftarans as $pendaftaran) {
             $prosesCpmi = $prosesCpmis->random();
             $salesPerson = $sales->random();
-            $agency = $agencies->random();
+
+            // Tentukan agency_id berdasarkan status_id
+            $agency = null;
+            if (in_array($prosesCpmi->status_id, [1, 2, 4, 5, 6])) {
+                // Jika status_id adalah 1, 2, 4, 5, atau 6, pilih agency_id 1 atau 2
+                $agency = $agencies->whereIn('id', [1, 2])->random();
+            } elseif ($prosesCpmi->status_id === 3) {
+                // Jika status_id adalah 3, pilih agency_id selain 1 dan 2
+                $agency = $agencies->whereNotIn('id', [1, 2])->random();
+            }
+
+            // Tentukan nilai get_job berdasarkan status_id
+            $getJob = $prosesCpmi->status_id === 3 ? true : false;
 
             // Membuat data Marketing
             Marketing::create([
@@ -93,8 +105,7 @@ class MarketingSeeder extends Seeder
                 'code_sgp' => $faker->randomNumber(5, true),
                 'code_my' => $faker->randomNumber(5, true),
                 'nomor_hp' => $faker->phoneNumber,
-                'get_job' => $faker->boolean,
-                // 'tgl_job' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
+                'get_job' => $getJob, // Set nilai get_job sesuai dengan status_id
                 'national' => $faker->country,
                 'kelamin' => $faker->randomElement(['MALE', 'FEMALE']),
                 'lulusan' => $faker->randomElement(['Elementary School', 'Junior High School', 'Senior Highschool', 'University']),

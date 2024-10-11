@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\ProsesCpmi;
 use App\Models\Pendaftaran;
-use App\Models\Tujuan; // Import model Tujuan
-use App\Models\Status; // Import model Status
+use App\Models\Tujuan;
+use App\Models\Status;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
 
@@ -47,16 +47,34 @@ class ProsesCpmiSeeder extends Seeder
             return;
         }
 
-        // Menambahkan data dummy untuk tabel ProsesCpmi
-        foreach ($pendaftarans as $pendaftaran) {
+        // Menentukan distribusi status yang spesifik
+        $statusDistribution = array_merge(
+            array_fill(0, 14, 4), // 14 entri dengan ID 4
+            array_fill(0, 20, 5), // 20 entri dengan ID 5
+            array_fill(0, 7, 6)   // 7 entri dengan ID 6
+        );
+
+        // Hitung jumlah sisa data yang perlu diisi secara acak
+        $remainingCount = $pendaftarans->count() - count($statusDistribution);
+
+        // Tambahkan sisa status secara acak untuk ID 1, 2, dan 3
+        for ($i = 0; $i < $remainingCount; $i++) {
+            $statusDistribution[] = $statuses->whereIn('id', [1, 2, 3])->random()->id;
+        }
+
+        // Acak urutan status untuk distribusi yang merata
+        shuffle($statusDistribution);
+
+        // Menambahkan data dummy untuk tabel ProsesCpmi dengan distribusi status yang telah diacak
+        foreach ($pendaftarans as $index => $pendaftaran) {
             // Pilih ID tujuan secara acak dari data tujuans
             $tujuan = $tujuans->random();
 
-            // Pilih ID status secara acak dari data statuses
-            $status = $statuses->random();
+            // Pilih ID status dari distribusi yang telah ditentukan
+            $statusId = $statusDistribution[$index];
 
             // Tentukan nilai untuk tanggal berdasarkan status
-            $tanggalValues = ($status->id === 3) ? [
+            $tanggalValues = ($statusId === 3) ? [
                 'tanggal_pra_bpjs' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
                 'tanggal_ujk' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
                 'tglsiapkerja' => Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())),
@@ -89,7 +107,7 @@ class ProsesCpmiSeeder extends Seeder
             ProsesCpmi::create([
                 'pendaftaran_id' => $pendaftaran->id, // Menggunakan ID dari tabel Pendaftaran
                 'tujuan_id' => $tujuan->id, // Menambahkan ID dari tabel Tujuans
-                'status_id' => $status->id, // Menambahkan ID dari tabel Statuses
+                'status_id' => $statusId, // Menambahkan ID dari tabel Statuses
                 'email_siapkerja' => $faker->unique()->safeEmail, // Menggunakan email dari Faker
                 'password_siapkerja' => Hash::make('password123'), // Menggunakan hash untuk password
                 'no_id_pmi' => Str::random(10), // Random string untuk nomor PMI
