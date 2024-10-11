@@ -54,12 +54,12 @@ class MarketingRelationManager extends RelationManager
                                     ->preload()
                                     ->optionsLimit(6)
                                     ->placeholder('Pilih Marketing'),
-                                    Select::make('agency_id')
+                                Select::make('agency_id')
                                     ->relationship('Agency', 'nama')
                                     ->required()
                                     ->label('STATUS MARKETING')
                                     ->options(Agency::whereIn('id', [1, 2])->pluck('nama', 'id')) // Hanya menampilkan agency_id 1 dan 2
-                                    ->placeholder('Pilih Agency'),                                
+                                    ->placeholder('Pilih Agency'),
                             ])->columns(2),
                     ])
 
@@ -71,38 +71,78 @@ class MarketingRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('nama')
             ->columns([
-                TextColumn::make('Pendaftaran.nama')->label('CPMI')->weight('bold')->searchable()
+                TextColumn::make('ProsesCpmi.Status.nama')->label('STATUS')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'BARU' => 'warning',
+                        'ON PROSES' => 'info',
+                        'TERBANG' => 'success',
+                        'PENDING' => 'danger',
+                        'UNFIT' => 'gray',
+                        'MD' => 'gray',
+                        default => 'secondary',
+                    })
+                    ->icon(fn(string $state): string => match ($state) {
+                        'BARU' => 'heroicon-o-bell',
+                        'ON PROSES' => 'heroicon-o-arrow-path-rounded-square',
+                        'TERBANG' => 'heroicon-o-paper-airplane',
+                        'PENDING' => 'heroicon-o-clock',
+                        'UNFIT' => 'heroicon-o-beaker',
+                        'MD' => 'heroicon-o-x-circle',
+                    })
                     ->copyable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500),
+                TextColumn::make('pendaftaran.nama') // Pastikan relasi ke Pendaftaran ada
+                    ->label('CPMI')
+                    ->weight('bold')
+                    ->searchable()
+                    ->copyable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500)
+                    ->description(
+                        fn(Marketing $record): string =>
+                        $record->pendaftaran->nomor_ktp
+                            ? "{$record->pendaftaran->nomor_ktp} - " . ($record->user ? $record->user->email : 'Akun Tidak Terhubung')
+                            : 'No KTP available'
+                    ),
                 TextColumn::make('Pendaftaran.nomor_ktp')->label('E-KTP')->color('primary')
                     ->copyable()
                     ->searchable()
                     ->copyMessage('Salin Berhasil')
-                    ->copyMessageDuration(1500),
-                // ->limit(10),
+                    ->copyMessageDuration(1500)->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('ProsesCpmi.Tujuan.nama')->label('TUJUAN')->color('primary')
-                    ->copyable()
-                    ->searchable()
-                    ->copyMessage('Salin Berhasil')
-                    ->copyMessageDuration(1500),
-                TextColumn::make('ProsesCpmi.Status.nama')->label('STATUS')->color('primary')
                     ->copyable()
                     ->searchable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500),
                 TextColumn::make('Agency.nama')->label('STATUS MARKET')->color('primary')
                     ->copyable()
+                    ->sortable()
                     ->searchable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500),
+                IconColumn::make('Pendaftaran.data_lengkap')
+                    ->boolean()
+                    ->sortable()
+                    ->trueColor('success')
+                    ->falseColor('danger')
+                    ->label('DATA LENGKAP')->toggleable(isToggledHiddenByDefault: false)->disabled(),
                 IconColumn::make('get_job')
                     ->boolean()
+                    ->sortable()
+                    ->sortable()
                     ->trueColor('success')
                     ->falseColor('danger')
                     ->label('STATUS JOB')->toggleable(isToggledHiddenByDefault: false)->disabled(),
                 TextColumn::make('tgl_job')
                     ->label('TGL JOB')->toggleable(isToggledHiddenByDefault: false)->disabled(),
+                TextColumn::make('Pendaftaran.created_at')->label('LAMA PROSES')->color('warning')
+                    ->since()
+                    ->sortable()
+                    ->copyable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500)->toggleable(isToggledHiddenByDefault: false),
             ])
             ->filters([
                 //

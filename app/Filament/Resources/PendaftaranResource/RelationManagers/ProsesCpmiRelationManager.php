@@ -18,6 +18,7 @@ use Filament\Notifications\Notification;
 use Filament\Notifications\Actions\Action as NotificationAction;
 use Illuminate\Support\Facades\Auth;
 use App\Filament\Resources\ProsesCpmiResource;
+use App\Models\ProsesCpmi;
 use Filament\Forms\Components\DatePicker;
 use IbrahimBougaoua\FilaProgress\Tables\Columns\ProgressBar;
 
@@ -148,41 +149,73 @@ class ProsesCpmiRelationManager extends RelationManager
                             'progress' => $progress,  // Persentase progress
                         ];
                     }),
-                TextColumn::make('Pendaftaran.nama')->label('CPMI')->weight('bold')
-                    ->searchable()
+                TextColumn::make('Status.nama')->label('STATUS')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'BARU' => 'warning',
+                        'ON PROSES' => 'info',
+                        'TERBANG' => 'success',
+                        'PENDING' => 'danger',
+                        'UNFIT' => 'gray',
+                        'MD' => 'gray',
+                        default => 'secondary',
+                    })
+                    ->icon(fn(string $state): string => match ($state) {
+                        'BARU' => 'heroicon-o-bell',
+                        'ON PROSES' => 'heroicon-o-arrow-path-rounded-square',
+                        'TERBANG' => 'heroicon-o-paper-airplane',
+                        'PENDING' => 'heroicon-o-clock',
+                        'UNFIT' => 'heroicon-o-beaker',
+                        'MD' => 'heroicon-o-x-circle',
+                    })
                     ->copyable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500),
+                TextColumn::make('pendaftaran.nama') // Pastikan relasi ke Pendaftaran ada
+                    ->label('CPMI')
+                    ->weight('bold')
+                    ->searchable()
+                    ->copyable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500)
+                    ->description(
+                        fn(ProsesCpmi $record): string =>
+                        $record->pendaftaran->nomor_ktp
+                            ? "{$record->pendaftaran->nomor_ktp} - " . ($record->user ? $record->user->email : 'Akun Tidak Terhubung')
+                            : 'No KTP available'
+                    ),
                 TextColumn::make('Pendaftaran.nomor_ktp')->label('E-KTP')->color('primary')
                     ->copyable()
                     ->searchable()
                     ->copyMessage('Salin Berhasil')
-                    ->copyMessageDuration(1500),
+                    ->copyMessageDuration(1500)
+                    ->toggleable(isToggledHiddenByDefault: true),
                 // ->limit(10),
+                TextColumn::make('Pendaftaran.kantor.nama')->label('KANTOR')->color('success')
+                    ->copyable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500)->toggleable(isToggledHiddenByDefault: false),
+                TextColumn::make('Tujuan.nama')->label('TUJUAN')->color('success')
+                    ->copyable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500),
+                TextColumn::make('Pendaftaran.tanggal_pra_medical')->label('PRA MEDICAL')
+                    ->copyable()
+                    ->sortable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500),
+                TextColumn::make('tgl_bp2mi')->label('TGL ID')
+                    ->copyable()
+                    ->sortable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500),
                 TextColumn::make('Pendaftaran.created_at')->label('LAMA PROSES')->color('warning')
                     ->since()
                     ->sortable()
                     ->copyable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500)->toggleable(isToggledHiddenByDefault: false),
-                TextColumn::make('Tujuan.nama')->label('TUJUAN')->color('primary')
-                    ->copyable()
-                    ->copyMessage('Salin Berhasil')
-                    ->copyMessageDuration(1500),
-                TextColumn::make('Status.nama')->label('STATUS')->color('primary')
-                    ->copyable()
-                    ->copyMessage('Salin Berhasil')
-                    ->copyMessageDuration(1500),
-                TextColumn::make('Pendaftaran.tanggal_pra_medical')->label('TGL MEDICAL')->color('primary')
-                    ->copyable()
-                    ->sortable()
-                    ->copyMessage('Salin Berhasil')
-                    ->copyMessageDuration(1500),
-                TextColumn::make('tgl_bp2mi')->label('TGL ID')->color('primary')
-                    ->copyable()
-                    ->sortable()
-                    ->copyMessage('Salin Berhasil')
-                    ->copyMessageDuration(1500),
+
             ])->defaultSort('updated_at', 'desc')
             ->filters([
                 //
