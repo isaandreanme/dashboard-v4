@@ -41,6 +41,8 @@ use Hasnayeen\Themes\Http\Middleware\SetTheme;
 use Hasnayeen\Themes\ThemesPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class AdminPanelProvider extends PanelProvider
@@ -67,8 +69,7 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('images/favicon.svg'))
             ->breadcrumbs(false)
             // ->topNavigation()
-            ->sidebarCollapsibleOnDesktop()
-            ->collapsibleNavigationGroups(true)
+            ->sidebarFullyCollapsibleOnDesktop(true)
             ->colors([
                 'primary' => Color::Green,
             ])
