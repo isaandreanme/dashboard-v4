@@ -299,7 +299,7 @@
             </div>
 
             <!-- Menu Navigasi Desktop -->
-            <ul class="hidden md:flex space-x-6 font-semibold text-sm text-gray-800">
+            <ul class="hidden md:flex space-x-6 font-semibold text-sm text-[#7D1B3D]">
                 <li><a href="/" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out">BERANDA</a></li>
                 <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
                         data-modal="modal-1">PERUSAHAAN</a></li>
@@ -310,6 +310,7 @@
                 <li><a href="#contact" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
                         data-modal="modal-5">KONTAK</a></li>
             </ul>
+
 
             {{-- <img src="images/indonesia.svg" alt="OSS" class="no-hover" style="width: 50px; margin-right: 20px;"> --}}
 
@@ -412,53 +413,28 @@
     <div id="modal-1" class="modal">
         <div class="modal-content">
             <button class="close-modal">X</button>
-            <h1 class="text-lg font-bold">{{ env('COMPANY_NAME') }}</h1>
+            <h1 class="text-lg font-bold text-center">{{ env('COMPANY_NAME') }}</h1>
 
-            <p class="mt-4">
-                Perusahaan Penempatan Pekerja Migran Indonesia adalah lembaga yang berfokus pada penyediaan tenaga kerja
-                berkualitas untuk bekerja di luar negeri. Kami berkomitmen memberikan layanan perekrutan yang
-                profesional, memastikan kepatuhan terhadap regulasi ketenagakerjaan, serta menjamin perlindungan hak-hak
-                pekerja migran.
-                Melalui jaringan global dan kemitraan dengan berbagai negara, kami membantu tenaga kerja Indonesia
-                mendapatkan peluang kerja yang aman dan sejahtera di luar negeri, sekaligus memberikan kontribusi pada
-                peningkatan kualitas hidup mereka serta perekonomian nasional.
+            <p class="mt-4 text-justify">
+                <strong>Adalah</strong> Perusahaan yang berfokus pada penyediaan tenaga kerja berkualitas untuk bekerja
+                di luar negeri. Kami memiliki komitmen yang kuat untuk memberikan layanan perekrutan yang profesional,
+                menjunjung tinggi kepatuhan terhadap regulasi ketenagakerjaan, dan menjamin perlindungan hak-hak pekerja
+                migran.
             </p>
-
-            <!-- Menambahkan informasi perizinan resmi -->
-            <p class="mt-2 text-sm font-semibold text-green-700">
-                Kami telah berizin resmi dari <strong>BP2MI</strong>, <strong>Kementerian Ketenagakerjaan Republik
-                    Indonesia</strong>, dan terdaftar dalam <strong>Online Single Submission (OSS)</strong> untuk
-                operasi perekrutan pekerja migran.
+            <p class="mt-4 text-justify">
+                Visi kami adalah menciptakan dunia kerja yang lebih baik bagi tenaga kerja Indonesia, di mana setiap
+                pekerja memiliki akses ke peluang yang aman dan sejahtera. Kami percaya bahwa dengan memfasilitasi
+                penempatan yang tepat, kami dapat berkontribusi pada peningkatan kualitas hidup mereka serta memperkuat
+                perekonomian nasional.
             </p>
-            <br><br>
-            <div class="logos">
-                <img src="images/bp2mi.png" alt="BP2MI" class="logo no-hover">
-                <img src="images/kemnaker.png" alt="Kemnaker" class="logo no-hover">
-                <img src="images/oss.svg" alt="OSS" class="logo no-hover">
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-2" class="modal">
-        <div class="modal-content">
-            <button class="close-modal">X</button>
-            <h2 class="text-2xl font-bold">Tentang Kami</h2>
-            <p class="mt-4">
-                Perusahaan Penempatan Pekerja Migran Indonesia adalah perusahaan dengan pengalaman lebih dari 10 tahun
-                dalam memberikan layanan penempatan tenaga kerja profesional ke berbagai negara di seluruh dunia. Dengan
-                fokus pada penyediaan tenaga kerja terlatih dan berkualitas, kami telah berhasil membantu ribuan pekerja
-                Indonesia mendapatkan pekerjaan yang layak dan aman di luar negeri. Kami bekerja sama dengan mitra
-                internasional yang tepercaya untuk memastikan proses perekrutan yang adil dan sesuai regulasi.
-            </p>
-            <p class="mt-4">
-                <strong>Visi</strong><br>
+            <h3 class="mt-4 font-semibold">Visi</h3>
+            <p class="mt-2 text-justify">
                 Menjadi perusahaan penempatan pekerja migran terkemuka yang mendukung kesejahteraan tenaga kerja
                 Indonesia di panggung global, serta berkontribusi pada peningkatan perekonomian nasional melalui
                 penempatan tenaga kerja berkualitas.
             </p>
-            <p class="mt-4">
-                <strong>Misi</strong>
-            </p>
+
+            <h3 class="mt-4 font-semibold">Misi</h3>
             <ul class="mt-4 list-disc list-inside">
                 <li>Menyediakan tenaga kerja Indonesia yang terlatih dan kompeten sesuai dengan kebutuhan pasar
                     internasional.</li>
@@ -471,74 +447,131 @@
                 <li>Meningkatkan kesejahteraan pekerja dan keluarganya melalui upaya pendidikan, pelatihan, dan advokasi
                     yang berkelanjutan.</li>
             </ul>
+            <p class="mt-4 text-justify">
+                Kami memahami bahwa setiap pekerja adalah aset berharga. Oleh karena itu, kami berkomitmen untuk
+                mendukung mereka dalam perjalanan karir mereka, mulai dari proses perekrutan hingga penempatan, serta
+                memberikan bimbingan untuk beradaptasi dengan lingkungan kerja baru.
+            </p>
+            <br>
+            <!-- Menambahkan informasi perizinan resmi -->
+            <p class="mt-2 text-sm font-semibold text-green-700">
+                Kami telah berizin resmi dari <strong>BP2MI</strong>, <strong>Kementerian Ketenagakerjaan Republik
+                    Indonesia</strong>, dan terdaftar dalam <strong>Online Single Submission (OSS)</strong> untuk
+                operasi perekrutan pekerja migran.
+            </p>
+            <br>
+            <br>
+            <div class="logos flex justify-center mt-4">
+                <img src="images/bp2mi.png" alt="BP2MI" class="logo no-hover mx-2">
+                <img src="images/kemnaker.png" alt="Kemnaker" class="logo no-hover mx-2">
+                <img src="images/oss.svg" alt="OSS" class="logo no-hover mx-2">
+            </div>
+            <br>
         </div>
     </div>
+
+
+    <div id="modal-2" class="modal">
+        <div class="modal-content">
+            <button class="close-modal">X</button>
+            <h2 class="text-2xl font-bold text-center">Tentang Kami</h2>
+            <div class="logos flex justify-center mt-4">
+                <br>
+                <div class="logos flex justify-center mt-4">
+                    <img src="images/logo.png" alt="LOGO" class="logo no-hover mx-2">
+                </div>
+                <br>
+                <br>
+                <br>
+            </div>
+            <p class="mt-4 text-justify">
+                <strong>{{ env('COMPANY_NAME') }}</strong> adalah Perushaan yang memiliki
+                lebih dari 10 tahun pengalaman dalam menyediakan layanan penempatan tenaga kerja profesional ke berbagai
+                negara di seluruh dunia. Dengan rekam jejak yang solid, kami fokus pada penyediaan tenaga kerja terlatih
+                dan berkualitas tinggi, telah membantu ribuan pekerja Indonesia mendapatkan pekerjaan yang layak dan
+                aman di luar negeri. Kami bangga menjadi mitra terpercaya di industri ini, dikenal atas komitmen kami
+                untuk meningkatkan kesejahteraan tenaga kerja migran.
+            </p>
+
+            <p class="mt-4 text-justify">
+                Kami menjalin kerjasama dengan mitra internasional yang tepercaya untuk memastikan bahwa proses
+                perekrutan kami adil, transparan, dan sesuai dengan regulasi yang berlaku. Setiap langkah dalam proses
+                ini didasarkan pada etika kerja yang tinggi dan perlindungan hak-hak pekerja migran.
+            </p>
+
+            <h3 class="mt-4 font-semibold">Latar Belakang Perusahaan</h3>
+            <p class="mt-2 text-justify">
+                Didirikan dengan visi untuk memberikan solusi tenaga kerja yang efisien, kami telah menjadi pemimpin
+                dalam industri penempatan pekerja migran. Dengan pengalaman lebih dari satu dekade, kami memahami
+                tantangan yang dihadapi oleh para pekerja dalam mendapatkan pekerjaan di luar negeri. Kami berkomitmen
+                untuk memberikan dukungan penuh sepanjang proses penempatan, membantu pekerja mencapai tujuan karir
+                mereka dengan tim profesional yang berpengalaman dan terlatih.
+            </p>
+
+            <h3 class="mt-4 font-semibold">Visi</h3>
+            <p class="mt-2 text-justify">
+                Menjadi perusahaan penempatan pekerja migran terkemuka yang mendukung kesejahteraan tenaga kerja
+                Indonesia di panggung global, serta berkontribusi pada peningkatan perekonomian nasional melalui
+                penempatan tenaga kerja berkualitas.
+            </p>
+
+            <h3 class="mt-4 font-semibold">Misi</h3>
+            <ul class="mt-4 list-disc list-inside">
+                <li>Menyediakan tenaga kerja Indonesia yang terlatih dan kompeten sesuai dengan kebutuhan pasar
+                    internasional.</li>
+                <li>Menjamin proses perekrutan yang transparan, adil, dan sesuai dengan peraturan pemerintah serta
+                    standar internasional.</li>
+                <li>Memberikan perlindungan maksimal bagi pekerja migran melalui dukungan sebelum, selama, dan setelah
+                    masa penempatan kerja.</li>
+                <li>Membangun kemitraan strategis dengan perusahaan internasional yang tepercaya untuk menciptakan
+                    peluang kerja yang aman dan menguntungkan.</li>
+                <li>Meningkatkan kesejahteraan pekerja dan keluarganya melalui upaya pendidikan, pelatihan, dan advokasi
+                    yang berkelanjutan.</li>
+            </ul>
+            <br>
+            <p class="mt-4 text-justify">
+                <strong>Regards</strong>
+                <br><br><br>
+                <strong>David Beckam</strong>
+                <br>
+                Directur {{ env('COMPANY_NAME') }}
+            </p>
+        </div>
+    </div>
+
+
 
     <div id="modal-3" class="modal">
         <div class="modal-content">
             <button class="close-modal">X</button>
             <h2 class="text-2xl font-bold">SEKTOR FORMAL</h2>
-            <p class="mt-4">
+            <br>
             <h2 class="text-2xl font-bold">Negara Tujuan</h2>
-            <strong>Asia - Afrika (Hong Kong, Singapura, Taiwan, Malaysia).</strong>
+            <strong>Asia - Afrika (Hong Kong, Singapura, Taiwan, Malaysia, Korea, Jepang. dll).</strong>
+            <br>
+            <p class="mt-4">
+                Pekerja migran Indonesia di sektor formal sering kali terlibat dalam pekerjaan yang lebih terstruktur
+                dan memiliki perlindungan hukum yang lebih baik. Berikut adalah beberapa sektor pekerjaan yang umum bagi
+                pekerja migran di sektor formal:
+            </p>
+            <br>
+            <h2 class="text-2xl font-bold">Sektor Pekerjaan</h2>
+            <ul class="list-disc ml-6">
+                <li><strong>Pekerjaan Profesional:</strong> Dokter, perawat, insinyur, dan tenaga pendidik yang memiliki
+                    kualifikasi tinggi dan izin kerja yang sesuai.</li>
+                <li><strong>Teknologi Informasi:</strong> Pekerja di bidang IT seperti pengembang perangkat lunak,
+                    analis sistem, dan teknisi jaringan.</li>
+                <li><strong>Perbankan dan Keuangan:</strong> Pekerja di sektor perbankan, akuntansi, dan keuangan yang
+                    terlibat dalam analisis keuangan dan manajemen investasi.</li>
+                <li><strong>Industri Manufaktur:</strong> Pekerja yang terlibat dalam proses produksi barang dengan
+                    pengawasan ketat dan standar keselamatan kerja.</li>
+                <li><strong>Pekerjaan di Layanan Publik:</strong> Tenaga kerja yang bekerja di lembaga pemerintah dan
+                    organisasi internasional.</li>
+                <li><strong>Perhotelan dan Pariwisata:</strong> Pekerja di sektor perhotelan sebagai manajer hotel,
+                    resepsionis, dan staf layanan lainnya.</li>
+            </ul>
             <br>
             <br>
-
-            </p>
-            <p class="mt-4">
-                Sektor formal merujuk pada aktivitas ekonomi yang diatur oleh hukum dan pemerintah, di mana perusahaan
-                dan pekerja biasanya terdaftar secara resmi. Pekerja di sektor formal memiliki kontrak yang jelas, serta
-                hak-hak seperti upah minimum, jam kerja yang diatur, perlindungan sosial, dan hak jaminan kesehatan.
-                Berikut adalah beberapa jenis pekerjaan yang umumnya termasuk dalam sektor formal:
-            </p>
-            <p class="mt-4">
-                <strong>Pekerjaan di Perusahaan Swasta (Private Sector Jobs)</strong><br>
-                Pekerja di perusahaan swasta yang terdaftar secara resmi, termasuk pekerjaan di bidang teknologi,
-                manufaktur, perbankan, ritel, dan jasa lainnya. Perusahaan-perusahaan ini biasanya mematuhi
-                undang-undang ketenagakerjaan dan memberikan jaminan sosial serta hak-hak pekerja seperti cuti dan
-                asuransi kesehatan.
-            </p>
-            <p class="mt-4">
-                <strong>Pekerjaan di Lembaga Pemerintah (Public Sector Jobs)</strong><br>
-                Pekerjaan di lembaga pemerintah, baik pusat maupun daerah, termasuk administrasi, pendidikan, kesehatan,
-                dan keamanan publik. Pekerja sektor formal di pemerintahan biasanya mendapatkan jaminan pekerjaan yang
-                lebih stabil, gaji tetap, serta tunjangan pensiun.
-            </p>
-            <p class="mt-4">
-                <strong>Industri Manufaktur Besar (Large-Scale Manufacturing)</strong><br>
-                Industri besar seperti otomotif, tekstil, makanan, dan bahan kimia biasanya beroperasi di sektor formal.
-                Pekerja di industri ini biasanya memiliki kontrak kerja formal, mendapatkan upah sesuai standar
-                industri, serta perlindungan keselamatan kerja.
-            </p>
-            <p class="mt-4">
-                <strong>Perbankan dan Keuangan (Banking and Finance)</strong><br>
-                Pekerjaan di bank, perusahaan asuransi, dan lembaga keuangan lainnya termasuk dalam sektor formal.
-                Karyawan di sektor ini biasanya mendapatkan tunjangan seperti asuransi kesehatan, bonus kinerja, dan
-                rencana pensiun yang terstruktur.
-            </p>
-            <p class="mt-4">
-                <strong>Sektor Pendidikan (Education Sector)</strong><br>
-                Guru, dosen, dan staf pendidikan di sekolah atau universitas yang diakui oleh pemerintah termasuk dalam
-                sektor formal. Mereka biasanya mendapatkan gaji tetap, cuti tahunan, serta tunjangan kesehatan dan
-                pensiun.
-            </p>
-            <p class="mt-4">
-                <strong>Sektor Kesehatan (Healthcare Sector)</strong><br>
-                Dokter, perawat, dan tenaga medis lainnya yang bekerja di rumah sakit, klinik, atau pusat kesehatan yang
-                terdaftar secara resmi. Pekerja di sektor ini mendapatkan upah yang diatur, jaminan kesehatan, dan
-                sering kali memiliki perlindungan ketenagakerjaan yang baik.
-            </p>
-            <p class="mt-4">
-                <strong>Industri Teknologi Informasi (Information Technology)</strong><br>
-                Pekerjaan di bidang teknologi informasi seperti pengembangan perangkat lunak, keamanan siber, dan
-                layanan digital umumnya termasuk sektor formal, dengan gaji yang kompetitif, jam kerja yang diatur, dan
-                tunjangan lain seperti asuransi kesehatan.
-            </p>
-            <p class="mt-4">
-                Sektor formal menawarkan lebih banyak perlindungan bagi pekerja dibandingkan sektor informal. Ini
-                termasuk jaminan sosial, hak-hak ketenagakerjaan, dan tunjangan yang lebih lengkap. Pekerjaan di sektor
-                formal juga lebih stabil dan terjamin dalam jangka panjang.
-            </p>
         </div>
     </div>
 
@@ -546,66 +579,35 @@
         <div class="modal-content">
             <button class="close-modal">X</button>
             <h2 class="text-2xl font-bold">SEKTOR INFORMAL</h2>
-            <p class="mt-4">
-            <p class="mt-4">
+            <br>
             <h2 class="text-2xl font-bold">Negara Tujuan</h2>
-            <strong>Asia - Afrika (Hong Kong, Singapura, Taiwan, Malaysia).</strong>
+            <strong>Asia - Afrika (Hong Kong, Singapura, Taiwan, Malaysia, Korea, Jepang. dll).</strong>
+            <br>
+            <p class="mt-4">
+                Pekerja migran Indonesia di sektor informal terlibat dalam beragam pekerjaan yang sering kali berkaitan
+                dengan layanan perawatan, pekerjaan rumah tangga, dan sektor industri. Berikut adalah sektor-sektor
+                pekerjaan yang umum:
+            </p>
+            <br>
+            <h2 class="text-2xl font-bold">Sektor Pekerjaan</h2>
+            <ul class="list-disc ml-6">
+                <li><strong>Pekerjaan Rumah Tangga:</strong> Pembantu rumah tangga yang mengurus rumah tangga, merawat
+                    anak, dan lansia. Layanan perawatan untuk individu dengan kebutuhan khusus.</li>
+                <li><strong>Konstruksi:</strong> Tenaga kerja di proyek konstruksi dan infrastruktur. Bekerja di
+                    proyek-proyek pembangunan.</li>
+                <li><strong>Layanan Makanan:</strong> Bekerja di restoran dan kafe sebagai pelayan atau koki.</li>
+                <li><strong>Pekerja Perawatan:</strong> Merawat orang tua atau individu yang membutuhkan bantuan.</li>
+                <li><strong>Pekerja Pabrik:</strong> Terlibat dalam industri manufaktur, terutama di pabrik elektronik
+                    dan tekstil.</li>
+                <li><strong>Pertanian:</strong> Bekerja di sektor pertanian, termasuk pertanian sayuran, buah, dan
+                    kelapa sawit.</li>
+                <li><strong>Industri Perikanan:</strong> Terlibat dalam industri perikanan.</li>
+            </ul>
             <br>
             <br>
-
-            </p>
-            <strong>Pekerjaan Domestik (Domestic Work)</strong><br>
-            Banyak pekerja rumah tangga yang bekerja dalam sektor informal, baik di rumah mereka sendiri atau di
-            rumah orang lain, menyediakan layanan seperti membersihkan rumah, mencuci pakaian, memasak, dan merawat
-            anak atau orang tua. Di Asia dan Afrika, pekerja domestik sering kali tidak terdaftar secara resmi dan
-            tidak memiliki kontrak kerja yang formal, sehingga tidak mendapatkan hak-hak seperti upah minimum atau
-            perlindungan kesehatan.
-            </p>
-            <p class="mt-4">
-                <strong>Industri Rumahan (Home-Based Industries)</strong><br>
-                Banyak rumah tangga di Asia dan Afrika yang menjalankan usaha rumahan sebagai sumber pendapatan
-                tambahan. Ini bisa termasuk produksi makanan, menjahit pakaian, kerajinan tangan, atau barang-barang
-                dekoratif. Usaha ini biasanya dijalankan oleh anggota keluarga di dalam rumah tanpa registrasi formal.
-                Misalnya, di Indonesia, banyak rumah tangga yang memproduksi makanan ringan tradisional untuk dijual di
-                pasar lokal.
-            </p>
-            <p class="mt-4">
-                <strong>Pekerja Lepas di Rumah (Freelancers from Home)</strong><br>
-                Banyak individu, terutama perempuan, bekerja dari rumah dengan menyediakan jasa seperti penjahit, tukang
-                jahit, pengrajin, atau pembuat kerajinan. Di beberapa negara, seperti India dan Bangladesh, banyak
-                perempuan yang bekerja dari rumah membuat tekstil atau pakaian untuk industri garmen, namun mereka
-                sering kali tidak mendapatkan hak dan perlindungan yang dimiliki pekerja formal.
-            </p>
-            <p class="mt-4">
-                <strong>Petani Rumah Tangga Skala Kecil (Small-Scale Family Farming)</strong><br>
-                Pertanian keluarga yang kecil, di mana seluruh rumah tangga terlibat dalam mengelola lahan atau
-                peternakan kecil, merupakan bentuk sektor informal yang signifikan di banyak negara Asia dan Afrika.
-                Hasil pertanian ini biasanya untuk kebutuhan sendiri dan sebagian kecil dijual di pasar lokal. Karena
-                kegiatan ini tidak terdaftar secara resmi, pekerja pertanian rumah tangga sering kali tidak mendapat
-                perlindungan hukum atau jaminan sosial.
-            </p>
-            <p class="mt-4">
-                <strong>Usaha Mikro di Rumah (Micro-Enterprises at Home)</strong><br>
-                Rumah tangga juga sering kali berfungsi sebagai basis usaha mikro, seperti warung kecil atau toko
-                kelontong yang dikelola dari rumah. Di banyak negara seperti Indonesia, Filipina, Nigeria, atau Kenya,
-                warung kecil atau usaha ritel yang dijalankan dari rumah menjadi sumber pendapatan utama bagi keluarga.
-                Ini termasuk penjualan makanan, minuman, atau barang kebutuhan sehari-hari.
-            </p>
-            <p class="mt-4">
-                <strong>Pekerjaan Perawatan dan Jasa dari Rumah (Care Work and Home-Based Services)</strong><br>
-                Selain pekerjaan domestik, banyak rumah tangga menyediakan layanan seperti perawatan anak atau
-                pendidikan informal (misalnya mengajar les) dari rumah. Pekerjaan ini sering kali tidak terdaftar
-                sebagai bisnis formal, meskipun berkontribusi pada ekonomi rumah tangga.
-            </p>
-            <p class="mt-4">
-                <strong>Rumah sebagai Tempat Usaha Informal (Home as a Workplace)</strong><br>
-                Di banyak daerah, terutama di kawasan perkotaan yang padat di Asia dan Afrika, rumah juga berfungsi
-                sebagai tempat kerja informal. Banyak pengusaha kecil atau buruh informal yang menggunakan rumah mereka
-                sebagai tempat memproduksi barang atau menjual jasa. Misalnya, seorang tukang cukur bisa bekerja dari
-                ruang tamu rumahnya, atau seorang pedagang kecil mungkin menjual barang dari depan rumah.
-            </p>
         </div>
     </div>
+
 
 
     <div id="modal-5" class="modal">
