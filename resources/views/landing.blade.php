@@ -143,6 +143,60 @@
                 /* Tidak ada perubahan saat di-hover */
             }
         }
+
+        #featured-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            /* 3 kolom */
+            grid-template-rows: auto auto;
+            /* 2 baris untuk kolom 2 dan 3 */
+            gap: 1.5rem;
+            grid-template-areas:
+                "item1 item2 item3"
+                "item1 item4 item5";
+        }
+
+        /* Penempatan grid item sesuai area */
+        .grid-item-1 {
+            grid-area: item1;
+            /* Kolom 1, mencakup dua baris */
+        }
+
+        .grid-item-2 {
+            grid-area: item2;
+            /* Kolom 2, baris pertama */
+        }
+
+        .grid-item-3 {
+            grid-area: item3;
+            /* Kolom 3, baris pertama */
+        }
+
+        .grid-item-4 {
+            grid-area: item4;
+            /* Kolom 2, baris kedua */
+        }
+
+        .grid-item-5 {
+            grid-area: item5;
+            /* Kolom 3, baris kedua */
+        }
+
+        /* Media query untuk mobile (tampilan satu kolom) */
+        @media (max-width: 767px) {
+            #featured-grid {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .grid-item-1,
+            .grid-item-2,
+            .grid-item-3,
+            .grid-item-4,
+            .grid-item-5 {
+                order: initial;
+            }
+        }
     </style>
 </head>
 
@@ -198,8 +252,8 @@
     <!-- Konten Utama -->
     <main class="container mx-auto py-12 px-4 fade-in">
         <section id="featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-1/2 mx-auto">
-            <!-- Kolom 1: Gambar besar -->
-            <div class="md:col-span-1 h-[610px] scale-up cursor-pointer" data-modal="modal-1">
+            <!-- Kolom 1: COMPANY_NAME (Mencakup dua baris) -->
+            <div class="md:col-span-1 h-[610px] scale-up cursor-pointer grid-item grid-item-1" data-modal="modal-1">
                 <div class="relative group w-full h-full overflow-hidden">
                     <img src="/images/tentangkami.jpg" alt="PT TAKENAKA INDONESIA"
                         class="w-full h-full object-cover no-hover">
@@ -210,42 +264,47 @@
                 </div>
             </div>
 
-            <!-- Kolom 2: Dua gambar kecil -->
-            <div class="md:col-span-1 grid grid-rows-2 gap-6">
-                <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer" data-modal="modal-3">
-                    <img src="/images/formal.jpg" alt="FORMAL" class="w-full h-full object-cover">
-                    <div
-                        class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
-                        FORMAL
-                    </div>
-                </div>
-                <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer" data-modal="modal-2">
-                    <img src="/images/tentangkami.jpg" alt="TENTANG KAMI" class="w-full h-full object-cover">
-                    <div
-                        class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
-                        TENTANG KAMI
-                    </div>
+            <!-- Kolom 2: FORMAL (baris pertama) -->
+            <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-2"
+                data-modal="modal-3">
+                <img src="/images/formal.jpg" alt="FORMAL" class="w-full h-full object-cover">
+                <div
+                    class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
+                    FORMAL
                 </div>
             </div>
 
-            <!-- Kolom 3: Dua gambar kecil -->
-            <div class="md:col-span-1 grid grid-rows-2 gap-6">
-                <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer" data-modal="modal-4">
-                    <img src="/images/informal.jpg" alt="INFORMAL" class="w-full h-full object-cover">
-                    <div
-                        class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
-                        INFORMAL
-                    </div>
+            <!-- Kolom 3: INFORMAL (baris pertama) -->
+            <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-3"
+                data-modal="modal-4">
+                <img src="/images/informal.jpg" alt="INFORMAL" class="w-full h-full object-cover">
+                <div
+                    class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
+                    INFORMAL
                 </div>
-                <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer" data-modal="modal-5">
-                    <img src="/images/hubungi.jpg" alt="KONTAK" class="w-full h-full object-cover">
-                    <div
-                        class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
-                        KONTAK
-                    </div>
+            </div>
+
+            <!-- Kolom 2: TENTANG KAMI (baris kedua) -->
+            <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-4"
+                data-modal="modal-2">
+                <img src="/images/tentangkami.jpg" alt="TENTANG KAMI" class="w-full h-full object-cover">
+                <div
+                    class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
+                    TENTANG KAMI
+                </div>
+            </div>
+
+            <!-- Kolom 3: KONTAK (baris kedua) -->
+            <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-5"
+                data-modal="modal-5">
+                <img src="/images/hubungi.jpg" alt="KONTAK" class="w-full h-full object-cover">
+                <div
+                    class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
+                    KONTAK
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- Modal untuk konten masing-masing grid dan menu -->
