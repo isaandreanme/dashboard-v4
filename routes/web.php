@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Filament\Pages\Workers;
 
+Route::get('/', function () {
+    return view('landing');
+});
 
 
 //---------------------------------------------------------------- Blog
@@ -18,9 +21,9 @@ use App\Filament\Pages\Workers;
 // })->name('home');
 
 //---------------------------------------------------------------- Admin
-Route::get('/', function () {
-    return Redirect::guest('admin');
-})->name('home');
+// Route::get('/', function () {
+//     return Redirect::guest('admin');
+// })->name('home');
 
 Route::get('/login', function () {
     return redirect('/admin/login'); // Sesuaikan rute ini jika halaman login Anda berbeda
