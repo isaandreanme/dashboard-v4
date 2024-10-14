@@ -4,7 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page Takenaka</title>
+    <title>{{ env('COMPANY_NAME') }}</title>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ env('COMPANY_NAME') }}</title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="/images/favicon.svg" type="image/x-icon">
+
+        <!-- Link ke Google Font Montserrat -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+        <!-- Link ke Tailwind CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+
 
     <!-- Link ke Google Font Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
@@ -504,7 +520,9 @@
                     </p>
                     <p class="mt-4">
                         <strong>Nomor Telepon:</strong><br>
-                        +62 21 1234 5678
+                        +62 21 1234 5678 <br>
+                        +62 21 1234 5678 <a href="https://wa.me/62112345678" target="_blank"
+                            class="text-blue-500">WhatsApp Available</a><br>
                     </p>
                     <p class="mt-4">
                         <strong>Email:</strong><br>
@@ -521,12 +539,12 @@
                     </p>
                     <p class="mt-4">
                         <strong>Media Sosial:</strong><br>
-                        Instagram: <a href="https://instagram.com/pekerjamigran" target="_blank"
-                            class="text-blue-500">instagram.com/pekerjamigran</a><br>
-                        Facebook: <a href="https://facebook.com/pekerjamigran" target="_blank"
-                            class="text-blue-500">facebook.com/pekerjamigran</a><br>
-                        Twitter: <a href="https://twitter.com/pekerjamigran" target="_blank"
-                            class="text-blue-500">twitter.com/pekerjamigran</a>
+                        Instagram: <a href="https://instagram.com/#" target="_blank"
+                            class="text-blue-500">instagram.com/#</a><br>
+                        Facebook: <a href="https://facebook.com/#" target="_blank"
+                            class="text-blue-500">facebook.com/#</a><br>
+                        Twitter: <a href="https://twitter.com/#" target="_blank"
+                            class="text-blue-500">twitter.com/#</a>
                     </p>
                 </div>
             </div>
@@ -550,7 +568,7 @@
                 </div>
 
                 <!-- Tautan Navigasi -->
-                <ul class="flex flex-wrap justify-start md:justify-center space-x-6 font-semibold text-sm">
+                <ul class="hidden md:flex space-x-6 font-semibold text-sm text-gray-300">
                     <li><a href="/" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out">BERANDA</a>
                     </li>
                     <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
@@ -564,16 +582,13 @@
                 </ul>
 
                 <!-- Tautan Internasional -->
-                <ul class="flex space-x-6 text-sm">
-                    <li><a href="/admin" class="hover:text-gray-300 transition duration-300 ease-in-out"
-                            data-modal="modal-1">LOGIN
-                            STAFF</a>
-                    </li>
-                    <li><a href="/admin" class="hover:text-gray-300 transition duration-300 ease-in-out"
-                            data-modal="modal-1">LOGIN
-                            AGENCY</a>
-                    </li>
+                <ul class="flex sm:justify-center space-x-6 text-sm md:justify-start">
+                    <li><a href="/admin" class="hover:text-gray-300 transition duration-300 ease-in-out">LOGIN
+                            STAFF</a></li>
+                    <li><a href="/admin" class="hover:text-gray-300 transition duration-300 ease-in-out">LOGIN
+                            AGENCY</a></li>
                 </ul>
+
             </div>
 
             <!-- Bagian Hak Cipta -->

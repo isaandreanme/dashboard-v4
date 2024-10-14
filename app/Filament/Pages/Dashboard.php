@@ -59,7 +59,7 @@ class Dashboard extends \Filament\Pages\Dashboard
                         'kantor' => request('kantor'), // Jika ada kantor yang dipilih di halaman
                     ]);
                 })
-                ->color('success')
+                ->color('primary')
                 ->modalAlignment(Alignment::Center),
             // ->slideOver(),
 
