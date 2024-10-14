@@ -261,49 +261,6 @@
                 font-size: 0.9rem;
             }
         }
-
-        .translate-button {
-            display: inline-flex;
-            align-items: center;
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            color: #333;
-            cursor: pointer;
-        }
-
-        .translate-button::before {
-            content: url('https://www.gstatic.com/images/branding/product/1x/translate_24dp.png');
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-        }
-
-        /* Styling untuk menghilangkan elemen default Google Translate */
-        .goog-te-gadget-simple {
-            background-color: transparent;
-            border: none;
-            font-size: 0;
-        }
-
-        .goog-te-gadget-simple .goog-te-menu-value span {
-            font-size: 14px;
-            color: black;
-            font-weight: bold;
-        }
-
-        /* Menghapus ikon default dropdown Google Translate */
-        .goog-te-gadget-icon {
-            display: none;
-        }
-
-        /* Tambahkan gaya untuk posisi floating */
-        .floating-translate {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
     </style>
 </head>
 
