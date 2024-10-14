@@ -19,6 +19,17 @@
 
         <!-- Link ke Tailwind CSS -->
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'id',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+        </script>
+
     </head>
 
 
@@ -127,7 +138,7 @@
 
         /* Aturan umum untuk efek hover pada layar desktop */
         img:not(.no-hover) {
-            filter: grayscale(100%);
+            filter: grayscale(60%);
             transition: filter 0.3s ease-in-out;
         }
 
@@ -208,6 +219,94 @@
                 order: initial;
             }
         }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            /* Membuat logo dapat berbaris pada layar kecil */
+        }
+
+        .logo {
+            width: 200px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsif: Tampilan layar lebih kecil */
+        @media (max-width: 768px) {
+            .logo {
+                width: 120px;
+
+                margin: 5px;
+            }
+
+            .modal-content {
+                padding: 15px;
+            }
+        }
+
+        /* Responsif: Tampilan layar ponsel */
+        @media (max-width: 480px) {
+            .logo {
+                width: 100px;
+
+                /* margin: 15px; */
+            }
+
+            .modal-content {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+        }
+
+        .translate-button {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .translate-button::before {
+            content: url('https://www.gstatic.com/images/branding/product/1x/translate_24dp.png');
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        /* Styling untuk menghilangkan elemen default Google Translate */
+        .goog-te-gadget-simple {
+            background-color: transparent;
+            border: none;
+            font-size: 0;
+        }
+
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            font-size: 14px;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* Menghapus ikon default dropdown Google Translate */
+        .goog-te-gadget-icon {
+            display: none;
+        }
     </style>
 </head>
 
@@ -233,6 +332,8 @@
                         data-modal="modal-5">KONTAK</a></li>
             </ul>
 
+            {{-- <img src="images/indonesia.svg" alt="OSS" class="no-hover" style="width: 50px; margin-right: 20px;"> --}}
+            <div id="google_translate_element" class="translate-button"></div>
             <!-- Tombol Menu Mobile -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-black">
@@ -268,11 +369,11 @@
             <div class="md:col-span-1 h-auto scale-up cursor-pointer grid-item grid-item-1" data-modal="modal-1">
                 <div class="relative group w-full h-full overflow-hidden">
                     <!-- Pastikan gambar menggunakan lebar penuh dari kontainernya -->
-                    <img src="/images/tentangkami.jpg" alt="PT TAKENAKA INDONESIA"
+                    <img src="/images/perusahaan.jpg" alt="PT TAKENAKA INDONESIA"
                         class="w-full h-full object-cover no-hover">
                     <div
                         class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
-                        <h1 class="text-lg font-bold">{{ env('COMPANY_NAME') }}</h1>
+                        <h1 class="text-lg">{{ env('COMPANY_NAME') }}</h1>
                     </div>
                 </div>
             </div>
@@ -319,21 +420,43 @@
         </section>
     </main>
 
-
-
+    <div class="logos">
+        <img src="images/bp2mi.png" alt="BP2MI" class="logo no-hover">
+        <img src="images/kemnaker.png" alt="Kemnaker" class="logo no-hover">
+        <img src="images/siapkerja.svg" alt="OSS" class="logo no-hover">
+        <img src="images/karirhub.svg" alt="OSS" class="logo no-hover">
+        <img src="images/oss.svg" alt="OSS" class="logo no-hover">
+    </div>
+    <br>
+    <br>
     <!-- Modal untuk konten masing-masing grid dan menu -->
     <div id="modal-1" class="modal">
         <div class="modal-content">
             <button class="close-modal">X</button>
             <h1 class="text-lg font-bold">{{ env('COMPANY_NAME') }}</h1>
-            <p class="mt-4">Perusahaan Penempatan Pekerja Migran Indonesia adalah lembaga yang berfokus pada
-                penyediaan tenaga kerja berkualitas untuk bekerja di luar negeri.
-                Kami berkomitmen memberikan layanan perekrutan yang profesional, memastikan kepatuhan terhadap regulasi
-                ketenagakerjaan, serta menjamin perlindungan hak-hak
-                pekerja migran. Melalui jaringan global dan kemitraan dengan berbagai negara, kami membantu tenaga kerja
-                Indonesia mendapatkan peluang kerja yang aman dan
-                sejahtera di luar negeri, sekaligus memberikan kontribusi pada peningkatan kualitas hidup mereka serta
-                perekonomian nasional.</p>
+
+            <p class="mt-4">
+                Perusahaan Penempatan Pekerja Migran Indonesia adalah lembaga yang berfokus pada penyediaan tenaga kerja
+                berkualitas untuk bekerja di luar negeri. Kami berkomitmen memberikan layanan perekrutan yang
+                profesional, memastikan kepatuhan terhadap regulasi ketenagakerjaan, serta menjamin perlindungan hak-hak
+                pekerja migran.
+                Melalui jaringan global dan kemitraan dengan berbagai negara, kami membantu tenaga kerja Indonesia
+                mendapatkan peluang kerja yang aman dan sejahtera di luar negeri, sekaligus memberikan kontribusi pada
+                peningkatan kualitas hidup mereka serta perekonomian nasional.
+            </p>
+
+            <!-- Menambahkan informasi perizinan resmi -->
+            <p class="mt-2 text-sm font-semibold text-green-700">
+                Kami telah berizin resmi dari <strong>BP2MI</strong>, <strong>Kementerian Ketenagakerjaan Republik
+                    Indonesia</strong>, dan terdaftar dalam <strong>Online Single Submission (OSS)</strong> untuk
+                operasi perekrutan pekerja migran.
+            </p>
+            <br><br>
+            <div class="logos">
+                <img src="images/bp2mi.png" alt="BP2MI" class="logo no-hover">
+                <img src="images/kemnaker.png" alt="Kemnaker" class="logo no-hover">
+                <img src="images/oss.svg" alt="OSS" class="logo no-hover">
+            </div>
         </div>
     </div>
 
@@ -563,7 +686,8 @@
                         <h1 class="text-lg font-bold">{{ env('COMPANY_NAME') }}</h1>
                     </div>
                     <p class="text-sm mt-2 hover:text-gray-300 transition duration-300 ease-in-out">
-                        Perusahaan Penempatan Pekerja Migran Indonesia
+                        Perusahaan Penempatan Pekerja Migran Indonesia <br>
+                        {{ env('COMPANY_ADD') }}
                     </p>
                 </div>
 
