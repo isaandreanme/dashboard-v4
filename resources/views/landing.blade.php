@@ -714,7 +714,7 @@
 
             <!-- Bagian Hak Cipta -->
             <div class="border-t border-gray-400 mt-6 pt-4 text-center">
-                <p class="text-sm">&copy; {{ now()->year }} {{ env('COMPANY_NAME') }}</p>
+                <p class="text-sm">&copy; {{ now()->year }} All rights reserved {{ env('COMPANY_NAME') }}</p>
             </div>
         </div>
     </footer>
