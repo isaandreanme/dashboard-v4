@@ -161,6 +161,7 @@
 
         #featured-grid {
             display: grid;
+            /* width: 1150px; */
             grid-template-columns: 2fr 1fr 1fr;
             /* Kolom kiri lebih besar (2fr) dan dua kolom di sebelah kanan (1fr) */
             grid-template-rows: 1fr 1fr;
@@ -681,7 +682,7 @@
                         <img src="/images/icon.png" alt="Logo" class="mr-4 w-12 h-12 no-hover" />
                         <h1 class="text-lg font-bold">{{ env('COMPANY_NAME') }}</h1>
                     </div>
-                    <p class="text-sm mt-2 hover:text-gray-300 transition duration-300 ease-in-out">
+                    <p class="hidden md:flex text-sm mt-2 hover:text-gray-300 transition duration-300 ease-in-out">
                         Perusahaan Penempatan Pekerja Migran Indonesia <br>
                         {{ env('COMPANY_ADD') }}
                     </p>
