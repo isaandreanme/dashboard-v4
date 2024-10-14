@@ -2,36 +2,30 @@
 <html lang="en">
 
 <head>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'id',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ env('COMPANY_NAME') }}</title>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ env('COMPANY_NAME') }}</title>
+    <!-- Favicon -->
+    <link rel="icon" href="/images/favicon.svg" type="image/x-icon">
 
-        <!-- Favicon -->
-        <link rel="icon" href="/images/favicon.svg" type="image/x-icon">
+    <!-- Link ke Google Font Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
-        <!-- Link ke Google Font Montserrat -->
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
-        <!-- Link ke Tailwind CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        <script type="text/javascript">
-            function googleTranslateElementInit() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'id',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_translate_element');
-            }
-        </script>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-        </script>
-
-    </head>
-
+    <!-- Link ke Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- Link ke Google Font Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
