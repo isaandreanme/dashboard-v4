@@ -85,4 +85,8 @@ class Marketing extends ApprovableModel
     {
         return $this->belongsTo(User::class);
     }
+    public function getFotoUrlAttribute()
+    {
+        return asset('storage/' . $this->foto);
+    }
 }

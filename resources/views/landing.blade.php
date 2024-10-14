@@ -7,17 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ env('COMPANY_NAME') }}</title>
 
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'id',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-    </script>
-
     <!-- Favicon -->
     <link rel="icon" href="/images/favicon.svg" type="image/x-icon">
 
@@ -267,6 +256,42 @@
 <body class="bg-gray-50">
     <!-- Header -->
     <header class="bg-white text-black shadow-md p-4 fade-in">
+        <div id="google_translate_element"></div>
+
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'id',
+                    includedLanguages: 'en,zh-CN,zh-TW,ja,ko,ms,ru',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+            }
+        </script>
+
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+        </script>
+
+        <!-- CSS to move the widget to the right -->
+        <style>
+            /* Move the Google Translate widget to the right */
+            #google_translate_element {
+                text-align: right;
+
+                font: 'Montserrat',
+                    /* Aligns the widget to the right */
+            }
+
+            /* Simple styling for the language dropdown button */
+            #google_translate_element .goog-te-gadget-simple {
+                cursor: pointer;
+            }
+
+            /* Remove Google logo */
+            .goog-te-gadget-simple img {
+                display: none;
+            }
+        </style>
+
         <nav class="container mx-auto flex justify-between items-center">
             <div class="flex items-center">
                 <img src="/images/icon.png" alt="Logo" class="mr-4 w-12 h-12 no-hover" />
@@ -287,7 +312,7 @@
             </ul>
 
             {{-- <img src="images/indonesia.svg" alt="OSS" class="no-hover" style="width: 50px; margin-right: 20px;"> --}}
-            <div id="google_translate_element" class="translate-button"></div>
+
             <!-- Tombol Menu Mobile -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-black">
