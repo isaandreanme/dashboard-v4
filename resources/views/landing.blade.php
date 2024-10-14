@@ -146,40 +146,35 @@
 
         #featured-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            /* 3 kolom */
-            grid-template-rows: auto auto;
-            /* 2 baris untuk kolom 2 dan 3 */
+            grid-template-columns: 2fr 1fr 1fr;
+            /* Kolom kiri lebih besar (2fr) dan dua kolom di sebelah kanan (1fr) */
+            grid-template-rows: 1fr 1fr;
+            /* Dua baris */
             gap: 1.5rem;
             grid-template-areas:
                 "item1 item2 item3"
                 "item1 item4 item5";
         }
 
-        /* Penempatan grid item sesuai area */
         .grid-item-1 {
             grid-area: item1;
-            /* Kolom 1, mencakup dua baris */
+            /* Mencakup dua baris */
         }
 
         .grid-item-2 {
             grid-area: item2;
-            /* Kolom 2, baris pertama */
         }
 
         .grid-item-3 {
             grid-area: item3;
-            /* Kolom 3, baris pertama */
         }
 
         .grid-item-4 {
             grid-area: item4;
-            /* Kolom 2, baris kedua */
         }
 
         .grid-item-5 {
             grid-area: item5;
-            /* Kolom 3, baris kedua */
         }
 
         /* Media query untuk mobile (tampilan satu kolom) */
@@ -236,7 +231,7 @@
 
         <!-- Menu Dropdown Mobile -->
         <ul id="mobile-menu"
-            class="slide-down md:hidden bg-white text-black flex flex-col items-center space-y-4 p-6 hidden">
+            class="slide-down md:hidden bg-white text-black flex-col items-center space-y-4 p-6 hidden">
             <li><a href="/" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out">BERANDA</a></li>
             <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
                     data-modal="modal-1">PERUSAHAAN</a></li>
@@ -251,10 +246,12 @@
 
     <!-- Konten Utama -->
     <main class="container mx-auto py-12 px-4 fade-in">
-        <section id="featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-1/2 mx-auto">
+        <!-- Mengatur ukuran grid dan memastikan elemen di dalamnya tidak melebihi batas -->
+        <section id="featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[50%] w-[50%] mx-auto">
             <!-- Kolom 1: COMPANY_NAME (Mencakup dua baris) -->
-            <div class="md:col-span-1 h-[610px] scale-up cursor-pointer grid-item grid-item-1" data-modal="modal-1">
+            <div class="md:col-span-1 h-auto scale-up cursor-pointer grid-item grid-item-1" data-modal="modal-1">
                 <div class="relative group w-full h-full overflow-hidden">
+                    <!-- Pastikan gambar menggunakan lebar penuh dari kontainernya -->
                     <img src="/images/tentangkami.jpg" alt="PT TAKENAKA INDONESIA"
                         class="w-full h-full object-cover no-hover">
                     <div
@@ -284,7 +281,7 @@
                 </div>
             </div>
 
-            <!-- Kolom 2: TENTANG KAMI (baris kedua) -->
+            <!-- Kolom 4: TENTANG KAMI (baris kedua) -->
             <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-4"
                 data-modal="modal-2">
                 <img src="/images/tentangkami.jpg" alt="TENTANG KAMI" class="w-full h-full object-cover">
@@ -294,7 +291,7 @@
                 </div>
             </div>
 
-            <!-- Kolom 3: KONTAK (baris kedua) -->
+            <!-- Kolom 5: KONTAK (baris kedua) -->
             <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-5"
                 data-modal="modal-5">
                 <img src="/images/hubungi.jpg" alt="KONTAK" class="w-full h-full object-cover">
@@ -304,8 +301,9 @@
                 </div>
             </div>
         </section>
-
     </main>
+
+
 
     <!-- Modal untuk konten masing-masing grid dan menu -->
     <div id="modal-1" class="modal">
