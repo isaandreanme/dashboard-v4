@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ env('COMPANY_NAME') }}</title>
 
     <script type="text/javascript">
@@ -293,6 +294,14 @@
         /* Menghapus ikon default dropdown Google Translate */
         .goog-te-gadget-icon {
             display: none;
+        }
+
+        /* Tambahkan gaya untuk posisi floating */
+        .floating-translate {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -700,6 +709,7 @@
                             AGENCY</a></li>
                 </ul>
 
+                {{-- <div id="google_translate_element" class="translate-button"></div> --}}
             </div>
 
             <!-- Bagian Hak Cipta -->
