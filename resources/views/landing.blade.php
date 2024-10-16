@@ -734,7 +734,7 @@
                 </div>
 
                 <!-- Tautan Navigasi -->
-                <ul class="hidden space-x-6 text-sm font-semibold text-gray-300 md:flex">
+                <ul class="hidden space-x-6 text-sm font-semibold text-white md:flex">
                     <li><a href="/" class="hover:text-[#09b8a7] transition duration-300 ease-in-out">BERANDA</a>
                     </li>
                     <li><a href="#company" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
