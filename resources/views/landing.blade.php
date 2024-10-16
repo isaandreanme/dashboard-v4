@@ -8,7 +8,7 @@
     <title class="notranslate" translate="no">{{ env('COMPANY_NAME') }}</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="/images/favicon.svg" type="image/x-icon">
+    <link rel="icon" href="/images/icon.png" type="image/x-icon">
 
     <!-- Link ke Google Font Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
@@ -115,7 +115,7 @@
 
         /* Aturan umum untuk efek hover pada layar desktop */
         img:not(.no-hover) {
-            filter: grayscale(80%);
+            filter: grayscale(60%);
             transition: filter 0.3s ease-in-out;
         }
 
@@ -409,7 +409,7 @@
     </div>
     <br>
     <div class="title-line">
-        <span class="title-text">Partner agency Teratas</span>
+        <span class="title-text">Rekanan agency Teratas</span>
     </div>
     <div class="logos">
         <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
@@ -497,34 +497,46 @@
                 <img src="images/oss.svg" alt="OSS" class="mx-2 logo no-hover">
             </div>
             <br>
-            <h3 class="mt-4 font-semibold">Agency</h3>
-            <ul class="mt-4 list-disc list-inside">
-                <li>Nama - Taiwan</li>
-                <li>Nama - Taiwan</li>
-                <li>Nama - Taiwan</li>
-                <li>Nama - Hong Kong</li>
-                <li>Nama - Hong Kong</li>
-                <li>Nama - Hong Kong</li>
-                <li>Nama - Hong Kong</li>
-                <li>Nama - Hong Kong</li>
-
-
-            </ul>
             <br>
-            <h3 class="mt-4 font-semibold">Lembaga Pelatihan Dan Sertifikasi</h3>
-            <ul class="mt-4 list-disc list-inside">
-                <li>Nama</li>
-                <li>Nama</li>
-                <li>Nama</li>
-                <li>Nama</li>
-                <li>Nama</li>
-                <li>Nama</li>
-                <li>Nama</li>
-                <li>Nama</li>
-                <li>Nama</li>
-                <li>Nama</li>
-                <li>Nama</li>
-            </ul>
+            <div class="title-line">
+                <span class="title-text">Rekanan</span>
+            </div>
+            <br>
+            <div class="flex justify-between">
+                <!-- Kolom 1 (Agency) -->
+                <div class="w-1/2 pr-4">
+                    <h3 class="mt-4 font-semibold">Agency</h3>
+                    <ul class="mt-4 list-disc list-inside">
+                        <li>Nama - Taiwan</li>
+                        <li>Nama - Taiwan</li>
+                        <li>Nama - Taiwan</li>
+                        <li>Nama - Hong Kong</li>
+                        <li>Nama - Hong Kong</li>
+                        <li>Nama - Hong Kong</li>
+                        <li>Nama - Hong Kong</li>
+                        <li>Nama - Hong Kong</li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 2 (Lembaga Pelatihan Dan Sertifikasi) -->
+                <div class="w-1/2 pl-4">
+                    <h3 class="mt-4 font-semibold">Lembaga Pelatihan Dan Sertifikasi</h3>
+                    <ul class="mt-4 list-disc list-inside">
+                        <li>Nama</li>
+                        <li>Nama</li>
+                        <li>Nama</li>
+                        <li>Nama</li>
+                        <li>Nama</li>
+                        <li>Nama</li>
+                        <li>Nama</li>
+                        <li>Nama</li>
+                        <li>Nama</li>
+                        <li>Nama</li>
+                        <li>Nama</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 
