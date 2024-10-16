@@ -42,6 +42,12 @@ class ProsesCpmi extends Model implements Auditable
         return $this->belongsTo(Sales::class);
     }
 
+    // Relasi ke Pelatihan
+    public function pelatihan()
+    {
+        return $this->belongsTo(Pelatihan::class);
+    }
+
     // Relasi ke Marketing
     public function marketing()
     {

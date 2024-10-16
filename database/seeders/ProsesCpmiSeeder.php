@@ -10,6 +10,7 @@ use App\Models\ProsesCpmi;
 use App\Models\Pendaftaran;
 use App\Models\Tujuan;
 use App\Models\Status;
+use App\Models\Pelatihan; // Pastikan model Pelatihan sudah tersedia
 use Faker\Factory as Faker;
 use Carbon\Carbon;
 
@@ -29,6 +30,9 @@ class ProsesCpmiSeeder extends Seeder
         // Mendapatkan semua data dari tabel Statuses
         $statuses = Status::all();
 
+        // Mendapatkan semua data dari tabel Pelatihan
+        $pelatihans = Pelatihan::all();
+
         // Jika tidak ada data pendaftaran, buat beberapa entri dummy
         if ($pendaftarans->isEmpty()) {
             Pendaftaran::factory()->count(5)->create();
@@ -44,6 +48,12 @@ class ProsesCpmiSeeder extends Seeder
         // Jika tabel Statuses kosong, tampilkan pesan kesalahan atau logika alternatif
         if ($statuses->isEmpty()) {
             $this->command->error('Tidak ada data di tabel Statuses. Harap tambahkan data Statuses terlebih dahulu.');
+            return;
+        }
+
+        // Jika tabel Pelatihans kosong, tampilkan pesan kesalahan atau logika alternatif
+        if ($pelatihans->isEmpty()) {
+            $this->command->error('Tidak ada data di tabel Pelatihans. Harap tambahkan data Pelatihans terlebih dahulu.');
             return;
         }
 
@@ -73,6 +83,9 @@ class ProsesCpmiSeeder extends Seeder
 
             // Pilih ID status dari distribusi yang telah ditentukan
             $statusId = $statusDistribution[$index];
+
+            // Pilih ID pelatihan secara acak dari data pelatihans
+            $pelatihan = $pelatihans->random();
 
             // Tentukan nilai untuk tanggal berdasarkan status
             $tanggalValues = ($statusId === 3) ? [
@@ -109,6 +122,7 @@ class ProsesCpmiSeeder extends Seeder
                 'pendaftaran_id' => $pendaftaran->id, // Menggunakan ID dari tabel Pendaftaran
                 'tujuan_id' => $tujuan->id, // Menambahkan ID dari tabel Tujuans
                 'status_id' => $statusId, // Menambahkan ID dari tabel Statuses
+                'pelatihan_id' => $pelatihan->id, // Menambahkan ID dari tabel Pelatihans
                 'email_siapkerja' => $faker->unique()->safeEmail, // Menggunakan email dari Faker
                 'password_siapkerja' => Hash::make('password123'), // Menggunakan hash untuk password
                 'no_id_pmi' => Str::random(10), // Random string untuk nomor PMI

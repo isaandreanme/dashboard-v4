@@ -74,6 +74,12 @@ class Pendaftaran extends Model implements Auditable
         return $this->belongsTo(Pengalaman::class);
     }
 
+    // Relasi ke Pelatihan
+    public function pelatihan()
+    {
+        return $this->belongsTo(Pelatihan::class);
+    }
+
     // Relasi ke Marketing
     public function marketing()
     {
@@ -120,5 +126,5 @@ class Pendaftaran extends Model implements Auditable
     {
         return $this->belongsTo(User::class);
     }
-    
+
 }

@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SponsorSeeder::class);
         $this->call(StatusSeeder::class);
         $this->call(TujuanSeeder::class);
+        $this->call(PelatihanSeeder::class);
+
         //--------------------------------
 
         $this->call(PendaftaranSeeder::class);

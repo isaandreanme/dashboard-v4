@@ -64,6 +64,11 @@ class ProsesCpmiRelationManager extends RelationManager
                             ->required()
                             ->placeholder('Pilih Negara Tujuan')
                             ->label('Negara Tujuan'),
+                        Select::make('pelatihan_id',)
+                            ->relationship('Pelatihan', 'nama')
+                            ->required()
+                            ->placeholder('Pilih LPKS')
+                            ->label('LPKS/BLK'),
                     ])
             ]);
     }
@@ -202,6 +207,10 @@ class ProsesCpmiRelationManager extends RelationManager
                 TextColumn::make('Pendaftaran.tanggal_pra_medical')->label('PRA MEDICAL')
                     ->copyable()
                     ->sortable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500),
+                TextColumn::make('Pelatihan.nama')->label('LPKS/BLK')->color('success')
+                    ->copyable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500),
                 TextColumn::make('tgl_bp2mi')->label('TGL ID')

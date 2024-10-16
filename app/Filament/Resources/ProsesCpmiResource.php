@@ -375,9 +375,9 @@ class ProsesCpmiResource extends Resource
                     ->copyMessageDuration(1500)
                     ->description(
                         fn(ProsesCpmi $record): string =>
-                            $record->pendaftaran->nomor_ktp
-                                ? "{$record->pendaftaran->nomor_ktp} - " . ($record->pendaftaran->user ? $record->pendaftaran->user->email : 'Akun Tidak Terhubung')
-                                : 'No KTP available'
+                        $record->pendaftaran->nomor_ktp
+                            ? "{$record->pendaftaran->nomor_ktp} - " . ($record->pendaftaran->user ? $record->pendaftaran->user->email : 'Akun Tidak Terhubung')
+                            : 'No KTP available'
                     ),
                 TextColumn::make('Pendaftaran.nomor_ktp')->label('E-KTP')->color('primary')
                     ->copyable()
@@ -397,6 +397,10 @@ class ProsesCpmiResource extends Resource
                 TextColumn::make('Pendaftaran.tanggal_pra_medical')->label('PRA MEDICAL')
                     ->copyable()
                     ->sortable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500),
+                TextColumn::make('Pelatihan.nama')->label('LPKS/BLK')->color('success')
+                    ->copyable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500),
                 TextColumn::make('tgl_bp2mi')->label('TGL ID')

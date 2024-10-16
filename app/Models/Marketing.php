@@ -70,6 +70,12 @@ class Marketing extends ApprovableModel
         return $this->belongsTo(Regency::class);
     }
 
+    // Relasi ke Pelatihan
+    public function pelatihan()
+    {
+        return $this->belongsTo(Pelatihan::class);
+    }
+
     // Relasi ke Village
     public function village()
     {
