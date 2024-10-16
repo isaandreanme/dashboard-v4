@@ -29,6 +29,7 @@ use Filament\Tables\Columns\Layout\Panel;
 use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Enums\ActionsPosition;
+use Illuminate\Contracts\View\View;
 
 class Workers extends Page implements HasTable
 {
@@ -232,5 +233,10 @@ class Workers extends Page implements HasTable
         foreach ($recipients as $recipient) {
             $notification->sendToDatabase($recipient);
         }
+    }
+
+    public function getFooter(): ?View
+    {
+        return view('filament.settings.custom-footer');
     }
 }

@@ -17,7 +17,7 @@ use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\Section;
 use IbrahimBougaoua\FilaProgress\Infolists\Components\ProgressBarEntry;
-
+use Illuminate\Contracts\View\View;
 
 class Proses extends Page implements HasInfolists
 {
@@ -35,7 +35,7 @@ class Proses extends Page implements HasInfolists
     {
         return !Auth::user()->is_agency; // Hide navigation for users with is_agency role
     }
-    
+
 
     public function infolist(Infolist $infolist): Infolist
     {
@@ -83,6 +83,12 @@ class Proses extends Page implements HasInfolists
                             ->description('Data Pendaftaran')
                             ->icon('heroicon-o-clipboard-document-check')
                             ->schema([
+                                ImageEntry::make('foto')
+                                    ->label('')
+                                    // ->square()
+                                    // ->circular()
+                                    ->default($marketing->foto ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
+
                                 TextEntry::make('nama')
                                     ->label('Nama')
                                     ->default($pendaftaran->nama ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
@@ -90,7 +96,7 @@ class Proses extends Page implements HasInfolists
                                 TextEntry::make('nomor_ktp')
                                     ->label('Nomor KTP')
                                     ->default($pendaftaran->nomor_ktp ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
-                            ])->columns(2),
+                            ])->columns(3),
                         Section::make('Proses Status')
                             ->description('Jika Data Tidak Ada CPMI Belum Melaksanakan Proses')
                             ->icon('heroicon-o-arrow-path-rounded-square')
@@ -236,5 +242,10 @@ class Proses extends Page implements HasInfolists
                 ->color('primary')
                 ->button()
         ];
+    }
+
+    public function getFooter(): ?View
+    {
+        return view('filament.settings.custom-footer');
     }
 }
