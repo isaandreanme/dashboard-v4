@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ env('COMPANY_NAME') }}</title>
+    <title class="notranslate" translate="no">{{ env('COMPANY_NAME') }}</title>
 
     <!-- Favicon -->
     <link rel="icon" href="/images/favicon.svg" type="image/x-icon">
@@ -87,7 +87,7 @@
         .modal-content {
             background-color: #ffffff;
             padding: 20px;
-            border-radius: 20px;
+            border-radius: 10px;
             /* Membuat sudut modal lebih melengkung */
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             max-width: 90%;
@@ -104,7 +104,7 @@
             color: white;
             padding: 10px 15px;
             border: none;
-            border-radius: 20px;
+            border-radius: 10px;
             /* Membuat tombol close juga melengkung */
             cursor: pointer;
             position: absolute;
@@ -255,7 +255,7 @@
 
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="bg-white text-black shadow-md p-4 fade-in">
+    <header class="p-4 text-black bg-white shadow-md fade-in">
         <div id="google_translate_element"></div>
 
         <script type="text/javascript">
@@ -292,10 +292,10 @@
             }
         </style>
 
-        <nav class="container mx-auto flex justify-between items-center">
+        <nav class="container flex items-center justify-between mx-auto">
             <div class="flex items-center">
-                <img src="/images/icon.png" alt="Logo" class="mr-4 w-12 h-12 no-hover" />
-                <h1 class="text-lg font-bold">{{ env('COMPANY_NAME') }}</h1>
+                <img src="/images/icon.png" alt="Logo" class="w-12 h-12 mr-4 no-hover" />
+                <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
             </div>
 
             <!-- Menu Navigasi Desktop -->
@@ -318,7 +318,7 @@
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-black">
                     <!-- Ikon hamburger -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -328,7 +328,7 @@
 
         <!-- Menu Dropdown Mobile -->
         <ul id="mobile-menu"
-            class="slide-down md:hidden bg-white text-black flex-col items-center space-y-4 p-6 hidden">
+            class="flex-col items-center hidden p-6 space-y-4 text-black bg-white slide-down md:hidden">
             <li><a href="/" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out">BERANDA</a></li>
             <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
                     data-modal="modal-1">PERUSAHAAN</a></li>
@@ -342,58 +342,58 @@
     </header>
 
     <!-- Konten Utama -->
-    <main class="container mx-auto py-12 px-4 fade-in">
+    <main class="container px-4 py-12 mx-auto fade-in">
         <!-- Mengatur ukuran grid dan memastikan elemen di dalamnya tidak melebihi batas -->
         <section id="featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[50%] w-[50%] mx-auto">
             <!-- Kolom 1: COMPANY_NAME (Mencakup dua baris) -->
-            <div class="md:col-span-1 h-auto scale-up cursor-pointer grid-item grid-item-1" data-modal="modal-1">
-                <div class="relative group w-full h-full overflow-hidden">
+            <div class="h-auto cursor-pointer md:col-span-1 scale-up grid-item grid-item-1" data-modal="modal-1">
+                <div class="relative w-full h-full overflow-hidden group">
                     <!-- Pastikan gambar menggunakan lebar penuh dari kontainernya -->
                     <img src="/images/perusahaan.jpg" alt="PT TAKENAKA INDONESIA"
-                        class="w-full h-full object-cover no-hover">
+                        class="object-cover w-full h-full no-hover">
                     <div
-                        class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
-                        <h1 class="text-lg">{{ env('COMPANY_NAME') }}</h1>
+                        class="absolute bottom-0 left-0 w-full p-2 text-sm text-center text-white bg-gray-800 bg-opacity-70">
+                        <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
                     </div>
                 </div>
             </div>
 
             <!-- Kolom 2: FORMAL (baris pertama) -->
-            <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-2"
+            <div class="relative w-full h-full overflow-hidden cursor-pointer group scale-up grid-item grid-item-2"
                 data-modal="modal-3">
-                <img src="/images/formal.jpg" alt="FORMAL" class="w-full h-full object-cover">
+                <img src="/images/formal.jpg" alt="FORMAL" class="object-cover w-full h-full">
                 <div
-                    class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
+                    class="absolute bottom-0 left-0 w-full p-2 text-sm text-center text-white bg-gray-800 bg-opacity-70">
                     FORMAL
                 </div>
             </div>
 
             <!-- Kolom 3: INFORMAL (baris pertama) -->
-            <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-3"
+            <div class="relative w-full h-full overflow-hidden cursor-pointer group scale-up grid-item grid-item-3"
                 data-modal="modal-4">
-                <img src="/images/informal.jpg" alt="INFORMAL" class="w-full h-full object-cover">
+                <img src="/images/informal.jpg" alt="INFORMAL" class="object-cover w-full h-full">
                 <div
-                    class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
+                    class="absolute bottom-0 left-0 w-full p-2 text-sm text-center text-white bg-gray-800 bg-opacity-70">
                     INFORMAL
                 </div>
             </div>
 
             <!-- Kolom 4: TENTANG KAMI (baris kedua) -->
-            <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-4"
+            <div class="relative w-full h-full overflow-hidden cursor-pointer group scale-up grid-item grid-item-4"
                 data-modal="modal-2">
-                <img src="/images/tentangkami.jpg" alt="TENTANG KAMI" class="w-full h-full object-cover">
+                <img src="/images/tentangkami.jpg" alt="TENTANG KAMI" class="object-cover w-full h-full">
                 <div
-                    class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
+                    class="absolute bottom-0 left-0 w-full p-2 text-sm text-center text-white bg-gray-800 bg-opacity-70">
                     TENTANG KAMI
                 </div>
             </div>
 
             <!-- Kolom 5: KONTAK (baris kedua) -->
-            <div class="relative group w-full h-full overflow-hidden scale-up cursor-pointer grid-item grid-item-5"
+            <div class="relative w-full h-full overflow-hidden cursor-pointer group scale-up grid-item grid-item-5"
                 data-modal="modal-5">
-                <img src="/images/hubungi.jpg" alt="KONTAK" class="w-full h-full object-cover">
+                <img src="/images/hubungi.jpg" alt="KONTAK" class="object-cover w-full h-full">
                 <div
-                    class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-70 text-white p-2 text-sm text-center">
+                    class="absolute bottom-0 left-0 w-full p-2 text-sm text-center text-white bg-gray-800 bg-opacity-70">
                     KONTAK
                 </div>
             </div>
@@ -413,7 +413,7 @@
     <div id="modal-1" class="modal">
         <div class="modal-content">
             <button class="close-modal">X</button>
-            <h1 class="text-lg font-bold text-center">{{ env('COMPANY_NAME') }}</h1>
+            <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
 
             <p class="mt-4 text-justify">
                 <strong>Adalah</strong> Perusahaan yang berfokus pada penyediaan tenaga kerja berkualitas untuk bekerja
@@ -461,10 +461,10 @@
             </p>
             <br>
             <br>
-            <div class="logos flex justify-center mt-4">
-                <img src="images/bp2mi.png" alt="BP2MI" class="logo no-hover mx-2">
-                <img src="images/kemnaker.png" alt="Kemnaker" class="logo no-hover mx-2">
-                <img src="images/oss.svg" alt="OSS" class="logo no-hover mx-2">
+            <div class="flex justify-center mt-4 logos">
+                <img src="images/bp2mi.png" alt="BP2MI" class="mx-2 logo no-hover">
+                <img src="images/kemnaker.png" alt="Kemnaker" class="mx-2 logo no-hover">
+                <img src="images/oss.svg" alt="OSS" class="mx-2 logo no-hover">
             </div>
             <br>
         </div>
@@ -475,22 +475,23 @@
         <div class="modal-content">
             <button class="close-modal">X</button>
             <h2 class="text-2xl font-bold text-center">Tentang Kami</h2>
-            <div class="logos flex justify-center mt-4">
+            <div class="flex justify-center mt-4 logos">
                 <br>
-                <div class="logos flex justify-center mt-4">
-                    <img src="images/logo.png" alt="LOGO" class="logo no-hover mx-2">
+                <div class="flex justify-center mt-4 logos">
+                    <img src="images/logo.png" alt="LOGO" class="mx-2 logo no-hover">
                 </div>
                 <br>
                 <br>
                 <br>
             </div>
             <p class="mt-4 text-justify">
-                <strong>{{ env('COMPANY_NAME') }}</strong> adalah Perushaan yang memiliki
-                lebih dari 10 tahun pengalaman dalam menyediakan layanan penempatan tenaga kerja profesional ke berbagai
-                negara di seluruh dunia. Dengan rekam jejak yang solid, kami fokus pada penyediaan tenaga kerja terlatih
-                dan berkualitas tinggi, telah membantu ribuan pekerja Indonesia mendapatkan pekerjaan yang layak dan
-                aman di luar negeri. Kami bangga menjadi mitra terpercaya di industri ini, dikenal atas komitmen kami
-                untuk meningkatkan kesejahteraan tenaga kerja migran.
+            <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
+            adalah Perushaan yang memiliki
+            lebih dari 10 tahun pengalaman dalam menyediakan layanan penempatan tenaga kerja profesional ke berbagai
+            negara di seluruh dunia. Dengan rekam jejak yang solid, kami fokus pada penyediaan tenaga kerja terlatih
+            dan berkualitas tinggi, telah membantu ribuan pekerja Indonesia mendapatkan pekerjaan yang layak dan
+            aman di luar negeri. Kami bangga menjadi mitra terpercaya di industri ini, dikenal atas komitmen kami
+            untuk meningkatkan kesejahteraan tenaga kerja migran.
             </p>
 
             <p class="mt-4 text-justify">
@@ -534,7 +535,8 @@
                 <br><br><br>
                 <strong>David Beckam</strong>
                 <br>
-                Directur {{ env('COMPANY_NAME') }}
+                Directur
+            <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
             </p>
         </div>
     </div>
@@ -556,7 +558,7 @@
             </p>
             <br>
             <h2 class="text-2xl font-bold">Sektor Pekerjaan</h2>
-            <ul class="list-disc ml-6">
+            <ul class="ml-6 list-disc">
                 <li><strong>Pekerjaan Profesional:</strong> Dokter, perawat, insinyur, dan tenaga pendidik yang memiliki
                     kualifikasi tinggi dan izin kerja yang sesuai.</li>
                 <li><strong>Teknologi Informasi:</strong> Pekerja di bidang IT seperti pengembang perangkat lunak,
@@ -590,7 +592,7 @@
             </p>
             <br>
             <h2 class="text-2xl font-bold">Sektor Pekerjaan</h2>
-            <ul class="list-disc ml-6">
+            <ul class="ml-6 list-disc">
                 <li><strong>Pekerjaan Rumah Tangga:</strong> Pembantu rumah tangga yang mengurus rumah tangga, merawat
                     anak, dan lansia. Layanan perawatan untuk individu dengan kebutuhan khusus.</li>
                 <li><strong>Konstruksi:</strong> Tenaga kerja di proyek konstruksi dan infrastruktur. Bekerja di
@@ -614,7 +616,7 @@
         <div class="modal-content">
             <button class="close-modal">X</button>
             <h2 class="text-2xl font-bold">Hubungi Kami</h2>
-            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
                 <!-- Kolom 1 -->
                 <div>
                     <p>
@@ -657,23 +659,23 @@
 
 
     <!-- Footer dengan warna solid -->
-    <footer class="text-white py-6 fade-in" style="background-color: #7D1B3D;">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
+    <footer class="py-6 text-white fade-in" style="background-color: #7D1B3D;">
+        <div class="container px-4 mx-auto">
+            <div class="flex flex-col items-start justify-between space-y-4 md:flex-row md:items-center md:space-y-0">
                 <!-- Logo dan Teks -->
                 <div class="flex flex-col">
                     <div class="flex items-center">
-                        <img src="/images/icon.png" alt="Logo" class="mr-4 w-12 h-12 no-hover" />
-                        <h1 class="text-lg font-bold">{{ env('COMPANY_NAME') }}</h1>
+                        <img src="/images/icon.png" alt="Logo" class="w-12 h-12 mr-4 no-hover" />
+                        <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
                     </div>
-                    <p class="hidden md:flex text-sm mt-2 hover:text-gray-300 transition duration-300 ease-in-out">
+                    <p class="hidden mt-2 text-sm transition duration-300 ease-in-out md:flex hover:text-gray-300">
                         Perusahaan Penempatan Pekerja Migran Indonesia <br>
-                        {{ env('COMPANY_ADD') }}
+                    <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
                     </p>
                 </div>
 
                 <!-- Tautan Navigasi -->
-                <ul class="hidden md:flex space-x-6 font-semibold text-sm text-gray-300">
+                <ul class="hidden space-x-6 text-sm font-semibold text-gray-300 md:flex">
                     <li><a href="/" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out">BERANDA</a>
                     </li>
                     <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
@@ -687,10 +689,10 @@
                 </ul>
 
                 <!-- Tautan Internasional -->
-                <ul class="flex sm:justify-center space-x-6 text-sm md:justify-start">
-                    <li><a href="/admin" class="hover:text-gray-300 transition duration-300 ease-in-out">LOGIN
+                <ul class="flex space-x-6 text-sm sm:justify-center md:justify-start">
+                    <li><a href="/admin" class="transition duration-300 ease-in-out hover:text-gray-300">LOGIN
                             STAFF</a></li>
-                    <li><a href="/admin" class="hover:text-gray-300 transition duration-300 ease-in-out">LOGIN
+                    <li><a href="/admin" class="transition duration-300 ease-in-out hover:text-gray-300">LOGIN
                             AGENCY</a></li>
                 </ul>
 
@@ -698,8 +700,10 @@
             </div>
 
             <!-- Bagian Hak Cipta -->
-            <div class="border-t border-gray-400 mt-6 pt-4 text-center">
-                <p class="text-sm">&copy; {{ now()->year }} All rights reserved {{ env('COMPANY_NAME') }}</p>
+            <div class="pt-4 mt-6 text-center border-t border-gray-400">
+                <p class="text-sm">&copy; {{ now()->year }} All rights reserved
+                <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
+                </p>
             </div>
         </div>
     </footer>
