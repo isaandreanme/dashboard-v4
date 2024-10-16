@@ -100,7 +100,7 @@
         }
 
         .close-modal {
-            background: #7D1B3D;
+            background: #09b8a7;
             color: white;
             padding: 10px 15px;
             border: none;
@@ -296,15 +296,15 @@
             </div>
 
             <!-- Menu Navigasi Desktop -->
-            <ul class="hidden md:flex space-x-6 font-semibold text-sm text-[#7D1B3D]">
-                <li><a href="/" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out">BERANDA</a></li>
-                <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+            <ul class="hidden md:flex space-x-6 font-semibold text-sm text-[#09b8a7]">
+                <li><a href="/" class="hover:text-[#09b8a7] transition duration-300 ease-in-out">BERANDA</a></li>
+                <li><a href="#company" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                         data-modal="modal-1">PERUSAHAAN</a></li>
-                <li><a href="#services" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+                <li><a href="#services" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                         data-modal="modal-3">FORMAL</a></li>
-                <li><a href="#projects" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+                <li><a href="#projects" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                         data-modal="modal-4">INFORMAL</a></li>
-                <li><a href="#contact" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+                <li><a href="#contact" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                         data-modal="modal-5">KONTAK</a></li>
             </ul>
 
@@ -326,14 +326,14 @@
         <!-- Menu Dropdown Mobile -->
         <ul id="mobile-menu"
             class="flex-col items-center hidden p-6 space-y-4 text-black bg-white slide-down md:hidden">
-            <li><a href="/" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out">BERANDA</a></li>
-            <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+            <li><a href="/" class="hover:text-[#09b8a7] transition duration-300 ease-in-out">BERANDA</a></li>
+            <li><a href="#company" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                     data-modal="modal-1">PERUSAHAAN</a></li>
-            <li><a href="#services" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+            <li><a href="#services" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                     data-modal="modal-3">FORMAL</a></li>
-            <li><a href="#projects" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+            <li><a href="#projects" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                     data-modal="modal-4">INFORMAL</a></li>
-            <li><a href="#contact" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+            <li><a href="#contact" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                     data-modal="modal-5">KONTAK</a></li>
         </ul>
     </header>
@@ -412,13 +412,13 @@
         <span class="title-text">Partner agency Teratas</span>
     </div>
     <div class="logos">
-        <img src="images/agency/1.png"class="logo " style="height: 100px; width: auto;">
-        <img src="images/agency/1.png"class="logo " style="height: 100px; width: auto;">
-        <img src="images/agency/1.png"class="logo " style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
     </div>
     <br>
-    <ul class="flex justify-center space-x-6 font-semibold text-sm text-[#7D1B3D]">
-        <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+    <ul class="flex justify-center space-x-6 font-semibold text-sm text-[#09b8a7]">
+        <li><a href="#company" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                 data-modal="modal-1">LAINNYA</a></li>
     </ul>
     <br>
@@ -426,13 +426,13 @@
         <span class="title-text">pelatihan dan sertifikasi Teratas</span>
     </div>
     <div class="logos">
-        <img src="images/ujk/1.png" alt="UJK" class="logo " style="height: 100px; width: auto;">
-        <img src="images/ujk/2.png" alt="UJK" class="logo " style="height: 100px; width: auto;">
+        <img src="images/ujk/1.png" alt="UJK" class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/ujk/2.png" alt="UJK" class="logo no-hover" style="height: 100px; width: auto;">
 
     </div>
     <br>
-    <ul class="flex justify-center space-x-6 font-semibold text-sm text-[#7D1B3D]">
-        <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+    <ul class="flex justify-center space-x-6 font-semibold text-sm text-[#09b8a7]">
+        <li><a href="#company" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                 data-modal="modal-1">LAINNYA</a></li>
     </ul>
     <br>
@@ -717,7 +717,7 @@
 
 
     <!-- Footer dengan warna solid -->
-    <footer class="py-6 text-white fade-in" style="background-color: #7D1B3D;">
+    <footer class="py-6 text-white fade-in" style="background-color: #09b8a7;">
         <div class="container px-4 mx-auto">
             <div class="flex flex-col items-start justify-between space-y-4 md:flex-row md:items-center md:space-y-0">
                 <!-- Logo dan Teks -->
@@ -735,15 +735,15 @@
 
                 <!-- Tautan Navigasi -->
                 <ul class="hidden space-x-6 text-sm font-semibold text-gray-300 md:flex">
-                    <li><a href="/" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out">BERANDA</a>
+                    <li><a href="/" class="hover:text-[#09b8a7] transition duration-300 ease-in-out">BERANDA</a>
                     </li>
-                    <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+                    <li><a href="#company" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                             data-modal="modal-1">PERUSAHAAN</a></li>
-                    <li><a href="#services" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+                    <li><a href="#services" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                             data-modal="modal-3">FORMAL</a></li>
-                    <li><a href="#projects" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+                    <li><a href="#projects" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                             data-modal="modal-4">INFORMAL</a></li>
-                    <li><a href="#contact" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+                    <li><a href="#contact" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                             data-modal="modal-5">KONTAK</a></li>
                 </ul>
 
