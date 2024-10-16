@@ -504,9 +504,9 @@
                 <span class="title-text">Rekanan</span>
             </div>
             <br>
-            <div class="flex flex-col md:flex-row justify-between">
+            <div class="flex flex-col justify-between md:flex-row">
                 <!-- Kolom 1 (Lembaga Pelatihan Dan Sertifikasi) -->
-                <div class="w-full md:w-1/2 pl-4">
+                <div class="w-full pl-4 md:w-1/2">
                     <h3 class="flex justify-center mt-4 font-semibold">Lembaga Pelatihan Dan Sertifikasi</h3>
                     <ul class="mt-4 list-disc list-inside">
                         @foreach ($pelatihan as $item)
@@ -518,8 +518,8 @@
                 </div>
 
                 <!-- Kolom 2 (Agency) -->
-                <div class="w-full md:w-1/2 pr-4">
-                    <h3 class="flex justify-center mt-4 font-semibold">Agency</h3>
+                <div class="w-full pr-4 md:w-1/2">
+                    <h3 class="flex justify-center mt-4 font-semibold">Agensi Luar Negeri</h3>
                     <ul class="mt-4 list-disc list-inside">
                         @foreach ($agency as $item)
                             <div class="p-4">

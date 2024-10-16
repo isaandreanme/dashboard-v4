@@ -10,6 +10,7 @@ use App\Models\Sales;
 use App\Models\Agency;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class MarketingSeeder extends Seeder
 {
@@ -107,6 +108,7 @@ class MarketingSeeder extends Seeder
                 'code_my' => $faker->randomNumber(5, true),
                 'nomor_hp' => $faker->phoneNumber,
                 'get_job' => $getJob,
+                'tgl_job' => $getJob ? Carbon::instance($faker->dateTimeBetween(now()->subMonths(6), now())) : null, // Set tgl_job with Carbon if get_job is true
                 'national' => $faker->country,
                 'kelamin' => $faker->randomElement(['MALE', 'FEMALE']),
                 'lulusan' => $faker->randomElement(['Elementary School', 'Junior High School', 'Senior Highschool', 'University']),
