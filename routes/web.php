@@ -9,6 +9,7 @@ use App\Http\Controllers\TaiwanController;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Filament\Pages\Workers;
+use App\Http\Controllers\LandingPageController;
 
 Route::get('/', function () {
     return view('landing');
@@ -53,7 +54,10 @@ Route::get('/malaysia/{id}/pdf/download', [MalaysiaController::class, 'download'
     ->name('malaysia.pdf.download')
     ->middleware('auth');
 
-    use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 Route::get('/laporan/pdf/download', [LaporanController::class, 'generatePdf'])->name('laporan.pdf.download');
+
+
+Route::get('/', [LandingPageController::class, 'index']);

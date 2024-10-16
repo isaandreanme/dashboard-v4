@@ -77,6 +77,8 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
+            padding: 10px;
+            /* Tambahkan padding untuk memberi lebih banyak ruang di tepi layar */
         }
 
         .modal.active {
@@ -86,17 +88,18 @@
 
         .modal-content {
             background-color: #ffffff;
-            padding: 20px;
+            padding: 30px;
+            /* Tambahkan padding internal pada modal content */
             border-radius: 10px;
             /* Membuat sudut modal lebih melengkung */
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             max-width: 90%;
             max-height: 90%;
             width: 100%;
-            height: 100%;
+            height: auto;
             overflow-y: auto;
-            margin: 20px;
-            /* Memberikan margin agar tidak menempel ke tepi layar */
+            margin: 10px;
+            /* Tambahkan margin yang lebih besar */
         }
 
         .close-modal {
@@ -112,6 +115,7 @@
             right: 20px;
             z-index: 1000;
         }
+
 
         /* Aturan umum untuk efek hover pada layar desktop */
         img:not(.no-hover) {
@@ -288,7 +292,7 @@
 
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="p-4 text-black bg-white shadow-md fade-in">
+    <header class="p-4 text-[#09b8a7] bg-white shadow-md fade-in">
         <nav class="container flex items-center justify-between mx-auto">
             <div class="flex items-center">
                 <img src="/images/icon.png" alt="Logo" class="w-12 h-12 mr-4 no-hover" />
@@ -308,12 +312,9 @@
                         data-modal="modal-5">KONTAK</a></li>
             </ul>
 
-
-            {{-- <img src="images/indonesia.svg" alt="OSS" class="no-hover" style="width: 50px; margin-right: 20px;"> --}}
-
             <!-- Tombol Menu Mobile -->
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-black">
+                <button id="mobile-menu-button" class="text-[#09b8a7]">
                     <!-- Ikon hamburger -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" strokeWidth={2}>
@@ -325,7 +326,7 @@
 
         <!-- Menu Dropdown Mobile -->
         <ul id="mobile-menu"
-            class="flex-col items-center hidden p-6 space-y-4 text-black bg-white slide-down md:hidden">
+            class="flex-col items-center hidden p-6 space-y-4 text-[#09b8a7] bg-white slide-down md:hidden">
             <li><a href="/" class="hover:text-[#09b8a7] transition duration-300 ease-in-out">BERANDA</a></li>
             <li><a href="#company" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                     data-modal="modal-1">PERUSAHAAN</a></li>
@@ -337,6 +338,7 @@
                     data-modal="modal-5">KONTAK</a></li>
         </ul>
     </header>
+
 
     <!-- Konten Utama -->
     <main class="container px-4 py-12 mx-auto fade-in">
@@ -502,40 +504,32 @@
                 <span class="title-text">Rekanan</span>
             </div>
             <br>
-            <div class="flex justify-between">
-                <!-- Kolom 1 (Agency) -->
-                <div class="w-1/2 pr-4">
-                    <h3 class="mt-4 font-semibold">Agency</h3>
+            <div class="flex flex-col md:flex-row justify-between">
+                <!-- Kolom 1 (Lembaga Pelatihan Dan Sertifikasi) -->
+                <div class="w-full md:w-1/2 pl-4">
+                    <h3 class="flex justify-center mt-4 font-semibold">Lembaga Pelatihan Dan Sertifikasi</h3>
                     <ul class="mt-4 list-disc list-inside">
-                        <li>Nama - Taiwan</li>
-                        <li>Nama - Taiwan</li>
-                        <li>Nama - Taiwan</li>
-                        <li>Nama - Hong Kong</li>
-                        <li>Nama - Hong Kong</li>
-                        <li>Nama - Hong Kong</li>
-                        <li>Nama - Hong Kong</li>
-                        <li>Nama - Hong Kong</li>
+                        @foreach ($pelatihan as $item)
+                            <div class="p-4">
+                                <h3 class="flex mt-4">{{ $item->nama }}</h3>
+                            </div>
+                        @endforeach
                     </ul>
                 </div>
 
-                <!-- Kolom 2 (Lembaga Pelatihan Dan Sertifikasi) -->
-                <div class="w-1/2 pl-4">
-                    <h3 class="mt-4 font-semibold">Lembaga Pelatihan Dan Sertifikasi</h3>
+                <!-- Kolom 2 (Agency) -->
+                <div class="w-full md:w-1/2 pr-4">
+                    <h3 class="flex justify-center mt-4 font-semibold">Agency</h3>
                     <ul class="mt-4 list-disc list-inside">
-                        <li>Nama</li>
-                        <li>Nama</li>
-                        <li>Nama</li>
-                        <li>Nama</li>
-                        <li>Nama</li>
-                        <li>Nama</li>
-                        <li>Nama</li>
-                        <li>Nama</li>
-                        <li>Nama</li>
-                        <li>Nama</li>
-                        <li>Nama</li>
+                        @foreach ($agency as $item)
+                            <div class="p-4">
+                                <h3 class="flex mt-4">{{ $item->nama }}</h3>
+                            </div>
+                        @endforeach
                     </ul>
                 </div>
             </div>
+
 
         </div>
     </div>
