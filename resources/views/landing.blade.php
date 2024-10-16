@@ -250,6 +250,39 @@
                 font-size: 0.9rem;
             }
         }
+
+        .title-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 20px 0;
+            /* Jarak garis dengan elemen lain */
+            position: relative;
+        }
+
+        .title-line::before,
+        .title-line::after {
+            content: "";
+            width: 5%;
+            /* Panjang garis kiri dan kanan masing-masing 20%, total 40% */
+            height: 0.5px;
+            /* Ketebalan garis */
+            background-color: #d3d3d3;
+            /* Warna garis */
+
+        }
+
+        .title-text {
+            padding: 0 10px;
+            /* Jarak antara teks dan garis */
+            font-weight: bold;
+            font-size: 16px;
+            /* Ukuran font judul */
+            text-transform: uppercase;
+            /* Mengubah teks menjadi huruf kapital */
+
+        }
     </style>
 </head>
 
@@ -364,12 +397,37 @@
         </section>
     </main>
 
+    <div class="title-line">
+        <span class="title-text">Sinkronisasi</span>
+    </div>
     <div class="logos">
         <img src="images/bp2mi.png" alt="BP2MI" class="logo no-hover">
         <img src="images/kemnaker.png" alt="Kemnaker" class="logo no-hover">
         <img src="images/siapkerja.svg" alt="OSS" class="logo no-hover">
         <img src="images/karirhub.svg" alt="OSS" class="logo no-hover">
         <img src="images/oss.svg" alt="OSS" class="logo no-hover">
+    </div>
+    <br>
+    <div class="title-line">
+        <span class="title-text">Partner agency</span>
+    </div>
+    <div class="logos">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
+
+    </div>
+    <br>
+    <div class="title-line">
+        <span class="title-text">pelatihan dan sertifikasi</span>
+    </div>
+    <div class="logos">
+        <img src="images/ujk/1.png" alt="UJK" class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/ujk/2.png" alt="UJK" class="logo no-hover" style="height: 100px; width: auto;">
+
     </div>
     <br>
     <br>
@@ -632,6 +690,7 @@
                         <img src="/images/icon.png" alt="Logo" class="w-12 h-12 mr-4 no-hover" />
                         <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
                     </div>
+                    <br>
                     <p class="hidden mt-2 text-sm transition duration-300 ease-in-out md:flex hover:text-gray-300">
                         Perusahaan Penempatan Pekerja Migran Indonesia <br>
                     <p class="text-sm" translate="no">{{ env('COMPANY_ADD') }}</p>
