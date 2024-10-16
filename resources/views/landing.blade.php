@@ -8,7 +8,7 @@
     <title class="notranslate" translate="no">{{ env('COMPANY_NAME') }}</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="/images/icon.png" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.svg" type="image/x-icon">
 
     <!-- Link ke Google Font Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
@@ -295,8 +295,9 @@
     <header class="p-4 text-[#09b8a7] bg-white shadow-md fade-in">
         <nav class="container flex items-center justify-between mx-auto">
             <div class="flex items-center">
-                <img src="/images/icon.png" alt="Logo" class="w-12 h-12 mr-4 no-hover" />
-                <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
+                <img src="/images/logo.png" alt="Logo" class="w-12 h-12 mr-4 no-hover"
+                    style="height: 50px; width: auto;" />
+                <h1 class="hidden text-lg font-bold md:flex" translate="no">{{ env('COMPANY_NAME') }}</h1>
             </div>
 
             <!-- Menu Navigasi Desktop -->
@@ -729,8 +730,9 @@
                 <!-- Logo dan Teks -->
                 <div class="flex flex-col">
                     <div class="flex items-center">
-                        <img src="/images/icon.png" alt="Logo" class="w-12 h-12 mr-4 no-hover" />
-                        <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
+                        <img src="/images/logo-darkmode.png" alt="Logo" class="w-12 h-12 mr-4 no-hover"
+                            style="height: 50px; width: auto;" />
+                        <h1 class="hidden text-lg font-bold md:flex" translate="no">{{ env('COMPANY_NAME') }}</h1>
                     </div>
                     <br>
                     <p class="hidden mt-2 text-sm transition duration-300 ease-in-out md:flex hover:text-gray-300">

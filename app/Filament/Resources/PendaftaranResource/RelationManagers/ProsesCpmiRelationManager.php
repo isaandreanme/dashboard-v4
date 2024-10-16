@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Filament\Resources\ProsesCpmiResource;
 use App\Models\ProsesCpmi;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Wizard;
+use Filament\Forms\Components\Wizard\Step;
 use IbrahimBougaoua\FilaProgress\Tables\Columns\ProgressBar;
 
 class ProsesCpmiRelationManager extends RelationManager
@@ -32,45 +34,41 @@ class ProsesCpmiRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                // Section::make('AKUN CPMI')
-                //     ->description('Pilih Akun CPMI jika Sudah Registrasi Di Portal')->schema([
-                //         Select::make('user_id')
-                //             ->relationship('User', 'name')
-                //             ->placeholder('Pilih Akun CPMI')
-                //             ->label('Akun CPMI')
-                //             ->getOptionLabelFromRecordUsing(fn(User $record) => "{$record->name} ({$record->email})")
-                //             ->searchable()
-                //             ->optionsLimit(3),
-                //     ]),
-                Section::make('PENDAFTARAN')
-                    ->description('Data Pendaftaran')
-                    ->icon('heroicon-m-check-badge')
-                    ->schema([
-                        DatePicker::make('created_at')
-                            ->prefixIcon('heroicon-m-check-circle')
-                            ->prefixIconColor('success')
-                            ->prefix('PILIH TANGGAL')
-                            ->label('')
-                            ->required()
-                            ->displayFormat('d/m/Y')
-                            ->format('Y-m-d'), // Internal ISO format (YYYY-MM-DD),
-                        Select::make('status_id',)
-                            ->relationship('Status', 'nama')
-                            ->required()
-                            ->placeholder('Pilih Status CPMI')
-                            ->label('Status CPMI'),
-                        Select::make('tujuan_id',)
-                            ->relationship('Tujuan', 'nama')
-                            ->required()
-                            ->placeholder('Pilih Negara Tujuan')
-                            ->label('Negara Tujuan'),
-                        Select::make('pelatihan_id',)
-                            ->relationship('Pelatihan', 'nama')
-                            ->required()
-                            ->placeholder('Pilih LPKS')
-                            ->label('LPKS/BLK'),
-                    ])
-            ]);
+                Wizard::make([
+                    Step::make('Informasi Pendaftaran')
+                        ->schema([
+                            DatePicker::make('created_at')
+                                ->prefixIcon('heroicon-m-check-circle')
+                                ->prefixIconColor('success')
+                                ->prefix('PILIH TANGGAL')
+                                ->label('Tanggal Pendaftaran')
+                                ->required()
+                                ->displayFormat('d/m/Y')
+                                ->format('Y-m-d'), // Internal ISO format (YYYY-MM-DD),
+                        ]),
+                    Step::make('Status dan Tujuan')
+                        ->schema([
+                            Select::make('status_id')
+                                ->relationship('Status', 'nama')
+                                ->required()
+                                ->placeholder('Pilih Status CPMI')
+                                ->label('Status CPMI'),
+                            Select::make('tujuan_id')
+                                ->relationship('Tujuan', 'nama')
+                                ->required()
+                                ->placeholder('Pilih Negara Tujuan')
+                                ->label('Negara Tujuan'),
+                        ]),
+                    Step::make('Pelatihan')
+                        ->schema([
+                            Select::make('pelatihan_id')
+                                ->relationship('Pelatihan', 'nama')
+                                ->required()
+                                ->placeholder('Pilih LPKS')
+                                ->label('LPKS/BLK'),
+                        ]),
+                ]),
+            ])->columns(1);
     }
 
     public function table(Table $table): Table

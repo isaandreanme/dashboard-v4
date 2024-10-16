@@ -96,6 +96,17 @@ class Workers extends Page implements HasTable
                                 ->prefix('EXPERIENCE : ')
                                 ->label('EXPERIENCE')
                                 ->searchable(),
+                            TextColumn::make('spokenenglish')
+                                ->prefix('ENGLISH : ')
+                                ->label('STATUS'),
+                            TextColumn::make('spokenmandarin')
+                                ->prefix('MANDARIN : ')
+                                ->label('STATUS'),
+                            TextColumn::make('spokencantonese')
+                                ->prefix('CANTONESE : ')
+                                ->label('STATUS'),
+
+
                         ])->space(1),
                     ])->collapsed(false),
                 ])->from('md'),
