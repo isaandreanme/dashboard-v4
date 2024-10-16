@@ -115,7 +115,7 @@
 
         /* Aturan umum untuk efek hover pada layar desktop */
         img:not(.no-hover) {
-            filter: grayscale(60%);
+            filter: grayscale(80%);
             transition: filter 0.3s ease-in-out;
         }
 
@@ -409,34 +409,42 @@
     </div>
     <br>
     <div class="title-line">
-        <span class="title-text">Partner agency</span>
+        <span class="title-text">Partner agency Teratas</span>
     </div>
     <div class="logos">
-        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
-        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
-        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
-        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
-        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
-        <img src="images/agency/1.png"class="logo no-hover" style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo " style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo " style="height: 100px; width: auto;">
+        <img src="images/agency/1.png"class="logo " style="height: 100px; width: auto;">
+    </div>
+    <br>
+    <ul class="flex justify-center space-x-6 font-semibold text-sm text-[#7D1B3D]">
+        <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+                data-modal="modal-1">LAINNYA</a></li>
+    </ul>
+    <br>
+    <div class="title-line">
+        <span class="title-text">pelatihan dan sertifikasi Teratas</span>
+    </div>
+    <div class="logos">
+        <img src="images/ujk/1.png" alt="UJK" class="logo " style="height: 100px; width: auto;">
+        <img src="images/ujk/2.png" alt="UJK" class="logo " style="height: 100px; width: auto;">
 
     </div>
     <br>
-    <div class="title-line">
-        <span class="title-text">pelatihan dan sertifikasi</span>
-    </div>
-    <div class="logos">
-        <img src="images/ujk/1.png" alt="UJK" class="logo no-hover" style="height: 100px; width: auto;">
-        <img src="images/ujk/2.png" alt="UJK" class="logo no-hover" style="height: 100px; width: auto;">
-
-    </div>
+    <ul class="flex justify-center space-x-6 font-semibold text-sm text-[#7D1B3D]">
+        <li><a href="#company" class="hover:text-[#7D1B3D] transition duration-300 ease-in-out"
+                data-modal="modal-1">LAINNYA</a></li>
+    </ul>
     <br>
     <br>
     <!-- Modal untuk konten masing-masing grid dan menu -->
     <div id="modal-1" class="modal">
         <div class="modal-content">
             <button class="close-modal">X</button>
+            <div class="flex justify-center mt-4 logos">
+                <img src="images/logo.png"class="mx-2 logo no-hover" style="height: 150px; width: auto;">
+            </div>
             <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
-
             <p class="mt-4 text-justify">
                 <strong>Adalah</strong> Perusahaan yang berfokus pada penyediaan tenaga kerja berkualitas untuk bekerja
                 di luar negeri. Kami memiliki komitmen yang kuat untuk memberikan layanan perekrutan yang profesional,
@@ -489,6 +497,34 @@
                 <img src="images/oss.svg" alt="OSS" class="mx-2 logo no-hover">
             </div>
             <br>
+            <h3 class="mt-4 font-semibold">Agency</h3>
+            <ul class="mt-4 list-disc list-inside">
+                <li>Nama - Taiwan</li>
+                <li>Nama - Taiwan</li>
+                <li>Nama - Taiwan</li>
+                <li>Nama - Hong Kong</li>
+                <li>Nama - Hong Kong</li>
+                <li>Nama - Hong Kong</li>
+                <li>Nama - Hong Kong</li>
+                <li>Nama - Hong Kong</li>
+
+
+            </ul>
+            <br>
+            <h3 class="mt-4 font-semibold">Lembaga Pelatihan Dan Sertifikasi</h3>
+            <ul class="mt-4 list-disc list-inside">
+                <li>Nama</li>
+                <li>Nama</li>
+                <li>Nama</li>
+                <li>Nama</li>
+                <li>Nama</li>
+                <li>Nama</li>
+                <li>Nama</li>
+                <li>Nama</li>
+                <li>Nama</li>
+                <li>Nama</li>
+                <li>Nama</li>
+            </ul>
         </div>
     </div>
 
@@ -500,7 +536,7 @@
             <div class="flex justify-center mt-4 logos">
                 <br>
                 <div class="flex justify-center mt-4 logos">
-                    <img src="images/logo.png" alt="LOGO" class="mx-2 logo no-hover">
+                    <img src="images/logo.png"class="mx-2 logo no-hover" style="height: 150px; width: auto;">
                 </div>
                 <br>
                 <br>
