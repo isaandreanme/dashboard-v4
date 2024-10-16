@@ -256,42 +256,6 @@
 <body class="bg-gray-50">
     <!-- Header -->
     <header class="p-4 text-black bg-white shadow-md fade-in">
-        <div id="google_translate_element"></div>
-
-        <script type="text/javascript">
-            function googleTranslateElementInit() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'id',
-                    includedLanguages: 'en,zh-CN,zh-TW,ja,ko,ms,ru',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_translate_element');
-            }
-        </script>
-
-        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-        </script>
-
-        <!-- CSS to move the widget to the right -->
-        <style>
-            /* Move the Google Translate widget to the right */
-            #google_translate_element {
-                text-align: right;
-
-                font: 'Montserrat',
-                    /* Aligns the widget to the right */
-            }
-
-            /* Simple styling for the language dropdown button */
-            #google_translate_element .goog-te-gadget-simple {
-                cursor: pointer;
-            }
-
-            /* Remove Google logo */
-            .goog-te-gadget-simple img {
-                display: none;
-            }
-        </style>
-
         <nav class="container flex items-center justify-between mx-auto">
             <div class="flex items-center">
                 <img src="/images/icon.png" alt="Logo" class="w-12 h-12 mr-4 no-hover" />
@@ -621,8 +585,8 @@
                 <div>
                     <p>
                         <strong>Alamat Kantor:</strong><br>
-                        PT. Penempatan Pekerja Migran Indonesia<br>
-                        Jl. Sudirman No. 123, Jakarta Pusat, Indonesia 10210
+                    <p class="text-sm" translate="no">{{ env('COMPANY_NAME') }}</p>
+                    <p class="text-sm" translate="no">{{ env('COMPANY_ADD') }}</p>
                     </p>
                     <p class="mt-4">
                         <strong>Nomor Telepon:</strong><br>
@@ -670,7 +634,7 @@
                     </div>
                     <p class="hidden mt-2 text-sm transition duration-300 ease-in-out md:flex hover:text-gray-300">
                         Perusahaan Penempatan Pekerja Migran Indonesia <br>
-                    <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
+                    <p class="text-sm" translate="no">{{ env('COMPANY_ADD') }}</p>
                     </p>
                 </div>
 
@@ -701,8 +665,8 @@
 
             <!-- Bagian Hak Cipta -->
             <div class="pt-4 mt-6 text-center border-t border-gray-400">
-                <p class="text-sm">&copy; {{ now()->year }} All rights reserved
-                <h1 class="text-lg font-bold" translate="no">{{ env('COMPANY_NAME') }}</h1>
+                <p class="text-sm" translate="no">
+                    {{ env('COMPANY_NAME') }} &copy; {{ now()->year }} All rights reserved
                 </p>
             </div>
         </div>
@@ -747,6 +711,63 @@
             });
         });
     </script>
+
+    <!-- Tombol Translate -->
+    <div id="google_translate_element" onclick="triggerGoogleTranslate()"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'id',
+                includedLanguages: 'en,zh-CN,zh-TW,ja,ko,ms,ru',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+
+        // Fungsi untuk memunculkan widget Google Translate ketika ikon diklik
+        function triggerGoogleTranslate() {
+            var translateElement = document.querySelector('#google_translate_element .goog-te-gadget-simple');
+            if (translateElement) {
+                translateElement.click();
+            }
+        }
+    </script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+
+    <!-- CSS untuk menampilkan logo Google Translate dan menyembunyikan elemen asli -->
+    <style>
+        /* Tampilan awal ikon Google Translate */
+        #google_translate_element {
+            position: fixed;
+            /* Agar elemen tetap melayang */
+            bottom: 20px;
+            /* Jarak dari bawah layar */
+            right: 20px;
+            /* Jarak dari kanan layar */
+            display: inline-block;
+            cursor: pointer;
+            z-index: 1000;
+            /* Pastikan elemen di atas elemen lain */
+        }
+
+        /* Menambahkan logo Google Translate */
+        #google_translate_element::before {
+            content: url('https://upload.wikimedia.org/wikipedia/commons/d/d7/Google_Translate_logo.svg');
+            display: inline-block;
+            width: 40px;
+            /* Sesuaikan ukuran ikon */
+            height: 40px;
+            /* Sesuaikan ukuran ikon */
+        }
+
+        /* Sembunyikan widget asli Google Translate */
+        #google_translate_element .goog-te-gadget-simple {
+            display: none;
+        }
+    </style>
+    <!-- Batas Tombol Translate -->
 </body>
 
 </html>
