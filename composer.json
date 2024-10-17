@@ -28,6 +28,7 @@
         "mpdf/mpdf": "^8.2",
         "njxqlus/filament-progressbar": "^1.0",
         "owen-it/laravel-auditing": "^13.6",
+        "rupadana/filament-announce": "^3.2",
         "spatie/browsershot": "^4.3",
         "spatie/laravel-pdf": "^1.5",
         "stechstudio/filament-impersonate": "^3.14",

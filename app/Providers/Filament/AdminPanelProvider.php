@@ -42,8 +42,7 @@ use Hasnayeen\Themes\ThemesPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use Illuminate\Support\Facades\Auth;
-
-
+use Rupadana\FilamentAnnounce\FilamentAnnouncePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -136,6 +135,10 @@ class AdminPanelProvider extends PanelProvider
                         slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
                     ),
                 FilamentProgressbarPlugin::make()->color('red'),
+                FilamentAnnouncePlugin::make()
+                    ->pollingInterval('30s') // optional, by default it is set to null
+                    ->defaultColor(Color::Blue), // optional, by default it is set to "primary"
+
 
             ])
             ->navigationGroups([
