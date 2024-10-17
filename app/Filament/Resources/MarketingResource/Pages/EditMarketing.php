@@ -79,4 +79,9 @@ class EditMarketing extends EditRecord
             ->color("success")
             ->hidden(fn(ApprovableModel $record) => $record->shouldBeHidden());
     }
+    protected function getRedirectUrl(): string
+    {
+        $record = $this->record;
+        return $this->getResource()::getUrl('index', ['record' => $record]);
+    }
 }

@@ -222,6 +222,12 @@ class ProsesCpmiRelationManager extends RelationManager
                     ->copyable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500)->toggleable(isToggledHiddenByDefault: false),
+                TextColumn::make('created_at')->label('Tanggal')->color('warning')
+                    ->since()
+                    ->sortable()
+                    ->copyable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500)->toggleable(isToggledHiddenByDefault: false),
 
             ])->defaultSort('updated_at', 'desc')
             ->filters([

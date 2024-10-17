@@ -143,6 +143,12 @@ class MarketingRelationManager extends RelationManager
                     ->copyable()
                     ->copyMessage('Salin Berhasil')
                     ->copyMessageDuration(1500)->toggleable(isToggledHiddenByDefault: false),
+                TextColumn::make('created_at')->label('Tanggal')->color('warning')
+                    ->since()
+                    ->sortable()
+                    ->copyable()
+                    ->copyMessage('Salin Berhasil')
+                    ->copyMessageDuration(1500)->toggleable(isToggledHiddenByDefault: false),
             ])
             ->filters([
                 //
@@ -189,5 +195,10 @@ class MarketingRelationManager extends RelationManager
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+    protected function getRedirectUrl(): string
+    {
+        $record = $this->record;
+        return $this->getResource()::getUrl('index', ['record' => $record]);
     }
 }

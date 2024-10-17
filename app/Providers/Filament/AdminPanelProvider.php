@@ -65,7 +65,7 @@ class AdminPanelProvider extends PanelProvider
             ->databaseNotificationsPolling('3s')
             ->brandLogo(asset('images/icon.png'))
             ->darkModeBrandLogo(asset('images/icon.png'))
-            ->brandLogoHeight('7rem')
+            ->brandLogoHeight('8rem')
             ->favicon(asset('images/icon.png'))
             ->breadcrumbs(false)
             // ->topNavigation()
