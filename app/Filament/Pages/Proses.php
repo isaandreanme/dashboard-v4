@@ -14,6 +14,7 @@ use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Infolists\Components\Fieldset;
 use Filament\Infolists\Components\Grid;
+use Filament\Infolists\Components\Group;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\Section;
 use IbrahimBougaoua\FilaProgress\Infolists\Components\ProgressBarEntry;
@@ -62,104 +63,114 @@ class Proses extends Page implements HasInfolists
             ->record($user) // Mengatur record ke pengguna yang sedang login
             ->schema([
                 Grid::make([
-                    'default' => 2,
-                    'sm' => 2,
-                    'md' => 3,
-                    'lg' => 4,
-                    'xl' => 6,
-                    '2xl' => 8,
+                    // 'default' => 2,
+                    'sm' => 1,
+                    'md' => 2,
+                    'lg' => 2,
+                    'xl' => 2,
+                    '2xl' => 2,
                 ])
                     ->schema([
-                        Section::make('Akun Portal')
-                            ->description('Akun CPMI Yang Terhubung Dengan Data Pendaftaran')
-                            ->icon('heroicon-o-lock-closed')
+                        Group::make()
                             ->schema([
-                                TextEntry::make('name')
-                                    ->label('Nama Akun'),
-                                TextEntry::make('email')
-                                    ->label('Email'),
-                            ])->columns(2),
-                        Section::make('Pendaftaran')
-                            ->description('Data Pendaftaran')
-                            ->icon('heroicon-o-clipboard-document-check')
-                            ->schema([
-                                ImageEntry::make('foto')
-                                    ->label('')
-                                    // ->square()
-                                    // ->circular()
-                                    ->default($marketing->foto ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
-
-                                TextEntry::make('nama')
-                                    ->label('Nama')
-                                    ->default($pendaftaran->nama ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
-
-                                TextEntry::make('nomor_ktp')
-                                    ->label('Nomor KTP')
-                                    ->default($pendaftaran->nomor_ktp ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
-                            ])->columns(3),
-                        Section::make('Proses Status')
-                            ->description('Jika Data Tidak Ada CPMI Belum Melaksanakan Proses')
-                            ->icon('heroicon-o-arrow-path-rounded-square')
-                            ->schema([
-                                Fieldset::make('')
+                                Section::make('Proses Status')
+                                    ->description('Status Dan Marketing')
+                                    ->icon('heroicon-o-arrow-path-rounded-square')
                                     ->schema([
-                                        TextEntry::make('status_id')
-                                            ->label('Status')
-                                            ->default($prosesCpmi->status->nama ?? 'Tidak ada status'),
-                                    ]),
-                                Fieldset::make('')
+                                        Fieldset::make('')
+                                            ->schema([
+                                                TextEntry::make('status_id')
+                                                    ->label('Status')
+                                                    ->default($prosesCpmi->status->nama ?? 'Tidak ada status'),
+
+                                                TextEntry::make('agency_id')
+                                                    ->label('Agency')
+                                                    ->default($marketing->agency->nama ?? 'Tidak ada agency'), // Menampilkan nama agency
+
+                                                TextEntry::make('sales_id')
+                                                    ->label('Sales Marketing')
+                                                    ->default($marketing->sales->nama ?? 'Tidak ada sales'), // Menampilkan nama Sales
+                                            ])->columns(3),
+                                    ])->columns(2),
+
+                                Section::make('Pendaftaran')
+                                    ->description('Data Pendaftaran')
+                                    ->icon('heroicon-o-clipboard-document-check')
                                     ->schema([
-                                        TextEntry::make('tanggal_pra_medical')
-                                            ->label('Pra Medical')
-                                            ->default($pendaftaran->tanggal_pra_medical ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
-                                        TextEntry::make('tanggal_pra_bpjs')
-                                            ->label('Pra BPJS')
-                                            ->default($prosesCpmi->tanggal_pra_bpjs ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tanggal_ujk')
-                                            ->label('UJK')
-                                            ->default($prosesCpmi->tanggal_ujk ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tglsiapkerja')
-                                            ->label('Siap Kerja')
-                                            ->default($prosesCpmi->tglsiapkerja ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tgl_bp2mi')
-                                            ->label('ID BP2MI')
-                                            ->default($prosesCpmi->tgl_bp2mi ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tanggal_medical_full')
-                                            ->label('Medical Full')
-                                            ->default($prosesCpmi->tanggal_medical_full ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tanggal_ec')
-                                            ->label('EC (Kontrak)')
-                                            ->default($prosesCpmi->tanggal_ec ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tanggal_visa')
-                                            ->label('Visa')
-                                            ->default($prosesCpmi->tanggal_visa ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tanggal_bpjs_purna')
-                                            ->label('BPJS Purna')
-                                            ->default($prosesCpmi->tanggal_bpjs_purna ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tanggal_teto')
-                                            ->label('TETO')
-                                            ->default($prosesCpmi->tanggal_teto ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tanggal_pap')
-                                            ->label('PAP')
-                                            ->default($prosesCpmi->tanggal_pap ?? 'Tidak ada data'), // Menampilkan nama status
-                                        TextEntry::make('tanggal_penerbangan')
-                                            ->label('Jadwal Penerbangan')
-                                            ->default($prosesCpmi->tanggal_penerbangan ?? 'Tidak ada data'), // Menampilkan nama status
-                                    ]),
+                                        Fieldset::make('')
+                                            ->schema([
+                                                ImageEntry::make('foto')
+                                                    ->label('')
+                                                    // ->square()
+                                                    // ->circular()
+                                                    ->default($marketing->foto ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
 
-                            ])->columns(2)->collapsible('true'),
-                        Section::make('Marketing')
-                            ->description('Status Market Job')
-                            ->icon('heroicon-o-check-circle')
+                                                TextEntry::make('nama')
+                                                    ->label('Nama')
+                                                    ->default($pendaftaran->nama ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
+
+                                                TextEntry::make('nomor_ktp')
+                                                    ->label('Nomor KTP')
+                                                    ->default($pendaftaran->nomor_ktp ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
+                                            ])->columns(3),
+                                        Fieldset::make('')
+                                            ->schema([
+                                                TextEntry::make('name')
+                                                    ->label('Nama Akun'),
+                                                TextEntry::make('email')
+                                                    ->label('Email'),
+                                            ])->columns(2),
+                                    ])->columns(3),
+
+                            ]),
+                        Group::make()
                             ->schema([
-                                TextEntry::make('agency_id')
-                                    ->label('Agency')
-                                    ->default($marketing->agency->nama ?? 'Tidak ada agency'), // Menampilkan nama agency
+                                Section::make('Pemenuhan')
+                                    ->description('Jika Data Tidak Ada CPMI Belum Melaksanakan Proses')
+                                    ->icon('heroicon-o-arrow-path-rounded-square')
+                                    ->schema([
+                                        Fieldset::make('')
+                                            ->schema([
+                                                TextEntry::make('tanggal_pra_medical')
+                                                    ->label('Pra Medical')
+                                                    ->default($pendaftaran->tanggal_pra_medical ?? 'Tidak ada data'), // Menggunakan default untuk menampilkan KTP
+                                                TextEntry::make('tanggal_pra_bpjs')
+                                                    ->label('Pra BPJS')
+                                                    ->default($prosesCpmi->tanggal_pra_bpjs ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tanggal_ujk')
+                                                    ->label('UJK')
+                                                    ->default($prosesCpmi->tanggal_ujk ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tglsiapkerja')
+                                                    ->label('Siap Kerja')
+                                                    ->default($prosesCpmi->tglsiapkerja ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tgl_bp2mi')
+                                                    ->label('ID BP2MI')
+                                                    ->default($prosesCpmi->tgl_bp2mi ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tanggal_medical_full')
+                                                    ->label('Medical Full')
+                                                    ->default($prosesCpmi->tanggal_medical_full ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tanggal_ec')
+                                                    ->label('EC (Kontrak)')
+                                                    ->default($prosesCpmi->tanggal_ec ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tanggal_visa')
+                                                    ->label('Visa')
+                                                    ->default($prosesCpmi->tanggal_visa ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tanggal_bpjs_purna')
+                                                    ->label('BPJS Purna')
+                                                    ->default($prosesCpmi->tanggal_bpjs_purna ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tanggal_teto')
+                                                    ->label('TETO')
+                                                    ->default($prosesCpmi->tanggal_teto ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tanggal_pap')
+                                                    ->label('PAP')
+                                                    ->default($prosesCpmi->tanggal_pap ?? 'Tidak ada data'), // Menampilkan nama status
+                                                TextEntry::make('tanggal_penerbangan')
+                                                    ->label('Jadwal Penerbangan')
+                                                    ->default($prosesCpmi->tanggal_penerbangan ?? 'Tidak ada data'), // Menampilkan nama status
+                                            ])->columns(),
 
-                                TextEntry::make('sales_id')
-                                    ->label('Sales Marketing')
-                                    ->default($marketing->sales->nama ?? 'Tidak ada sales'), // Menampilkan nama Sales
-                            ])->columns(2),
+                                    ])->columns(2)->collapsible('true'),
+                            ]),
                     ]),
                 Section::make('DOKUMEN PENDAFTARAN CPMI')
                     ->description('Data Yang Di Berikan Kepada Pendaftaran')

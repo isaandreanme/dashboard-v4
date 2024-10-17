@@ -52,6 +52,7 @@ class Workers extends Page implements HasTable
     {
         return $table
             ->query(Marketing::where('agency_id', 2))
+            ->paginated([6, 24, 48, 100, 'all'])
             ->columns([
                 Split::make([
                     ImageColumn::make('foto')
