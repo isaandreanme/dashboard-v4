@@ -61,3 +61,15 @@ Route::get('/laporan/pdf/download', [LaporanController::class, 'generatePdf'])->
 
 
 Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/foto/{filename}', function ($filename) {
+    $path = storage_path('app/public/biodata/foto/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    return response($file, 200)->header("Content-Type", $type);
+});

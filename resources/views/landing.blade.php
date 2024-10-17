@@ -17,6 +17,13 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <style>
+        .circle-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
         /* Mengaktifkan smooth scrolling untuk seluruh halaman */
         html {
             scroll-behavior: smooth;
@@ -288,6 +295,35 @@
 
         }
     </style>
+    {{-- style gambar biodata --}}
+    <style>
+        .imgworkers {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .imgworkers {
+                gap: 10px;
+                flex-wrap: wrap;
+                /* Enable wrap on smaller screens */
+            }
+
+            .worker-image {
+                height: 150px;
+                /* Adjust image size for smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .worker-image {
+                height: 120px;
+                /* Further reduce image size for very small screens */
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50">
@@ -411,31 +447,60 @@
         <img src="images/oss.svg" alt="OSS" class="logo no-hover">
     </div>
     <br>
+    <!-- Foto -->
+    <div class="title-line">
+        <span class="title-text">Calon Pekerja</span>
+    </div>
+    <br>
+    <div class="imgworkers" style="display: flex; gap: 15px; flex-wrap: wrap;">
+        @foreach ($marketing->shuffle()->slice(0, 6) as $item)
+            <img src="{{ Storage::url($item->foto) }}" class="worker-image"
+                style="height: 200px; width: auto; border-radius: 5%; object-fit: cover;" alt="Calon Pekerja">
+        @endforeach
+    </div>
+    <br>
+    <ul class="flex justify-center space-x-6 font-semibold text-sm text-[#09b8a7]">
+        <li><a href="admin/workers" class="hover:text-[#09b8a7] transition duration-300 ease-in-out">
+                LIHAT LEBIH BANYAK</a></li>
+    </ul>
+
+    <!-- Disable right-click on images -->
+    <script>
+        document.querySelectorAll('.worker-image').forEach(function(image) {
+            image.addEventListener('contextmenu', function(e) {
+                e.preventDefault(); // Disable right-click
+            });
+        });
+    </script>
+    <br>
+    {{-- <br>
     <div class="title-line">
         <span class="title-text">Rekanan agency Teratas</span>
     </div>
-    <div class="logos">
+    <br> --}}
+    {{-- <div class="logos">
         <img src="images/agency/1.png"class="logo no-hover" style="height: 50px; width: auto;">
         <img src="images/agency/2.png"class="logo no-hover" style="height: 50px; width: auto;">
         <img src="images/agency/3.png"class="logo no-hover" style="height: 50px; width: auto;">
         <img src="images/plus.svg"class="logo no-hover" style="height: 20px; width: auto;">
-
     </div>
     <br>
     <ul class="flex justify-center space-x-6 font-semibold text-sm text-[#09b8a7]">
         <li><a href="#company" class="hover:text-[#09b8a7] transition duration-300 ease-in-out"
                 data-modal="modal-1">LAINNYA</a></li>
-    </ul>
+    </ul> --}}
     <br>
-    <div class="title-line">
-        <span class="title-text">pelatihan dan sertifikasi Teratas</span>
+    <div class="title-line" style="text-align: center;">
+        <span class="title-text">Pelatihan, Sertifikasi, dan Rekanan Agency Teratas</span>
     </div>
+    <br>
     <div class="logos">
+        <img src="images/agency/1.png"class="logo no-hover" style="height: 30px; width: auto;">
+        <img src="images/agency/2.png"class="logo no-hover" style="height: 30px; width: auto;">
+        <img src="images/agency/3.png"class="logo no-hover" style="height: 30px; width: auto;">
         <img src="images/ujk/1.png" alt="UJK" class="logo no-hover" style="height: 50px; width: auto;">
         <img src="images/ujk/2.png" alt="UJK" class="logo no-hover" style="height: 50px; width: auto;">
         <img src="images/plus.svg"class="logo no-hover" style="height: 20px; width: auto;">
-
-
     </div>
     <br>
     <ul class="flex justify-center space-x-6 font-semibold text-sm text-[#09b8a7]">
@@ -753,9 +818,8 @@
                     <div class="flex items-center">
                         <img src="/images/logo-darkmode.png" alt="Logo" class="w-12 h-12 mr-4 no-hover"
                             style="height: 50px; width: auto;" />
-                        <h1 class="hidden text-lg font-bold md:flex" translate="no">{{ env('COMPANY_NAME') }}</h1>
+                        {{-- <h1 class="hidden text-lg font-bold md:flex" translate="no">{{ env('COMPANY_NAME') }}</h1> --}}
                     </div>
-                    <br>
                     <p class="hidden mt-2 text-sm transition duration-300 ease-in-out md:flex hover:text-gray-300">
                         Perusahaan Penempatan Pekerja Migran Indonesia <br>
                     <p class="text-sm" translate="no">{{ env('COMPANY_ADD') }}</p>
@@ -790,7 +854,7 @@
             <!-- Bagian Hak Cipta -->
             <div class="pt-4 mt-6 text-center border-t border-gray-400">
                 <p class="text-sm" translate="no">
-                    {{ env('COMPANY_NAME') }} &copy; {{ now()->year }} All rights reserved
+                    {{ env('COMPANY_NAME') }} &copy; {{ now()->year }} All Rights Reserved
                 </p>
             </div>
         </div>
