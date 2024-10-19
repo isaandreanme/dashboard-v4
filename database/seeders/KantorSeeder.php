@@ -14,10 +14,30 @@ class KantorSeeder extends Seeder
     public function run(): void
     {
         DB::table('kantors')->insert([
-            [ 'nama' => 'JAKARTA'],
-            [ 'nama' => 'SEMARANG'],
-            [ 'nama' => 'SURABAYA'],
-            [ 'nama' => 'BANDUNG'],
+            [
+                'nama' => 'JAKARTA',
+                'penanggungjawab' => 'Budi Santoso',
+                'nomortelp' => '081234567890',
+                'alamat' => 'Jl. Thamrin No. 1, Jakarta'
+            ],
+            [
+                'nama' => 'SEMARANG',
+                'penanggungjawab' => 'Andi Wijaya',
+                'nomortelp' => '081298765432',
+                'alamat' => 'Jl. Pandanaran No. 2, Semarang'
+            ],
+            [
+                'nama' => 'SURABAYA',
+                'penanggungjawab' => 'Siti Nurhaliza',
+                'nomortelp' => '081345678901',
+                'alamat' => 'Jl. Tunjungan No. 3, Surabaya'
+            ],
+            [
+                'nama' => 'BANDUNG',
+                'penanggungjawab' => 'Rizky Febian',
+                'nomortelp' => '081456789012',
+                'alamat' => 'Jl. Asia Afrika No. 4, Bandung'
+            ],
         ]);
     }
 }

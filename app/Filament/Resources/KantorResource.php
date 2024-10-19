@@ -28,6 +28,12 @@ class KantorResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nama')->required(),
+                TextInput::make('penanggungjawab')
+                    ->label('Penanggung Jawab'),
+                TextInput::make('nomortelp')
+                    ->label('Nomor Telepon'),
+                TextInput::make('alamat')
+                    ->label('ALamat'),
             ]);
     }
 
@@ -36,7 +42,10 @@ class KantorResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama')->label('KANTOR'),
-                ])
+                TextColumn::make('penanggungjawab')->label('PENANGGUNG JAWAB'),
+                TextColumn::make('nomortelp')->label('NOMOR TELEPON'),
+                TextColumn::make('alamat')->label('ALAMAT'),
+            ])
             ->filters([
                 //
             ])
