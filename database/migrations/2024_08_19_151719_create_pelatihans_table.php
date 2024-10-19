@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nama');
+            $table->string('penanggungjawab');
+            $table->string('nomortelp');
+            $table->string('alamat');
         });
     }
 

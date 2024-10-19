@@ -176,21 +176,21 @@ class Proses extends Page implements HasInfolists
                     ->description('Data Yang Di Berikan Kepada Pendaftaran')
                     ->icon('heroicon-o-document-text')
                     ->schema([
-                        TextEntry::make('file_ktp')->label('Upload KTP')
+                        ImageEntry::make('file_ktp')->label('Upload KTP')
                             ->default($pendaftaran->file_ktp ?? 'Tidak ada data'),
-                        TextEntry::make('file_ktp_wali')->label('Upload KTP Wali')
+                        ImageEntry::make('file_ktp_wali')->label('Upload KTP Wali')
                             ->default($pendaftaran->file_ktp_wali ?? 'Tidak ada data'),
-                        TextEntry::make('file_kk')->label('Upload KK')
+                        ImageEntry::make('file_kk')->label('Upload KK')
                             ->default($pendaftaran->tanggalfile_kk_pra_medical ?? 'Tidak ada data'),
-                        TextEntry::make('file_akta_lahir')->label('Upload Akta Lahir')
+                        ImageEntry::make('file_akta_lahir')->label('Upload Akta Lahir')
                             ->default($pendaftaran->file_akta_lahir ?? 'Tidak ada data'),
-                        TextEntry::make('file_surat_nikah')->label('Upload Surat Nikah')
+                        ImageEntry::make('file_surat_nikah')->label('Upload Surat Nikah')
                             ->default($pendaftaran->file_surat_nikah ?? 'Tidak ada data'),
-                        TextEntry::make('file_surat_ijin')->label('Upload Surat Ijin')
+                        ImageEntry::make('file_surat_ijin')->label('Upload Surat Ijin')
                             ->default($pendaftaran->file_surat_ijin ?? 'Tidak ada data'),
-                        TextEntry::make('file_ijazah')->label('Upload Ijazah')
+                        ImageEntry::make('file_ijazah')->label('Upload Ijazah')
                             ->default($pendaftaran->file_ijazah ?? 'Tidak ada data'),
-                        TextEntry::make('file_tambahan')->label('Upload File Tambahan')
+                        ImageEntry::make('file_tambahan')->label('Upload File Tambahan')
                             ->default($pendaftaran->file_tambahan ?? 'Tidak ada data'),
                     ])->columns(4)->collapsed(),
             ]);

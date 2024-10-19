@@ -6,6 +6,7 @@ use App\Filament\Resources\AgencyResource\Pages;
 use App\Filament\Resources\AgencyResource\RelationManagers;
 use App\Models\Agency;
 use Filament\Forms;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -27,7 +28,16 @@ class AgencyResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nama')->required(),
+                Fieldset::make('')
+                    ->schema([
+                        TextInput::make('nama')->required(),
+                        TextInput::make('penanggungjawab')
+                            ->label('Penanggung Jawab'),
+                        TextInput::make('nomortelp')
+                            ->label('Nomor Telepon'),
+                        TextInput::make('alamat')
+                            ->label('ALamat'),
+                    ])
             ]);
     }
 
@@ -36,7 +46,10 @@ class AgencyResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama')->label('NAMA AFENCY'),
-                ])
+                TextColumn::make('penanggungjawab')->label('PENANGGUNG JAWAB'),
+                TextColumn::make('nomortelp')->label('NOMOR TELEPON'),
+                TextColumn::make('alamat')->label('ALAMAT'),
+            ])
             ->filters([
                 //
             ])
