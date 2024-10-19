@@ -582,21 +582,23 @@
                         <thead>
                             <tr>
                                 <th class="p-2 text-center uppercase bg-gray-200 border border-gray-400">Lembaga
-                                    Pelatihan Dan
-                                    Sertifikasi
-                                </th>
+                                    Pelatihan Dan Sertifikasi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($pelatihan as $item)
                                 <tr>
-                                    <td class="p-2 text-xs text-left border border-gray-400">{{ $item->nama }}</td>
+                                    <td class="p-2 text-xs text-left border border-gray-400">
+                                        {{ $item->nama }}
+                                        <br>
+                                        <span class="text-gray-500 text-[10px]">{{ $item->alamat }}</span>
+                                        <!-- Alamat dengan ukuran lebih kecil -->
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-
                 <!-- Kolom 2 (Agency) -->
                 <div class="w-full md:w-1/2">
                     <table class="w-full mt-4 border border-collapse border-gray-400 table-auto">
@@ -609,7 +611,12 @@
                         <tbody>
                             @foreach ($agency as $item)
                                 <tr>
-                                    <td class="p-2 text-xs text-left border border-gray-400">{{ $item->nama }}</td>
+                                    <td class="p-2 text-xs text-left border border-gray-400">
+                                        {{ $item->nama }}
+                                        <br>
+                                        <span class="text-gray-500 text-[10px]">{{ $item->alamat }}</span>
+                                        <!-- Alamat dengan ukuran lebih kecil -->
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
