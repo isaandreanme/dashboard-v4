@@ -12,6 +12,7 @@ use App\Models\Marketing; // Import model Marketing
 use App\Models\ProsesCpmi;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
+use Filament\Infolists\Components\Actions\Action as ActionsAction;
 use Filament\Infolists\Components\Fieldset;
 use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Components\Group;
@@ -176,22 +177,79 @@ class Proses extends Page implements HasInfolists
                     ->description('Data Yang Di Berikan Kepada Pendaftaran')
                     ->icon('heroicon-o-document-text')
                     ->schema([
-                        ImageEntry::make('file_ktp')->label('Upload KTP')
-                            ->default($pendaftaran->file_ktp ?? 'Tidak ada data'),
-                        ImageEntry::make('file_ktp_wali')->label('Upload KTP Wali')
-                            ->default($pendaftaran->file_ktp_wali ?? 'Tidak ada data'),
-                        ImageEntry::make('file_kk')->label('Upload KK')
-                            ->default($pendaftaran->tanggalfile_kk_pra_medical ?? 'Tidak ada data'),
-                        ImageEntry::make('file_akta_lahir')->label('Upload Akta Lahir')
-                            ->default($pendaftaran->file_akta_lahir ?? 'Tidak ada data'),
-                        ImageEntry::make('file_surat_nikah')->label('Upload Surat Nikah')
-                            ->default($pendaftaran->file_surat_nikah ?? 'Tidak ada data'),
-                        ImageEntry::make('file_surat_ijin')->label('Upload Surat Ijin')
-                            ->default($pendaftaran->file_surat_ijin ?? 'Tidak ada data'),
-                        ImageEntry::make('file_ijazah')->label('Upload Ijazah')
-                            ->default($pendaftaran->file_ijazah ?? 'Tidak ada data'),
-                        ImageEntry::make('file_tambahan')->label('Upload File Tambahan')
-                            ->default($pendaftaran->file_tambahan ?? 'Tidak ada data'),
+                        TextEntry::make('file_ktp')->label('Upload KTP')
+                            ->default($pendaftaran->file_ktp ?? 'Tidak ada data')
+                            ->suffixAction(
+                                ActionsAction::make('downloadKtpWali')
+                                    ->icon('heroicon-o-cloud-arrow-down')  // Add a download icon for visual clarity
+                                    ->url(fn() => $pendaftaran->file_ktp ? asset('storage/' . $pendaftaran->file_ktp) : '#')  // Generate download URL from Pendaftaran's file
+                                    ->openUrlInNewTab()  // Open the download in a new tab
+                                    ->disabled(fn() => !$pendaftaran->file_ktp)  // Disable the button if no file is available
+                            ),
+                        TextEntry::make('file_ktp_wali')
+                            ->label('Upload KTP Wali')
+                            ->default($pendaftaran->file_ktp_wali ?? 'Tidak ada data')
+                            ->suffixAction(
+                                ActionsAction::make('downloadKtpWali')
+                                    ->icon('heroicon-o-cloud-arrow-down')  // Add a download icon for visual clarity
+                                    ->url(fn() => $pendaftaran->file_ktp_wali ? asset('storage/' . $pendaftaran->file_ktp_wali) : '#')  // Generate download URL from Pendaftaran's file
+                                    ->openUrlInNewTab()  // Open the download in a new tab
+                                    ->disabled(fn() => !$pendaftaran->file_ktp_wali)  // Disable the button if no file is available
+                            ),
+                        TextEntry::make('file_kk')->label('Upload KK')
+                            ->default($pendaftaran->file_kk ?? 'Tidak ada data')
+                            ->suffixAction(
+                                ActionsAction::make('downloadKtpWali')
+                                    ->icon('heroicon-o-cloud-arrow-down')  // Add a download icon for visual clarity
+                                    ->url(fn() => $pendaftaran->file_kk ? asset('storage/' . $pendaftaran->file_kk) : '#')  // Generate download URL from Pendaftaran's file
+                                    ->openUrlInNewTab()  // Open the download in a new tab
+                                    ->disabled(fn() => !$pendaftaran->file_kk)  // Disable the button if no file is available
+                            ),
+                        TextEntry::make('file_akta_lahir')->label('Upload Akta Lahir')
+                            ->default($pendaftaran->file_akta_lahir ?? 'Tidak ada data')
+                            ->suffixAction(
+                                ActionsAction::make('downloadKtpWali')
+                                    ->icon('heroicon-o-cloud-arrow-down')  // Add a download icon for visual clarity
+                                    ->url(fn() => $pendaftaran->file_akta_lahir ? asset('storage/' . $pendaftaran->file_akta_lahir) : '#')  // Generate download URL from Pendaftaran's file
+                                    ->openUrlInNewTab()  // Open the download in a new tab
+                                    ->disabled(fn() => !$pendaftaran->file_akta_lahir)  // Disable the button if no file is available
+                            ),
+                        TextEntry::make('file_surat_nikah')->label('Upload Surat Nikah')
+                            ->default($pendaftaran->file_surat_nikah ?? 'Tidak ada data')
+                            ->suffixAction(
+                                ActionsAction::make('downloadKtpWali')
+                                    ->icon('heroicon-o-cloud-arrow-down')  // Add a download icon for visual clarity
+                                    ->url(fn() => $pendaftaran->file_surat_nikah ? asset('storage/' . $pendaftaran->file_surat_nikah) : '#')  // Generate download URL from Pendaftaran's file
+                                    ->openUrlInNewTab()  // Open the download in a new tab
+                                    ->disabled(fn() => !$pendaftaran->file_surat_nikah)  // Disable the button if no file is available
+                            ),
+                        TextEntry::make('file_surat_ijin')->label('Upload Surat Ijin')
+                            ->default($pendaftaran->file_surat_ijin ?? 'Tidak ada data')
+                            ->suffixAction(
+                                ActionsAction::make('downloadKtpWali')
+                                    ->icon('heroicon-o-cloud-arrow-down')  // Add a download icon for visual clarity
+                                    ->url(fn() => $pendaftaran->file_surat_ijin ? asset('storage/' . $pendaftaran->file_surat_ijin) : '#')  // Generate download URL from Pendaftaran's file
+                                    ->openUrlInNewTab()  // Open the download in a new tab
+                                    ->disabled(fn() => !$pendaftaran->file_surat_ijin)  // Disable the button if no file is available
+                            ),
+                        TextEntry::make('file_ijazah')->label('Upload Ijazah')
+                            ->default($pendaftaran->file_ijazah ?? 'Tidak ada data')
+                            ->suffixAction(
+                                ActionsAction::make('downloadKtpWali')
+                                    ->icon('heroicon-o-cloud-arrow-down')  // Add a download icon for visual clarity
+                                    ->url(fn() => $pendaftaran->file_ijazah ? asset('storage/' . $pendaftaran->file_ijazah) : '#')  // Generate download URL from Pendaftaran's file
+                                    ->openUrlInNewTab()  // Open the download in a new tab
+                                    ->disabled(fn() => !$pendaftaran->file_ijazah)  // Disable the button if no file is available
+                            ),
+                        TextEntry::make('file_tambahan')->label('Upload File Tambahan')
+                            ->default($pendaftaran->file_tambahan ?? 'Tidak ada data')
+                            ->suffixAction(
+                                ActionsAction::make('downloadKtpWali')
+                                    ->icon('heroicon-o-cloud-arrow-down')  // Add a download icon for visual clarity
+                                    ->url(fn() => $pendaftaran->file_tambahan ? asset('storage/' . $pendaftaran->file_tambahan) : '#')  // Generate download URL from Pendaftaran's file
+                                    ->openUrlInNewTab()  // Open the download in a new tab
+                                    ->disabled(fn() => !$pendaftaran->file_tambahan)  // Disable the button if no file is available
+                            ),
                     ])->columns(4)->collapsed(),
             ]);
     }
