@@ -69,7 +69,6 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('images/icon.png'))
             ->breadcrumbs(false)
             // ->topNavigation()
-            ->sidebarFullyCollapsibleOnDesktop(true)
             ->colors([
                 'primary' => Color::Green,
             ])
