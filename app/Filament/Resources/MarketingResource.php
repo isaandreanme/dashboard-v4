@@ -651,6 +651,9 @@ class MarketingResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('foto')
+                ->label('')
+                ->circular(),
                 TextColumn::make('ProsesCpmi.Status.nama')->label('STATUS')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
