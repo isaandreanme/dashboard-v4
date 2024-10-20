@@ -55,8 +55,6 @@ class AdminPanelProvider extends PanelProvider
             ->passwordReset()
             ->emailVerification()
             ->sidebarCollapsibleOnDesktop()
-            ->sidebarFullyCollapsibleOnDesktop()
-            ->collapsibleNavigationGroups(true)
             ->default()
             ->id('admin')
             ->path('admin')
@@ -68,7 +66,6 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight('8rem')
             ->favicon(asset('images/icon.png'))
             ->breadcrumbs(false)
-            // ->topNavigation()
             ->colors([
                 'primary' => Color::Green,
             ])
