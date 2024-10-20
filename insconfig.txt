@@ -1,15 +1,15 @@
 cp .env.example .env
 composer update
 php artisan key:generate
-npm install
-npm run build
 php artisan migrate
 php artisan migrate:fresh --seed
 php artisan optimize:clear
 php artisan shield:install
-php artisan serve
 php artisan storage:link
+php artisan serve
 
+npm install
+npm run build
 
 PERINTAH UNTUK php artisan storage:link DI CPANEL
 ln -s /home/username/public_html/web.com/storage/app/public /home/username/public_html/web.com/public/storage
